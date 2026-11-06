@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="description" content="BODYMOTION AI 7.0 OMNI — 50 Biomechanical Free Hand Exercises & Custom Daily Goal Engine with Real-Time Computer Vision HUD." />
-  <title>BODYMOTION AI 7.0 OMNI — 50 Free Hand Exercises & Custom Daily Goal</title>
+  <meta name="description" content="BODYMOTION AI 7.0 OMNI — 50 Biomechanical Free Hand Exercises with Real-Time Computer Vision HUD and Dedicated Video Practice Guides." />
+  <title>BODYMOTION AI 7.0 OMNI — 50 Free Hand Exercises & Video Guide Engine</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,7 +44,7 @@
       --radius-full: 9999px;
       
       --shadow-hud: 0 16px 40px -10px rgba(0, 0, 0, 0.9), 0 0 25px rgba(0, 255, 135, 0.08);
-      --sidebar-width: 275px;
+      --sidebar-width: 280px;
       --nav-height: 68px;
     }
 
@@ -152,6 +152,7 @@
       font-weight: 600;
       cursor: pointer;
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      text-align: left;
     }
     .nav-item button svg {
       width: 19px; height: 19px;
@@ -226,14 +227,14 @@
       background: none;
       border: none;
       color: var(--text-dim);
-      font-size: 0.62rem;
+      font-size: 0.58rem;
       font-family: var(--font-mono);
       font-weight: 600;
       cursor: pointer;
-      padding: 6px 6px;
+      padding: 6px 4px;
       flex: 1;
     }
-    .mobile-nav-btn svg { width: 18px; height: 18px; stroke: currentColor; fill: none; }
+    .mobile-nav-btn svg { width: 17px; height: 17px; stroke: currentColor; fill: none; }
     .mobile-nav-btn.active { color: var(--neon-green); }
 
     /* MAIN CONTAINER */
@@ -344,11 +345,11 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
+      gap: 8px;
       font-family: var(--font-sans);
       font-size: 0.88rem;
       font-weight: 700;
-      padding: 11px 22px;
+      padding: 11px 20px;
       border-radius: var(--radius-md);
       cursor: pointer;
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -382,7 +383,18 @@
       border: 1px solid rgba(255, 0, 85, 0.4);
       color: #ff3377;
     }
-    .btn-sm { padding: 8px 16px; font-size: 0.8rem; border-radius: var(--radius-sm); }
+    .btn-youtube {
+      background: rgba(255, 0, 0, 0.15);
+      border: 1px solid rgba(255, 50, 50, 0.5);
+      color: #ff4d4d;
+    }
+    .btn-youtube:hover {
+      background: #ff0000;
+      color: #fff;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+      transform: translateY(-1px);
+    }
+    .btn-sm { padding: 8px 14px; font-size: 0.8rem; border-radius: var(--radius-sm); }
 
     .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
     .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
@@ -512,7 +524,7 @@
       box-shadow: 0 0 16px rgba(0, 255, 135, 0.12);
     }
 
-    .routine-card, .exercise-card, .goal-card {
+    .routine-card, .exercise-card, .goal-card, .guide-card {
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
@@ -522,7 +534,7 @@
       justify-content: space-between;
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .routine-card:hover, .exercise-card:hover, .goal-card:hover {
+    .routine-card:hover, .exercise-card:hover, .goal-card:hover, .guide-card:hover {
       border-color: var(--electric-cyan);
       box-shadow: 0 10px 30px rgba(96, 239, 255, 0.15);
       transform: translateY(-3px);
@@ -530,6 +542,91 @@
     .goal-card.active-target {
       border-color: var(--neon-green);
       box-shadow: 0 0 25px rgba(0, 255, 135, 0.25);
+    }
+
+    /* GUIDE SECTION SPECIFIC STYLES */
+    .guide-image-box {
+      width: 100%;
+      height: 180px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      position: relative;
+      background: #000;
+      margin-bottom: 14px;
+      border: 1px solid var(--border-subtle);
+    }
+    .guide-image-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+      filter: contrast(1.05) brightness(0.95);
+    }
+    .guide-card:hover .guide-image-box img {
+      transform: scale(1.06);
+    }
+    .guide-video-overlay-btn {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.85;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .guide-video-overlay-btn:hover {
+      opacity: 1;
+      background: rgba(0, 0, 0, 0.25);
+    }
+    .guide-play-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(255, 0, 0, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 25px rgba(255, 0, 0, 0.6);
+      transition: transform 0.2s ease;
+    }
+    .guide-video-overlay-btn:hover .guide-play-icon {
+      transform: scale(1.15);
+    }
+    .guide-steps-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin: 12px 0 16px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+    .guide-steps-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .guide-steps-list li span.step-idx {
+      background: rgba(96, 239, 255, 0.12);
+      color: var(--electric-cyan);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      border-radius: 4px;
+      padding: 1px 6px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .guide-pitfall {
+      background: rgba(255, 0, 85, 0.08);
+      border-left: 3px solid var(--alert-crimson);
+      padding: 8px 12px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-size: 0.78rem;
+      color: #ff99bb;
+      margin-bottom: 14px;
     }
 
     .difficulty-tag {
@@ -700,7 +797,7 @@
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.85);
+      background: rgba(0, 0, 0, 0.88);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       z-index: 200;
@@ -714,12 +811,33 @@
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
-      max-width: 660px;
+      max-width: 680px;
       width: 100%;
       padding: 28px;
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
       max-height: 90vh;
       overflow-y: auto;
+    }
+    .modal-dialog-video {
+      max-width: 860px;
+      padding: 22px;
+      border-color: var(--border-cyan);
+    }
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+      height: 0;
+      overflow: hidden;
+      border-radius: var(--radius-md);
+      background: #000;
+      margin-bottom: 16px;
+      border: 1px solid var(--border-subtle);
+    }
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
     }
 
     #toast-shelf {
@@ -773,6 +891,9 @@
       <li class="nav-item active" data-view="view-dashboard">
         <button type="button"><svg viewBox="0 0 24 24"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>Dashboard</button>
       </li>
+      <li class="nav-item" data-view="view-guide">
+        <button type="button" style="color:var(--electric-cyan);"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect width="15" height="14" x="1" y="5" rx="2" ry="2"/></svg>Video & Practice Guide</button>
+      </li>
       <li class="nav-item" data-view="view-goals">
         <button type="button"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>Custom Daily Goals</button>
       </li>
@@ -802,14 +923,15 @@
     </div>
   </aside>
 
-  <!-- MOBILE NAV (ALL 6 HUBS INCLUDED) -->
+  <!-- MOBILE NAV -->
   <nav id="mobile-nav">
     <button type="button" class="mobile-nav-btn active" data-view="view-dashboard"><svg viewBox="0 0 24 24"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/></svg>Home</button>
+    <button type="button" class="mobile-nav-btn" data-view="view-guide" style="color:var(--electric-cyan);"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect width="15" height="14" x="1" y="5" rx="2" ry="2"/></svg>Guide</button>
     <button type="button" class="mobile-nav-btn" data-view="view-goals"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>Goals</button>
     <button type="button" class="mobile-nav-btn" data-view="view-workout"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>Arena</button>
     <button type="button" class="mobile-nav-btn" data-view="view-library"><svg viewBox="0 0 24 24"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/></svg>Matrix</button>
-    <button type="button" class="mobile-nav-btn" data-view="view-coach-hub"><svg viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg>Coach</button>
-    <button type="button" class="mobile-nav-btn" data-view="view-analytics"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Stats</button>
+    <button type="button" class="mobile-nav-btn" data-view="view-coach-hub"><svg viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/></svg>Coach</button>
+    <button type="button" class="mobile-nav-btn" data-view="view-analytics"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/></svg>Stats</button>
   </nav>
 
   <!-- MAIN CONTAINER -->
@@ -860,16 +982,16 @@
       <div class="hero-banner">
         <div class="hero-content">
           <h2>50 FREE HAND BIOMECHANICAL SUITE</h2>
-          <p>Zero equipment required. Computer-vision kinetics powered by 33 full-body landmarks running 100% locally on your browser. Complete with scale-invariant metric analysis, custom daily goal setting, angular velocity, and precision rep counting.</p>
+          <p>Zero equipment required. Computer-vision kinetics powered by 33 full-body landmarks running 100% locally on your browser. Complete with visual practice guidelines, real-time posture feedback, and YouTube video tutorials for every movement.</p>
           <div style="display: flex; gap: 12px; flex-wrap: wrap;">
             <button type="button" class="btn btn-primary" id="dash-quick-workout-btn">
               <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg> Open 50 Workout Arena
             </button>
-            <button type="button" class="btn btn-secondary" id="dash-open-custom-goal-btn">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> Configure Custom Daily Goal
+            <button type="button" class="btn btn-youtube" id="dash-open-guide-btn">
+              <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect width="15" height="14" x="1" y="5" rx="2" ry="2"/></svg> View 50 Practice & Video Guides
             </button>
-            <button type="button" class="btn btn-secondary" id="dash-matrix-btn">
-              <svg viewBox="0 0 24 24"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/></svg> Browse 50 Exercises
+            <button type="button" class="btn btn-secondary" id="dash-open-custom-goal-btn">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> Custom Daily Goal
             </button>
           </div>
         </div>
@@ -930,6 +1052,30 @@
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- NEW SECTION: 50 EXERCISE PRACTICE & VIDEO GUIDE -->
+    <section id="view-guide" class="view-container">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px; flex-wrap:wrap; gap:14px;">
+        <div>
+          <h2 style="font-size: 1.6rem; font-family:var(--font-display);">50 EXERCISE PRACTICE & VIDEO GUIDES</h2>
+          <p style="font-size: 0.88rem; color: var(--text-muted);">Real practice visual references, precise step-by-step form execution, common pitfalls, and instant YouTube tutorials.</p>
+        </div>
+        <div style="min-width: 260px;">
+          <input type="text" id="guide-search-input" placeholder="Search exercises (e.g. Squat, Push-up, Lunge)..." style="width:100%; background:var(--bg-surface-elevated); color:#fff; border:1px solid var(--border-subtle); padding:10px 16px; border-radius:var(--radius-md); font-size:0.88rem;">
+        </div>
+      </div>
+
+      <div class="tab-bar" id="guide-category-tabs">
+        <button type="button" class="tab-btn active" data-filter="all">All 50 Guides</button>
+        <button type="button" class="tab-btn" data-filter="Lower Body">Lower Body (15)</button>
+        <button type="button" class="tab-btn" data-filter="Upper Body">Upper Body (15)</button>
+        <button type="button" class="tab-btn" data-filter="Core">Core & Abs (10)</button>
+        <button type="button" class="tab-btn" data-filter="Cardio">Cardio & Full Body (6)</button>
+        <button type="button" class="tab-btn" data-filter="Mobility">Mobility & Stretch (4)</button>
+      </div>
+
+      <div class="grid-3" id="guide-cards-grid"></div>
     </section>
 
     <!-- 2. CUSTOM DAILY GOALS MATRIX & SETTINGS -->
@@ -1102,6 +1248,28 @@
       </div>
     </section>
   </main>
+
+  <!-- MODAL: YOUTUBE VIDEO GUIDE PLAYER -->
+  <div class="modal-backdrop" id="youtube-guide-modal" role="dialog" aria-modal="true">
+    <div class="modal-dialog modal-dialog-video">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+        <div>
+          <span class="badge-pill" id="modal-video-category">Category</span>
+          <h3 style="font-size:1.3rem; font-family:var(--font-display); margin-top:4px;" id="modal-video-title">Exercise Tutorial</h3>
+        </div>
+        <button type="button" class="btn btn-secondary btn-sm" id="close-video-modal-btn">&times;</button>
+      </div>
+      
+      <div class="video-wrapper">
+        <iframe id="youtube-player-frame" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+        <p style="font-size:0.84rem; color:var(--text-muted);" id="modal-video-desc">Watch exact biomechanical execution and practice along with real-time AI tracking.</p>
+        <button type="button" class="btn btn-primary btn-sm" id="modal-launch-arena-btn">Launch in AI Arena</button>
+      </div>
+    </div>
+  </div>
 
   <!-- MODAL: CUSTOM DAILY GOAL BUILDER -->
   <div class="modal-backdrop" id="custom-goal-modal" role="dialog" aria-modal="true">
@@ -1441,7 +1609,7 @@
         } else if (this.cfg.evalType === "distance") {
           const d = Biomechanics.distance(lm[this.cfg.distPair[0]], lm[this.cfg.distPair[1]]);
           const torsoScale = Biomechanics.getTorsoScale(lm);
-          const normalizedDist = d / torsoScale; // Scale-invariant normalization
+          const normalizedDist = d / torsoScale;
           val = Math.round(normalizedDist * 100);
 
           isPeak = this.cfg.distGreater ? normalizedDist >= this.cfg.peakDist : normalizedDist <= this.cfg.peakDist;
@@ -1471,22 +1639,19 @@
           }
         }
 
-        // SMOOTHED ANGULAR VELOCITY (EMA Filter)
         const instantVelocity = Math.abs((val - this.lastVal) / dt);
         this.smoothedVelocity = Math.round(0.2 * instantVelocity + 0.8 * this.smoothedVelocity);
         this.lastVal = val;
         this.lastTime = now;
 
-        // REAL-TIME DYNAMIC FORM INTEGRITY SCORE
         let formScore = 100;
         let avgConf = 0;
         this.cfg.requiredLandmarks.forEach(idx => { avgConf += (lm[idx]?.visibility || 0.9); });
         avgConf /= this.cfg.requiredLandmarks.length;
         if (avgConf < 0.65) formScore -= Math.round((0.65 - avgConf) * 60);
-        if (this.smoothedVelocity > 350) formScore -= 12; // Uncontrolled rapid jerking
+        if (this.smoothedVelocity > 350) formScore -= 12;
         formScore = Math.max(55, Math.min(100, formScore));
 
-        // STATE MACHINE WITH HYSTERESIS & 450MS REPETITION DEBOUNCE
         if (this.phase === "INITIAL" || this.phase === "COMPLETED") {
           if (isReset || this.cfg.evalType === "hold" || this.cfg.evalType === "circle") {
             this.phase = "READY";
@@ -1520,117 +1685,412 @@
     }
 
     /* --------------------------------------------------------------------------
-       5. 50 FREE HAND EXERCISE CATALOG DEFINITIONS
+       5. 50 FREE HAND EXERCISE CATALOG DEFINITIONS WITH REAL IMAGES & YOUTUBE
        -------------------------------------------------------------------------- */
     const EXERCISE_50_CATALOG = [
       // --- LOWER BODY (15) ---
       { id: "squat", name: "1. Bodyweight Squat", category: "Lower Body", reps: 15, desc: "Bilateral knee flexion maintaining erect spinal cylinder.",
+        image: "https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "aclHkVaku9U",
+        muscles: "Quadriceps, Glutes, Hamstrings",
+        steps: ["Stand shoulder-width apart, chest upright.", "Hinge hips back and bend knees to 90 degrees.", "Drive through midfoot to return to full extension."],
+        pitfall: "Avoid letting knees cave inward or rounding lower back.",
         evalType: "angle", jointTriplet: [23, 25, 27], bilateralTriplet: [24, 26, 28], requiredLandmarks: [23, 25, 27, 24, 26, 28], activeJointIdx: 26, flexionDirection: "less", peakThreshold: 105, resetThreshold: 155 },
+
       { id: "sumo_squat", name: "2. Wide Stance Sumo Squat", category: "Lower Body", reps: 15, desc: "Abducted stance knee flexion loading adductors.",
+        image: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "9ZuXKqRbT9k",
+        muscles: "Inner Thighs (Adductors), Glutes",
+        steps: ["Feet wider than shoulder-width, toes turned 45 degrees out.", "Lower hips straight down with vertical torso.", "Push knees outward along toe line as you rise."],
+        pitfall: "Do not lean forward excessively.",
         evalType: "angle", jointTriplet: [23, 25, 27], bilateralTriplet: [24, 26, 28], requiredLandmarks: [23, 25, 27, 24, 26, 28], activeJointIdx: 25, flexionDirection: "less", peakThreshold: 100, resetThreshold: 150 },
+
       { id: "jump_squat", name: "3. Explosive Jump Squat", category: "Lower Body", reps: 12, desc: "Deep squat flexion exploding to triple extension.",
+        image: "https://images.unsplash.com/photo-1434682881908-b0740aac2d71?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "CVaEhXotL7M",
+        muscles: "Quadriceps, Calves, Fast-twitch Glute fibers",
+        steps: ["Descend into half-squat loading posterior chain.", "Explode vertically extending ankles, knees, and hips.", "Land softly through balls of feet directly into next rep."],
+        pitfall: "Avoid stiff-legged landing.",
         evalType: "angle", jointTriplet: [23, 25, 27], bilateralTriplet: [24, 26, 28], requiredLandmarks: [23, 25, 27, 24, 26, 28], activeJointIdx: 26, flexionDirection: "less", peakThreshold: 110, resetThreshold: 160 },
+
       { id: "forward_lunge", name: "4. Forward Lunge", category: "Lower Body", reps: 12, desc: "Lead knee 90-degree angle flexion with upright torso.",
+        image: "https://images.unsplash.com/photo-1538805060514-97d9cc17730c?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "QOVaHwm-Q6U",
+        muscles: "Quadriceps, Gluteus Medius, Core stabilizers",
+        steps: ["Step forward with lead leg.", "Lower until both knees reach 90-degree angles.", "Push forcefully through front heel back to start."],
+        pitfall: "Keep front knee tracked directly above ankle.",
         evalType: "angle", jointTriplet: [23, 25, 27], bilateralTriplet: [24, 26, 28], requiredLandmarks: [23, 25, 27, 24, 26, 28], activeJointIdx: 25, takeMin: true, flexionDirection: "less", peakThreshold: 100, resetThreshold: 150 },
+
       { id: "reverse_lunge", name: "5. Reverse Lunge", category: "Lower Body", reps: 12, desc: "Backward step dropping rear knee toward floor.",
+        image: "https://images.unsplash.com/photo-1549576490-b0b4831ef60a?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "7vCwtdvU6v0",
+        muscles: "Glutes, Hamstrings, Hip Flexors",
+        steps: ["Step backward cleanly onto ball of back foot.", "Drop back knee smoothly an inch above ground.", "Drive lead foot to stand tall."],
+        pitfall: "Do not let torso collapse forward.",
         evalType: "angle", jointTriplet: [23, 25, 27], bilateralTriplet: [24, 26, 28], requiredLandmarks: [23, 25, 27, 24, 26, 28], activeJointIdx: 26, takeMin: true, flexionDirection: "less", peakThreshold: 100, resetThreshold: 152 },
+
       { id: "lateral_lunge", name: "6. Side Lateral Lunge", category: "Lower Body", reps: 12, desc: "Unilateral hip hinge and knee bend to side.",
+        image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "FUX6Pz8vV0s",
+        muscles: "Abductors, Adductors, Gluteus Medius",
+        steps: ["Take a wide step directly to the side.", "Hinge hip back on working leg while keeping opposite leg straight.", "Push back decisively to center."],
+        pitfall: "Keep working heel planted firmly on floor.",
         evalType: "angle", jointTriplet: [23, 25, 27], bilateralTriplet: [24, 26, 28], requiredLandmarks: [23, 25, 27, 24, 26, 28], activeJointIdx: 25, takeMin: true, flexionDirection: "less", peakThreshold: 110, resetThreshold: 155 },
+
       { id: "calf_raise", name: "7. Standing Calf Raise", category: "Lower Body", reps: 20, desc: "Bilateral plantarflexion elevating heels off ground.",
+        image: "https://images.unsplash.com/photo-1599058917765-a780eda07a3e?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "-M4-G8p8fmc",
+        muscles: "Gastrocnemius, Soleus, Achilles tendon",
+        steps: ["Stand feet hip-width apart.", "Rise up onto the balls of your toes squeezing calves at peak.", "Lower slowly back until heels tap floor."],
+        pitfall: "Avoid bouncing reps; pause at top extension.",
         evalType: "angle", jointTriplet: [25, 27, 31], bilateralTriplet: [26, 28, 32], requiredLandmarks: [25, 26, 27, 28, 31, 32], activeJointIdx: 27, flexionDirection: "more", peakThreshold: 132, resetThreshold: 105 },
+
       { id: "single_calf_raise", name: "8. Single-Leg Calf Raise", category: "Lower Body", reps: 15, desc: "Unilateral gastrocnemius drive on single support foot.",
+        image: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "gwLzBJYoWlI",
+        muscles: "Single Leg Calf & Ankle Stabilizers",
+        steps: ["Elevate one foot behind ankle of working leg.", "Drive through the big toe knuckle to max height.", "Decelerate smoothly back down."],
+        pitfall: "Maintain neutral posture without side-swaying.",
         evalType: "angle", jointTriplet: [25, 27, 31], requiredLandmarks: [25, 27, 31], activeJointIdx: 27, flexionDirection: "more", peakThreshold: 135, resetThreshold: 105 },
+
       { id: "high_knees", name: "9. Standing Knee Raise", category: "Lower Body", reps: 16, desc: "Dynamic hip flexion driving knee above hip level.",
+        image: "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "oDdkytliOqE",
+        muscles: "Psoas, Rectus Femoris, Lower Abs",
+        steps: ["Stand upright with engaged core.", "Drive one knee up until parallel with hip crease.", "Alternate smoothly in a steady cadence."],
+        pitfall: "Do not lean shoulders backward as knee rises.",
         evalType: "angle", jointTriplet: [11, 23, 25], bilateralTriplet: [12, 24, 26], requiredLandmarks: [11, 12, 23, 24, 25, 26], activeJointIdx: 23, takeMin: true, flexionDirection: "less", peakThreshold: 105, resetThreshold: 155 },
+
       { id: "standing_side_kick", name: "10. Standing Leg Abduction", category: "Lower Body", reps: 14, desc: "Straight leg lateral hip abduction for gluteus medius.",
+        image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "d3sH8kC25E4",
+        muscles: "Gluteus Medius, Tensor Fasciae Latae",
+        steps: ["Keep standing leg slightly unlocked.", "Raise working leg directly out sideways without rotating hips.", "Control descent back to starting width."],
+        pitfall: "Avoid tilting upper body sideways to compensate.",
         evalType: "distance", distPair: [27, 28], requiredLandmarks: [27, 28], activeJointIdx: 28, distGreater: true, peakDist: 1.15, resetDist: 0.45 },
+
       { id: "front_leg_kick", name: "11. Front Leg Kick", category: "Lower Body", reps: 14, desc: "Straight leg sagittal kick upward.",
+        image: "https://images.unsplash.com/photo-1538805060514-97d9cc17730c?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "J8aQkO-C_yI",
+        muscles: "Hamstrings (dynamic flex), Hip Flexors",
+        steps: ["Keep supporting foot solid.", "Swing leg straight forward and upward in sagittal plane.", "Lower with control."],
+        pitfall: "Avoid curving upper spine excessively.",
         evalType: "angle", jointTriplet: [11, 23, 27], bilateralTriplet: [12, 24, 28], requiredLandmarks: [11, 12, 23, 24, 27, 28], activeJointIdx: 23, takeMin: true, flexionDirection: "less", peakThreshold: 115, resetThreshold: 160 },
+
       { id: "glute_kickback", name: "12. Standing Glute Kickback", category: "Lower Body", reps: 14, desc: "Posterior hip extension squeezing glutes.",
+        image: "https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "nlH3Y8Jz-p8",
+        muscles: "Gluteus Maximus, Upper Hamstrings",
+        steps: ["Brace abdominals firmly.", "Drive heel backwards keeping leg extended.", "Squeeze glute at peak extension for 1 second."],
+        pitfall: "Do not hyperextend lower lumbar spine.",
         evalType: "distance", distPair: [27, 28], requiredLandmarks: [23, 24, 27, 28], activeJointIdx: 28, distGreater: true, peakDist: 0.85, resetDist: 0.40 },
+
       { id: "butt_kicks", name: "13. Butt Kicks", category: "Lower Body", reps: 20, desc: "Rapid knee flexion pulling heels straight to glutes.",
+        image: "https://images.unsplash.com/photo-1434682881908-b0740aac2d71?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "vXm_4R8R03k",
+        muscles: "Hamstrings, Quadriceps stretch",
+        steps: ["Pump arms in running rhythm.", "Flex knee quickly bringing heel all the way up to touch glute.", "Alternate rapidly on balls of feet."],
+        pitfall: "Keep thighs pointing mostly downward.",
         evalType: "angle", jointTriplet: [23, 25, 27], bilateralTriplet: [24, 26, 28], requiredLandmarks: [23, 24, 25, 26, 27, 28], activeJointIdx: 25, takeMin: true, flexionDirection: "less", peakThreshold: 80, resetThreshold: 145 },
+
       { id: "curtsy_lunge", name: "14. Curtsy Lunge", category: "Lower Body", reps: 12, desc: "Cross-behind diagonal lunge targeting outer hip stability.",
+        image: "https://images.unsplash.com/photo-1549576490-b0b4831ef60a?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "k_B-8pI00jQ",
+        muscles: "Gluteus Medius, Adductors, Quads",
+        steps: ["Step one foot back and across behind front leg.", "Bend both knees until front thigh is parallel to ground.", "Return smoothly to starting position."],
+        pitfall: "Keep hips squared toward camera.",
         evalType: "angle", jointTriplet: [23, 25, 27], bilateralTriplet: [24, 26, 28], requiredLandmarks: [23, 24, 25, 26, 27, 28], activeJointIdx: 25, takeMin: true, flexionDirection: "less", peakThreshold: 105, resetThreshold: 150 },
+
       { id: "wall_sit_hold", name: "15. Wall Sit Isometric Hold", category: "Lower Body", reps: 10, desc: "Quadricep isometric hold at 90-degree knee bend.",
+        image: "https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "y-wV4Venusw",
+        muscles: "Isometric Quadriceps, Knee tendon resilience",
+        steps: ["Lean back against flat wall or hold imaginary chair.", "Slide down until knees are bent at right angles.", "Press back flat against wall and hold without moving."],
+        pitfall: "Do not let knees go past your toes.",
         evalType: "hold", jointTriplet: [23, 25, 27], requiredLandmarks: [23, 25, 27], activeJointIdx: 25, targetAngle: 100, tolerance: 20, holdMs: 2000 },
 
       // --- UPPER BODY (15) ---
       { id: "push_up", name: "16. Free Hand Push-Up", category: "Upper Body", reps: 12, desc: "Horizontal push elbow flexion & extension.",
+        image: "https://images.unsplash.com/photo-1598971639058-fab3c3109a00?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "IODxDxX7oi4",
+        muscles: "Pectoralis Major, Triceps, Anterior Deltoids",
+        steps: ["Plank position, hands under shoulders, core rigid.", "Lower chest to an inch from the floor, elbows at 45 degrees.", "Push floor away until arms are fully locked."],
+        pitfall: "Do not let hips sag or flare elbows out wide at 90 degrees.",
         evalType: "angle", jointTriplet: [11, 13, 15], bilateralTriplet: [12, 14, 16], requiredLandmarks: [11, 12, 13, 14, 15, 16], activeJointIdx: 13, flexionDirection: "less", peakThreshold: 90, resetThreshold: 150 },
+
       { id: "diamond_pushup", name: "17. Diamond Hand Push-Up", category: "Upper Body", reps: 10, desc: "Narrow hand placement tricep & inner chest recruitment.",
+        image: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "J0DnG1_S92I",
+        muscles: "Triceps Brachii, Sternal Pectoralis",
+        steps: ["Place thumbs and index fingers together forming diamond under chest.", "Lower chest directly toward diamond shape.", "Press back up squeezing triceps."],
+        pitfall: "Keep elbows tucked close to ribcage.",
         evalType: "angle", jointTriplet: [11, 13, 15], bilateralTriplet: [12, 14, 16], requiredLandmarks: [11, 12, 13, 14, 15, 16], activeJointIdx: 14, flexionDirection: "less", peakThreshold: 85, resetThreshold: 145 },
+
       { id: "bicep_curl_tension", name: "18. Dynamic Tension Bicep Curl", category: "Upper Body", reps: 15, desc: "Self-resisted full elbow flexion to peak bicep contraction.",
+        image: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "in7PaeYlhrM",
+        muscles: "Biceps Brachii, Brachialis",
+        steps: ["Lock elbows to your ribs with palms supinated.", "Flex elbows upward creating maximum internal muscle tension.", "Squeeze biceps hard at top before slow descent."],
+        pitfall: "Avoid swinging shoulders or moving elbows forward.",
         evalType: "angle", jointTriplet: [11, 13, 15], bilateralTriplet: [12, 14, 16], requiredLandmarks: [11, 12, 13, 14, 15, 16], activeJointIdx: 13, flexionDirection: "less", peakThreshold: 55, resetThreshold: 145 },
+
       { id: "tricep_overhead", name: "19. Overhead Tricep Extension", category: "Upper Body", reps: 15, desc: "Overhead elbow flexion with arms locked vertically.",
+        image: "https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "_gsUck-7M74",
+        muscles: "Triceps Long Head",
+        steps: ["Raise arms overhead, elbows pointing directly forward.", "Bend elbows lowering forearms behind head.", "Extend elbows fully toward ceiling."],
+        pitfall: "Keep upper arms motionless beside your ears.",
         evalType: "angle", jointTriplet: [11, 13, 15], bilateralTriplet: [12, 14, 16], requiredLandmarks: [11, 12, 13, 14, 15, 16], activeJointIdx: 13, flexionDirection: "more", peakThreshold: 145, resetThreshold: 85 },
+
       { id: "lateral_arm_raise", name: "20. Lateral Deltoid Raise", category: "Upper Body", reps: 15, desc: "Bilateral shoulder abduction up to horizontal plane.",
+        image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "3VcKaXpzqRo",
+        muscles: "Lateral Deltoids, Trapezius",
+        steps: ["Start with arms relaxed at thighs.", "Abduct straight arms laterally until level with shoulders.", "Pause 0.5s then lower under control."],
+        pitfall: "Do not shrug neck or use momentum.",
         evalType: "angle", jointTriplet: [23, 11, 15], bilateralTriplet: [24, 12, 16], requiredLandmarks: [23, 24, 11, 12, 15, 16], activeJointIdx: 11, flexionDirection: "more", peakThreshold: 85, resetThreshold: 35 },
+
       { id: "front_arm_raise", name: "21. Front Deltoid Raise", category: "Upper Body", reps: 15, desc: "Anterior shoulder flexion raising straight arms forward.",
+        image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "-t7fuZ0KhDA",
+        muscles: "Anterior Deltoid, Upper Pectoral clavicular head",
+        steps: ["Palms facing down on thighs.", "Raise arms directly forward to horizontal shoulder line.", "Lower smoothly back."],
+        pitfall: "Avoid arching back as arms rise.",
         evalType: "angle", jointTriplet: [23, 11, 13], bilateralTriplet: [24, 12, 14], requiredLandmarks: [23, 24, 11, 12, 13, 14], activeJointIdx: 11, flexionDirection: "more", peakThreshold: 85, resetThreshold: 35 },
+
       { id: "arm_circles_fwd", name: "22. Forward Arm Circles", category: "Upper Body", reps: 16, desc: "Continuous circular shoulder circumduction forward.",
+        image: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "140RTNMQQH8",
+        muscles: "Rotator Cuff, Complete Shoulder Girdle",
+        steps: ["Extend arms out parallel to floor.", "Rotate arms forward in controlled 12-inch circles.", "Keep shoulders relaxed down."],
+        pitfall: "Do not let arms droop below shoulder height.",
         evalType: "circle", requiredLandmarks: [11, 13, 15], activeJointIdx: 11 },
+
       { id: "arm_circles_bwd", name: "23. Backward Arm Circles", category: "Upper Body", reps: 16, desc: "Reverse circular shoulder circumduction backward.",
+        image: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "140RTNMQQH8",
+        muscles: "Infraspinatus, Rear Delts, Scapular Retractors",
+        steps: ["Extend arms laterally with thumbs pointing backwards.", "Make reverse circular rotations.", "Engage scapulae gently."],
+        pitfall: "Keep head upright without jutting chin forward.",
         evalType: "circle", requiredLandmarks: [11, 13, 15], activeJointIdx: 12 },
+
       { id: "overhead_press", name: "24. Free Hand Shoulder Press", category: "Upper Body", reps: 15, desc: "Vertical upward pressing to complete elbow lockout.",
+        image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "qEwKCR5JCog",
+        muscles: "Deltoids, Upper Trapezius, Triceps",
+        steps: ["Fists near ear level, elbows flared at 90 degrees.", "Drive hands straight overhead until arms are fully extended.", "Lower under tension back to ear line."],
+        pitfall: "Do not hyperextend lower spine.",
         evalType: "angle", jointTriplet: [11, 13, 15], bilateralTriplet: [12, 14, 16], requiredLandmarks: [11, 12, 13, 14, 15, 16], activeJointIdx: 13, flexionDirection: "more", peakThreshold: 155, resetThreshold: 90 },
+
       { id: "chest_fly", name: "25. Horizontal Chest Opener Fly", category: "Upper Body", reps: 15, desc: "Wide arm horizontal expansion and chest squeeze.",
+        image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "eozdVDA78K0",
+        muscles: "Pectoralis Major, Anterior Deltoids",
+        steps: ["Start with arms spread wide horizontally.", "Bring hands together in front of sternum, squeezing chest tight.", "Open back out wide feeling stretch."],
+        pitfall: "Maintain soft micro-bend in elbows throughout.",
         evalType: "distance", distPair: [15, 16], requiredLandmarks: [15, 16], activeJointIdx: 15, distGreater: false, peakDist: 0.60, resetDist: 1.60 },
+
       { id: "jab_punches", name: "26. Straight Boxing Jabs", category: "Upper Body", reps: 20, desc: "Alternating explosive elbow extension punches.",
+        image: "https://images.unsplash.com/photo-1549576490-b0b4831ef60a?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "yjh5p_5J_5Y",
+        muscles: "Shoulders, Triceps, Serratus Anterior",
+        steps: ["Boxing guard up protecting chin.", "Snap lead punch straight forward rotating fist flat at extension.", "Snap fist right back to guard."],
+        pitfall: "Do not over-extend elbow violently.",
         evalType: "angle", jointTriplet: [11, 13, 15], bilateralTriplet: [12, 14, 16], requiredLandmarks: [11, 12, 13, 14, 15, 16], activeJointIdx: 13, takeMin: false, flexionDirection: "more", peakThreshold: 145, resetThreshold: 95 },
+
       { id: "cross_hooks", name: "27. Cross Body Hook Punches", category: "Upper Body", reps: 16, desc: "Rotational punches with bent elbow across midline.",
+        image: "https://images.unsplash.com/photo-1549576490-b0b4831ef60a?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "0Q_eS_9tVjI",
+        muscles: "Obliques, Deltoids, Pectorals",
+        steps: ["Pivot rear hip as punch begins.", "Swing arm in horizontal arc at chin level, elbow bent 90 degrees.", "Return to defensive guard."],
+        pitfall: "Pivot feet with rotation rather than torqueing knees.",
         evalType: "distance", distPair: [15, 12], requiredLandmarks: [15, 16, 11, 12], activeJointIdx: 15, distGreater: false, peakDist: 0.40, resetDist: 1.05 },
+
       { id: "uppercut_punches", name: "28. Kinetic Uppercuts", category: "Upper Body", reps: 16, desc: "Upward fist drive from hip height toward chin level.",
+        image: "https://images.unsplash.com/photo-1549576490-b0b4831ef60a?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "LgWzYlB1_J0",
+        muscles: "Biceps, Anterior Delts, Latissimus",
+        steps: ["Dip knees slightly.", "Drive fist vertically upward from hip level curling through target.", "Reset quickly."],
+        pitfall: "Do not drop fists too low before punch.",
         evalType: "distance", distPair: [15, 11], requiredLandmarks: [15, 16, 11, 12], activeJointIdx: 15, distGreater: false, peakDist: 0.45, resetDist: 0.95 },
+
       { id: "high_plank_hold", name: "29. High Plank Posture Hold", category: "Upper Body", reps: 10, desc: "Isometric push-up plank position holding straight alignment.",
+        image: "https://images.unsplash.com/photo-1598971639058-fab3c3109a00?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "pSHjTRCQxIw",
+        muscles: "Shoulder Stabilizers, Transverse Abdominis",
+        steps: ["Hands directly beneath shoulders on floor.", "Legs fully straight, body in solid rigid line from head to heels.", "Breathe steadily while maintaining tension."],
+        pitfall: "Never let hips dip or pike high.",
         evalType: "hold", jointTriplet: [11, 23, 27], requiredLandmarks: [11, 23, 27], activeJointIdx: 11, targetAngle: 170, tolerance: 20, holdMs: 2000 },
+
       { id: "plank_shoulder_taps", name: "30. Plank Shoulder Taps", category: "Upper Body", reps: 14, desc: "Anti-rotational hand tap to opposite shoulder.",
+        image: "https://images.unsplash.com/photo-1598971639058-fab3c3109a00?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "gKDpA_K63-A",
+        muscles: "Core, Scapular Stabilizers, Obliques",
+        steps: ["Hold push-up plank with feet slightly wide.", "Lift one hand and tap the opposite shoulder.", "Place hand back without wiggling hips."],
+        pitfall: "Minimize torso twisting during tap.",
         evalType: "distance", distPair: [15, 12], requiredLandmarks: [15, 16, 11, 12], activeJointIdx: 15, distGreater: false, peakDist: 0.45, resetDist: 1.00 },
 
       // --- CORE & ABS (10) ---
       { id: "bicycle_crunches", name: "31. Standing Bicycle Crunch", category: "Core", reps: 16, desc: "Diagonal elbow to contralateral knee drive.",
+        image: "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "1we3bh9uhqY",
+        muscles: "Internal & External Obliques, Rectus Abdominis",
+        steps: ["Fingertips behind head.", "Drive right knee up and across while rotating left elbow to meet it.", "Repeat on opposite side smoothly."],
+        pitfall: "Do not pull or yank on your neck.",
         evalType: "distance", distPair: [13, 26], requiredLandmarks: [13, 14, 25, 26], activeJointIdx: 26, distGreater: false, peakDist: 0.55, resetDist: 1.25 },
+
       { id: "side_bend", name: "32. Standing Oblique Side Bend", category: "Core", reps: 14, desc: "Lateral spine flexion squeezing the quadratus lumborum.",
+        image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "J8aQkO-C_yI",
+        muscles: "Quadratus Lumborum, Lateral Obliques",
+        steps: ["Stand tall with feet hip-width apart.", "Bend laterally at waist sliding one hand down outer thigh.", "Pull back upright using opposite oblique."],
+        pitfall: "Do not twist hips or lean forward.",
         evalType: "angle", jointTriplet: [11, 23, 25], requiredLandmarks: [11, 12, 23, 24, 25], activeJointIdx: 11, flexionDirection: "less", peakThreshold: 145, resetThreshold: 172 },
+
       { id: "torso_rotation", name: "33. Thoracic Torso Rotation", category: "Core", reps: 16, desc: "Controlled horizontal spinal rotation left and right.",
+        image: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "0Q_eS_9tVjI",
+        muscles: "Transverse Abdominis, Thoracic Spine Mobility",
+        steps: ["Arms bent in front at chest height.", "Rotate upper body fully to the left, then through center to right.", "Keep pelvis relatively stationary."],
+        pitfall: "Rotate from upper back rather than twisting knees.",
         evalType: "distance", distPair: [11, 12], requiredLandmarks: [11, 12], activeJointIdx: 11, distGreater: false, peakDist: 0.35, resetDist: 0.70 },
+
       { id: "oblique_knee_drive", name: "34. Same-Side Oblique Knee Crunch", category: "Core", reps: 14, desc: "Lateral knee drive to meet same-side elbow.",
+        image: "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "d3sH8kC25E4",
+        muscles: "Lateral Obliques, Hip Abductors",
+        steps: ["Hands by temples.", "Lift knee up laterally toward same elbow while crunching flank.", "Lower with control."],
+        pitfall: "Stay completely in the frontal plane.",
         evalType: "distance", distPair: [13, 25], requiredLandmarks: [13, 25], activeJointIdx: 25, distGreater: false, peakDist: 0.55, resetDist: 1.15 },
+
       { id: "standing_windmill", name: "35. Standing Windmill", category: "Core", reps: 12, desc: "Hand reaching down diagonally to contralateral ankle.",
+        image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "mC_x1G_Fz4E",
+        muscles: "Posterior Chain, Obliques, Hamstrings",
+        steps: ["Feet wider than shoulder-width, arms spread horizontal.", "Hinge and rotate reaching right hand down to left foot.", "Return tall and alternate side."],
+        pitfall: "Keep back straight and push hips back.",
         evalType: "distance", distPair: [15, 28], requiredLandmarks: [15, 16, 27, 28], activeJointIdx: 15, distGreater: false, peakDist: 0.65, resetDist: 1.50 },
+
       { id: "good_mornings", name: "36. Free Hand Good Mornings", category: "Core", reps: 14, desc: "Hip hinge with flat back strengthening spinal erectors.",
+        image: "https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "vBfPjW9P_e8",
+        muscles: "Erector Spinae, Hamstrings, Glutes",
+        steps: ["Fingertips lightly behind head.", "Push hips backward with micro-bent knees keeping back flat.", "Hinge until torso is nearly parallel, then drive hips forward."],
+        pitfall: "Never round upper or lower spine.",
         evalType: "angle", jointTriplet: [11, 23, 25], requiredLandmarks: [11, 23, 25], activeJointIdx: 23, flexionDirection: "less", peakThreshold: 115, resetThreshold: 165 },
+
       { id: "standing_climbers", name: "37. Standing Mountain Climbers", category: "Core", reps: 20, desc: "Rhythmic high knee drive with synchronous arm pull.",
+        image: "https://images.unsplash.com/photo-1434682881908-b0740aac2d71?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "zT-9L3CEcmk",
+        muscles: "Full Core, Hip Flexors, Deltoids",
+        steps: ["Reach opposite arm straight overhead.", "Drive corresponding knee high while pulling arm down like climbing.", "Alternate with fast cadence."],
+        pitfall: "Keep core brace tight throughout.",
         evalType: "angle", jointTriplet: [11, 23, 25], bilateralTriplet: [12, 24, 26], requiredLandmarks: [11, 12, 23, 24, 25, 26], activeJointIdx: 23, takeMin: true, flexionDirection: "less", peakThreshold: 100, resetThreshold: 155 },
+
       { id: "hollow_body_hold", name: "38. Standing Hollow Body Hold", category: "Core", reps: 8, desc: "Posterior pelvic tilt with compressed transverse abs.",
+        image: "https://images.unsplash.com/photo-1599058917765-a780eda07a3e?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "p7Q8rQYpX8k",
+        muscles: "Transverse Abdominis, Deep Core",
+        steps: ["Tuck pelvis under, draw belly button in.", "Round upper back slightly and reach arms forward.", "Hold maximum contraction against resistance."],
+        pitfall: "Do not hold your breath; take shallow diaphragmatic breaths.",
         evalType: "hold", jointTriplet: [11, 23, 25], requiredLandmarks: [11, 23, 25], activeJointIdx: 23, targetAngle: 155, tolerance: 15, holdMs: 2000 },
+
       { id: "side_plank_reach", name: "39. Standing Side Plank Reach", category: "Core", reps: 12, desc: "Lateral overhead reach engaging latissimus and obliques.",
+        image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "wqzrb67Dwf8",
+        muscles: "Obliques, Intercostals, Lats",
+        steps: ["Reach arm high overhead curving slightly over torso.", "Lengthen side body, then contract back into neutral line.", "Maintain balance on stable stance."],
+        pitfall: "Keep pelvis forward without twisting.",
         evalType: "angle", jointTriplet: [23, 11, 15], requiredLandmarks: [23, 11, 15], activeJointIdx: 11, flexionDirection: "more", peakThreshold: 155, resetThreshold: 80 },
+
       { id: "spinal_wave", name: "40. Standing Cat-Cow Wave", category: "Core", reps: 12, desc: "Spinal articulation between flexion and thoracic extension.",
+        image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "kqnua4rHVVA",
+        muscles: "Spinal Column Mobility, Abdominals",
+        steps: ["Hands resting on thighs with bent knees.", "Arch back gently looking up (Cow).", "Round spine tucking chin and pelvis (Cat)."],
+        pitfall: "Move smoothly without abrupt jerks.",
         evalType: "angle", jointTriplet: [11, 23, 25], requiredLandmarks: [11, 23, 25], activeJointIdx: 11, flexionDirection: "less", peakThreshold: 135, resetThreshold: 172 },
 
       // --- CARDIO & FULL BODY (6) ---
       { id: "jumping_jacks", name: "41. Classic Jumping Jack", category: "Cardio", reps: 20, desc: "Synchronous arm abduction and stance expansion.",
+        image: "https://images.unsplash.com/photo-1434682881908-b0740aac2d71?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "iSSAk4XCsRA",
+        muscles: "Cardiovascular System, Calves, Deltoids",
+        steps: ["Start with feet together, arms by sides.", "Jump feet outward while sweeping arms overhead to touch.", "Jump back to starting stance smoothly."],
+        pitfall: "Land softly on balls of feet with knees slightly unlocked.",
         evalType: "angle", jointTriplet: [23, 11, 15], bilateralTriplet: [24, 12, 16], requiredLandmarks: [23, 24, 11, 12, 15, 16], activeJointIdx: 11, flexionDirection: "more", peakThreshold: 135, resetThreshold: 45 },
+
       { id: "seal_jacks", name: "42. Seal Jacks", category: "Cardio", reps: 20, desc: "Horizontal arm clap with jumping foot spread.",
+        image: "https://images.unsplash.com/photo-1434682881908-b0740aac2d71?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "eYyL4ZzD3Z4",
+        muscles: "Chest, Upper Back, Cardiovascular",
+        steps: ["Arms extended straight out in front touching hands.", "Jump feet out while opening arms wide in horizontal fly.", "Jump back in clapping hands in front."],
+        pitfall: "Do not let arms drop lower than chest level.",
         evalType: "distance", distPair: [15, 16], requiredLandmarks: [15, 16, 27, 28], activeJointIdx: 15, distGreater: false, peakDist: 0.50, resetDist: 1.80 },
+
       { id: "half_burpee", name: "43. Half Burpee Squat Thrust", category: "Cardio", reps: 12, desc: "Rapid transition from upright stance to crouch thrust.",
+        image: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "qLBImHhCXSw",
+        muscles: "Whole Body, Core, Cardio Capacity",
+        steps: ["Drop into deep squat placing hands on floor.", "Jump or step feet back into push-up plank.", "Jump feet back to outside hands and stand tall."],
+        pitfall: "Do not let hips sag when in back plank.",
         evalType: "angle", jointTriplet: [11, 23, 25], requiredLandmarks: [11, 23, 25], activeJointIdx: 23, flexionDirection: "less", peakThreshold: 90, resetThreshold: 160 },
+
       { id: "skater_hops", name: "44. Speed Skater Hops", category: "Cardio", reps: 16, desc: "Lateral plyometric bound with trailing cross leg.",
+        image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "4_wWzOqN_gM",
+        muscles: "Gluteus Medius, Calves, Balance Stabilizers",
+        steps: ["Leap sideways to the right landing on right foot.", "Sweep left foot behind right ankle in skater style.", "Bound immediately to the left side."],
+        pitfall: "Absorb landing through knee and hip hinge.",
         evalType: "distance", distPair: [27, 28], requiredLandmarks: [27, 28], activeJointIdx: 27, distGreater: true, peakDist: 1.40, resetDist: 0.60 },
+
       { id: "fast_high_knees", name: "45. Fast High Knee Cadence", category: "Cardio", reps: 24, desc: "Maximum cadence stationary high knee sprint.",
+        image: "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "oDdkytliOqE",
+        muscles: "Hip Flexors, Core, Aerobic Threshold",
+        steps: ["Pump knees up toward chest at maximal cadence.", "Keep chest tall and drive elbows backward in sprint mechanics.", "Spring off the balls of feet."],
+        pitfall: "Avoid leaning backward to raise knees higher.",
         evalType: "angle", jointTriplet: [11, 23, 25], bilateralTriplet: [12, 24, 26], requiredLandmarks: [11, 12, 23, 24, 25, 26], activeJointIdx: 23, takeMin: true, flexionDirection: "less", peakThreshold: 105, resetThreshold: 155 },
+
       { id: "cross_jacks", name: "46. Cross Jacks", category: "Cardio", reps: 18, desc: "Alternating cross-arm and cross-foot jumping jacks.",
+        image: "https://images.unsplash.com/photo-1434682881908-b0740aac2d71?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "aGj3J9c2WQE",
+        muscles: "Calves, Adductors, Deltoids",
+        steps: ["Jump feet wide and arms horizontally wide.", "Jump feet together crossing one foot in front and crossing arms at chest.", "Alternate crossing sides on each hop."],
+        pitfall: "Maintain controlled tempo to avoid tripping.",
         evalType: "distance", distPair: [15, 16], requiredLandmarks: [15, 16], activeJointIdx: 15, distGreater: true, peakDist: 1.60, resetDist: 0.40 },
 
       // --- MOBILITY & STRETCH (4) ---
       { id: "shoulder_cross_stretch", name: "47. Cross Body Shoulder Stretch", category: "Mobility", reps: 8, desc: "Sustained posterior deltoid adduction hold.",
+        image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "vNq8c01z94Q",
+        muscles: "Posterior Deltoid, Infraspinatus, Rhomboids",
+        steps: ["Pull straight arm across your chest horizontally.", "Use opposite forearm to gently hook and draw arm closer.", "Hold steady with deep breathing."],
+        pitfall: "Keep stretched shoulder drawn down away from ear.",
         evalType: "hold", jointTriplet: [11, 13, 15], requiredLandmarks: [11, 13, 15, 12], activeJointIdx: 11, targetAngle: 110, tolerance: 25, holdMs: 2000 },
+
       { id: "quad_stretch_hold", name: "48. Standing Quadricep Stretch", category: "Mobility", reps: 8, desc: "Single leg heel to glute rectus femoris stretch hold.",
+        image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "aU-YtD3aHjM",
+        muscles: "Rectus Femoris, Iliopsoas",
+        steps: ["Balance on one leg, bend opposite knee.", "Grasp ankle with same-side hand and pull heel to glute.", "Keep knees pinned together and hips forward."],
+        pitfall: "Do not arch lower back; engage abs.",
         evalType: "hold", jointTriplet: [23, 25, 27], requiredLandmarks: [23, 25, 27], activeJointIdx: 25, targetAngle: 50, tolerance: 25, holdMs: 2000 },
+
       { id: "hamstring_sweep", name: "49. Hamstring Dynamic Sweep", category: "Mobility", reps: 12, desc: "Forward hip hinge sweeping arms past front heel.",
+        image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "K1J1F1jH3tM",
+        muscles: "Hamstrings, Calf fascia, Posterior chain",
+        steps: ["Extend one heel forward with toes pulled up toward shin.", "Hinge hips back and sweep hands down toward front foot.", "Sweep forward and rise tall."],
+        pitfall: "Hinge at hips rather than bending spine.",
         evalType: "angle", jointTriplet: [11, 23, 25], requiredLandmarks: [11, 23, 25], activeJointIdx: 23, flexionDirection: "less", peakThreshold: 120, resetThreshold: 165 },
+
       { id: "neck_shoulder_roll", name: "50. Shoulder Shrug & Decompression", category: "Mobility", reps: 14, desc: "Scapular elevation and depression to release neck tension.",
+        image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=700&q=80",
+        youtubeId: "b8J9_rJq0fM",
+        muscles: "Upper Trapezius, Levator Scapulae",
+        steps: ["Inhale and elevate shoulders toward ears.", "Roll shoulders back squeezing blades together.", "Exhale and depress shoulders fully downward."],
+        pitfall: "Maintain tall neck posture throughout roll.",
         evalType: "distance", distPair: [0, 11], requiredLandmarks: [0, 11], activeJointIdx: 11, distGreater: false, peakDist: 0.38, resetDist: 0.55 }
     ];
 
@@ -1702,6 +2162,7 @@
         this.inRest = false;
         this.routineExerciseLogs = [];
         this.lastCompletedSession = null;
+        this.selectedGuideExercise = null;
 
         this.poseConnections = [
           [11, 12], [11, 13], [13, 15], [12, 14], [14, 16],
@@ -1713,6 +2174,7 @@
       async initialize() {
         this.bindEvents();
         this.renderExerciseLibrary("all");
+        this.renderPracticeGuides("all");
         this.renderRoutines();
         this.renderDailyGoalsMatrix();
         await this.loadDashboardData();
@@ -1778,7 +2240,10 @@
 
         this.currentView = viewId;
         const titleEl = $("current-view-title");
-        if (titleEl) titleEl.textContent = viewId.replace("view-", "").replace("-", " ").toUpperCase();
+        if (titleEl) {
+          if (viewId === "view-guide") titleEl.textContent = "Exercise & Video Guide";
+          else titleEl.textContent = viewId.replace("view-", "").replace("-", " ").toUpperCase();
+        }
         if (viewId === "view-analytics") this.renderAnalytics();
         if (viewId === "view-dashboard") this.loadDashboardData();
         if (viewId === "view-goals") this.renderDailyGoalsMatrix();
@@ -1855,7 +2320,6 @@
           ctx.lineWidth = 3.5;
           ctx.lineCap = "round";
 
-          // SKELETON
           for (const [i1, i2] of this.poseConnections) {
             const p1 = lm[i1], p2 = lm[i2];
             if (!p1 || !p2) continue;
@@ -1866,7 +2330,6 @@
             ctx.stroke();
           }
 
-          // JOINTS
           for (const pt of lm) {
             ctx.fillStyle = "#60efff";
             ctx.beginPath();
@@ -1874,7 +2337,6 @@
             ctx.fill();
           }
 
-          // ANGLE ARC ON ACTIVE JOINT
           if (activeAngle !== null && activeJoint) {
             const jx = activeJoint.x * w;
             const jy = activeJoint.y * h;
@@ -1887,7 +2349,6 @@
         }
         ctx.restore();
 
-        // Render clean non-mirrored HUD text over canvas
         if (activeAngle !== null && activeJoint && lm) {
           const w = canvas.width, h = canvas.height;
           const displayX = this.facingMode === "user" ? (1 - activeJoint.x) * w : activeJoint.x * w;
@@ -1949,7 +2410,6 @@
         const sidebarGoal = $("sidebar-goal-badge");
         if (sidebarGoal) sidebarGoal.textContent = `${pct}% Done`;
 
-        // Celebration
         if (pct >= 100 && !this.goalCelebrated) {
           this.goalCelebrated = true;
           this.synth.playVictoryFanfare();
@@ -2030,6 +2490,119 @@
           name: this.activeDailyGoal.name,
           steps
         });
+      }
+
+      /* --------------------------------------------------------------------------
+         NEW FEATURE: 50 EXERCISE PRACTICE & VIDEO GUIDE RENDERING
+         -------------------------------------------------------------------------- */
+      renderPracticeGuides(filter = "all", searchQuery = "") {
+        const grid = $("guide-cards-grid");
+        if (!grid) return;
+
+        let list = EXERCISE_50_CATALOG;
+        if (filter !== "all") {
+          list = list.filter(e => e.category === filter);
+        }
+        if (searchQuery.trim() !== "") {
+          const q = searchQuery.toLowerCase().trim();
+          list = list.filter(e => e.name.toLowerCase().includes(q) || e.muscles.toLowerCase().includes(q) || e.desc.toLowerCase().includes(q));
+        }
+
+        if (list.length === 0) {
+          grid.innerHTML = `<div style="grid-column: 1 / -1; padding: 40px; text-align: center; color: var(--text-dim);">No exercise guides matching "${esc(searchQuery)}".</div>`;
+          return;
+        }
+
+        grid.innerHTML = list.map(e => `
+          <div class="guide-card">
+            <div>
+              <div class="guide-image-box">
+                <img src="${esc(e.image)}" alt="${esc(e.name)}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=700&q=80'" />
+                <div class="guide-video-overlay-btn open-video-modal-btn" data-id="${e.id}" title="Watch YouTube Video Guide">
+                  <div class="guide-play-icon">
+                    <svg viewBox="0 0 24 24" style="width:22px; height:22px; stroke:#fff; fill:#fff;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                  </div>
+                </div>
+              </div>
+
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <span class="badge-pill">${esc(e.category)}</span>
+                <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--neon-green);">${e.reps} Reps Benchmark</span>
+              </div>
+
+              <h3 style="font-size:1.15rem; margin-bottom:6px; font-weight:700;">${esc(e.name)}</h3>
+              <p style="font-size:0.8rem; color:var(--text-dim); margin-bottom:10px; font-family:var(--font-mono);">
+                🎯 Target: <span style="color:var(--electric-cyan);">${esc(e.muscles || "Full Body")}</span>
+              </p>
+
+              <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:12px;">${esc(e.desc)}</p>
+
+              <div style="margin-bottom:10px;">
+                <b style="font-size:0.78rem; text-transform:uppercase; letter-spacing:1px; color:#fff; font-family:var(--font-mono);">Step-by-Step Guideline:</b>
+                <ul class="guide-steps-list">
+                  ${(e.steps || []).map((step, idx) => `
+                    <li><span class="step-idx">${idx + 1}</span><span>${esc(step)}</span></li>
+                  `).join("")}
+                </ul>
+              </div>
+
+              ${e.pitfall ? `
+                <div class="guide-pitfall">
+                  <b>⚠️ Form Caution:</b> ${esc(e.pitfall)}
+                </div>
+              ` : ''}
+            </div>
+
+            <div style="display:flex; gap:10px; margin-top:14px;">
+              <button type="button" class="btn btn-youtube btn-sm open-video-modal-btn" data-id="${e.id}" style="flex:1;">
+                <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect width="15" height="14" x="1" y="5" rx="2" ry="2"/></svg> Video Guide
+              </button>
+              <button type="button" class="btn btn-primary btn-sm launch-guide-workout-btn" data-id="${e.id}" style="flex:1;">
+                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg> Practice Now
+              </button>
+            </div>
+          </div>
+        `).join("");
+
+        grid.querySelectorAll(".open-video-modal-btn").forEach(btn => {
+          btn.addEventListener("click", (e) => {
+            const exId = e.currentTarget.dataset.id;
+            this.openVideoGuideModal(exId);
+          });
+        });
+
+        grid.querySelectorAll(".launch-guide-workout-btn").forEach(btn => {
+          btn.addEventListener("click", (e) => {
+            const exId = e.currentTarget.dataset.id;
+            this.startWorkoutSession(null, exId);
+          });
+        });
+      }
+
+      openVideoGuideModal(exId) {
+        const meta = EXERCISE_50_CATALOG.find(e => e.id === exId) || EXERCISE_50_CATALOG[0];
+        this.selectedGuideExercise = meta;
+
+        $("modal-video-title").textContent = meta.name;
+        $("modal-video-category").textContent = meta.category;
+        $("modal-video-desc").textContent = `${meta.desc} — Focus on: ${meta.muscles}.`;
+
+        const iframe = $("youtube-player-frame");
+        // Embed YouTube video tutorial or fall back to high precision search embed
+        if (meta.youtubeId) {
+          iframe.src = `https://www.youtube.com/embed/${meta.youtubeId}?autoplay=1&rel=0&modestbranding=1`;
+        } else {
+          const term = encodeURIComponent(`${meta.name} exercise tutorial proper form`);
+          iframe.src = `https://www.youtube.com/embed?listType=search&list=${term}&autoplay=1`;
+        }
+
+        $("youtube-guide-modal").classList.add("open");
+      }
+
+      closeVideoGuideModal() {
+        const iframe = $("youtube-player-frame");
+        if (iframe) iframe.src = "";
+        $("youtube-guide-modal").classList.remove("open");
       }
 
       /* --------------------------------------------------------------------------
@@ -2180,7 +2753,6 @@
         $("workout-start-btn").textContent = "Start Session";
         this.stopCamera();
 
-        // Push current unlogged step if prematurely terminated
         if (this.currentExerciseModule && this.currentReps > 0) {
           const alreadyLogged = this.routineExerciseLogs.some(l => l.name === this.currentExerciseModule.name);
           if (!alreadyLogged) {
@@ -2386,8 +2958,25 @@
           });
         });
 
+        // 50 Practice Guides Category Filter Tabs
+        document.querySelectorAll("#guide-category-tabs .tab-btn").forEach(btn => {
+          btn.addEventListener("click", (e) => {
+            document.querySelectorAll("#guide-category-tabs .tab-btn").forEach(b => b.classList.remove("active"));
+            e.currentTarget.classList.add("active");
+            this.renderPracticeGuides(e.currentTarget.dataset.filter, $("guide-search-input").value);
+          });
+        });
+
+        // Guide Search Input Filter
+        $("guide-search-input")?.addEventListener("input", (e) => {
+          const activeTab = document.querySelector("#guide-category-tabs .tab-btn.active");
+          const filter = activeTab ? activeTab.dataset.filter : "all";
+          this.renderPracticeGuides(filter, e.target.value);
+        });
+
         // Dashboard Shortcuts
         $("dash-quick-workout-btn")?.addEventListener("click", () => this.startWorkoutSession());
+        $("dash-open-guide-btn")?.addEventListener("click", () => this.navigateTo("view-guide"));
         $("dash-open-custom-goal-btn")?.addEventListener("click", () => {
           this.populateGoalModal();
           $("custom-goal-modal").classList.add("open");
@@ -2396,7 +2985,6 @@
           this.populateGoalModal();
           $("custom-goal-modal").classList.add("open");
         });
-        $("dash-matrix-btn")?.addEventListener("click", () => this.navigateTo("view-library"));
         $("dash-launch-goal-routine-btn")?.addEventListener("click", () => this.launchCustomGoalWorkout());
 
         // Custom Goal Actions
@@ -2411,16 +2999,28 @@
         $("close-goal-modal-btn")?.addEventListener("click", () => $("custom-goal-modal").classList.remove("open"));
         $("goals-start-custom-workout-btn")?.addEventListener("click", () => this.launchCustomGoalWorkout());
 
+        // Video Modal Controls
+        $("close-video-modal-btn")?.addEventListener("click", () => this.closeVideoGuideModal());
+        $("modal-launch-arena-btn")?.addEventListener("click", () => {
+          const ex = this.selectedGuideExercise;
+          this.closeVideoGuideModal();
+          if (ex) this.startWorkoutSession(null, ex.id);
+        });
+
         // Close modal on backdrop click & Escape key
         window.addEventListener("keydown", (e) => {
           if (e.key === "Escape") {
             $("custom-goal-modal")?.classList.remove("open");
             $("session-summary-modal")?.classList.remove("open");
+            this.closeVideoGuideModal();
           }
         });
         document.querySelectorAll(".modal-backdrop").forEach(backdrop => {
           backdrop.addEventListener("click", (e) => {
-            if (e.target === backdrop) backdrop.classList.remove("open");
+            if (e.target === backdrop) {
+              backdrop.classList.remove("open");
+              if (backdrop.id === "youtube-guide-modal") this.closeVideoGuideModal();
+            }
           });
         });
 
@@ -2511,7 +3111,7 @@
       }
     }
 
-    // BOOTSTRAP
+    // BOOTSTRAP APPLICATION
     window.App = new AppController();
     window.App.initialize();
   </script>
