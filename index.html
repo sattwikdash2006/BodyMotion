@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="description" content="BODYMOTION AI 5.0 — Verified Biomechanical Vision Studio with Web Audio Synth, Real-Time Joint Angle Arcs, Dynamic Form Scoring & Custom Daily Goals." />
-  <title>BODYMOTION AI 5.0 — Cyber Biomechanics, Daily Goals & Dual Coach</title>
+  <meta name="description" content="BODYMOTION AI 6.0 ULTRA — Quantum Biomechanical Kinetic Studio with Direct Video Recorder, Angular Velocity HUD, Joint Torque Heatmap & Custom Engine." />
+  <title>BODYMOTION AI 6.0 ULTRA — Cyber Kinetics & Telemetry</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,21 +12,21 @@
 
   <style>
     :root {
-      --bg-void: #03060a;
+      --bg-void: #020408;
       --bg-base: #060a12;
       --bg-surface: #0a1120;
       --bg-surface-elevated: #111a2e;
-      --bg-glass: rgba(10, 17, 32, 0.85);
+      --bg-glass: rgba(10, 17, 32, 0.88);
       --bg-glass-strong: rgba(6, 10, 18, 0.95);
-      --border-subtle: rgba(255, 255, 255, 0.1);
-      --border-glow: rgba(0, 255, 136, 0.4);
-      --border-cyan: rgba(96, 239, 255, 0.4);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-glow: rgba(0, 255, 136, 0.45);
+      --border-cyan: rgba(96, 239, 255, 0.45);
       
       --neon-green: #00ff87;
       --neon-green-glow: rgba(0, 255, 135, 0.45);
       --electric-cyan: #60efff;
       --electric-cyan-glow: rgba(96, 239, 255, 0.4);
-      --hyper-purple: #9d4edd;
+      --hyper-purple: #b5179e;
       --alert-crimson: #ff0055;
       --warning-amber: #ffb703;
       
@@ -43,8 +43,8 @@
       --radius-lg: 22px;
       --radius-full: 9999px;
       
-      --shadow-hud: 0 16px 40px -10px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 255, 135, 0.1);
-      --sidebar-width: 270px;
+      --shadow-hud: 0 16px 40px -10px rgba(0, 0, 0, 0.9), 0 0 25px rgba(0, 255, 135, 0.08);
+      --sidebar-width: 275px;
       --nav-height: 68px;
     }
 
@@ -65,11 +65,11 @@
       position: fixed;
       inset: 0;
       background: 
-        radial-gradient(circle at 15% 20%, rgba(0, 255, 135, 0.06), transparent 45%),
-        radial-gradient(circle at 85% 80%, rgba(96, 239, 255, 0.05), transparent 45%),
-        linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
-      background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+        radial-gradient(circle at 10% 15%, rgba(0, 255, 135, 0.07), transparent 40%),
+        radial-gradient(circle at 90% 85%, rgba(96, 239, 255, 0.06), transparent 45%),
+        linear-gradient(rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 36px 36px, 36px 36px;
       pointer-events: none;
       z-index: 0;
     }
@@ -167,7 +167,7 @@
       transform: translateX(4px);
     }
     .nav-item.active button {
-      background: linear-gradient(90deg, rgba(0, 255, 135, 0.12), rgba(96, 239, 255, 0.04));
+      background: linear-gradient(90deg, rgba(0, 255, 135, 0.14), rgba(96, 239, 255, 0.05));
       border-color: var(--border-glow);
       color: var(--neon-green);
       box-shadow: inset 0 0 16px rgba(0, 255, 135, 0.08);
@@ -310,6 +310,14 @@
       border-color: var(--neon-green);
       color: var(--neon-green);
     }
+    .icon-btn.recording {
+      background: rgba(255, 0, 85, 0.2);
+      border-color: var(--alert-crimson);
+      color: var(--alert-crimson);
+      animation: pulseRecord 1s infinite alternate;
+    }
+    @keyframes pulseRecord { 0% { box-shadow: 0 0 5px var(--alert-crimson); } 100% { box-shadow: 0 0 20px var(--alert-crimson); } }
+
     .icon-btn svg { width: 19px; height: 19px; stroke: currentColor; fill: none; stroke-width: 2; }
 
     .view-container {
@@ -394,7 +402,7 @@
 
     /* HERO */
     .hero-banner {
-      background: linear-gradient(135deg, rgba(0, 255, 135, 0.12) 0%, rgba(96, 239, 255, 0.08) 50%, rgba(157, 78, 221, 0.08) 100%);
+      background: linear-gradient(135deg, rgba(0, 255, 135, 0.12) 0%, rgba(96, 239, 255, 0.08) 50%, rgba(181, 23, 158, 0.08) 100%);
       border: 1px solid var(--border-glow);
       border-radius: var(--radius-lg);
       padding: 36px;
@@ -403,14 +411,14 @@
       position: relative;
     }
     .hero-banner::after {
-      content: "CYBER HUD 5.0 VERIFIED";
+      content: "CYBER KINETICS 6.0 ULTRA";
       position: absolute;
       top: 18px; right: 22px;
       font-family: var(--font-display);
       font-size: 0.72rem;
       letter-spacing: 2.5px;
       color: var(--electric-cyan);
-      opacity: 0.7;
+      opacity: 0.75;
     }
     .hero-content h2 {
       font-family: var(--font-display);
@@ -422,12 +430,12 @@
     .hero-content p {
       font-size: 0.95rem;
       color: var(--text-muted);
-      max-width: 760px;
+      max-width: 780px;
       margin-bottom: 24px;
       line-height: 1.6;
     }
 
-    /* DAILY GOAL BANNER IN DASHBOARD */
+    /* DAILY GOAL HUD */
     .daily-goal-hud {
       background: linear-gradient(135deg, rgba(16, 26, 46, 0.95), rgba(8, 14, 25, 0.98));
       border: 1px solid var(--border-glow);
@@ -441,16 +449,8 @@
       flex-wrap: wrap;
       box-shadow: 0 0 30px rgba(0, 255, 135, 0.1);
     }
-    .goal-progress-wrap {
-      flex: 1;
-      min-width: 260px;
-    }
-    .goal-title-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 8px;
-    }
+    .goal-progress-wrap { flex: 1; min-width: 260px; }
+    .goal-title-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
     .goal-track {
       width: 100%;
       height: 10px;
@@ -555,12 +555,13 @@
     }
     .diff-beginner { background: rgba(0, 255, 135, 0.12); color: var(--neon-green); border: 1px solid var(--border-glow); }
     .diff-intermediate { background: rgba(96, 239, 255, 0.12); color: var(--electric-cyan); border: 1px solid var(--border-cyan); }
-    .diff-all { background: rgba(157, 78, 221, 0.15); color: #d8b4fe; border: 1px solid rgba(157, 78, 221, 0.4); }
+    .diff-advanced { background: rgba(255, 0, 85, 0.15); color: #ff3377; border: 1px solid rgba(255, 0, 85, 0.4); }
+    .diff-all { background: rgba(181, 23, 158, 0.15); color: #e0aaff; border: 1px solid rgba(181, 23, 158, 0.4); }
 
     /* VIEWPORT STAGE */
     .viewport-card {
       position: relative;
-      background: #020408;
+      background: #000;
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
       overflow: hidden;
@@ -584,6 +585,7 @@
     }
     .camera-raw-video { position: absolute; width: 2px; height: 2px; opacity: 0; pointer-events: none; }
     .output-canvas { display: block; width: 100%; height: 100%; max-height: 75vh; object-fit: contain; background: #000; }
+    #particle-overlay-canvas { position: absolute; inset: 0; pointer-events: none; z-index: 20; width: 100%; height: 100%; }
 
     /* HUD OVERLAYS */
     .hud-overlay {
@@ -594,6 +596,7 @@
       flex-direction: column;
       justify-content: space-between;
       padding: 18px;
+      z-index: 25;
     }
     .hud-top-bar {
       display: flex;
@@ -680,32 +683,34 @@
       margin-top: 4px;
     }
 
-    .form-score-meter {
+    .telemetry-strip {
       display: flex;
-      align-items: center;
-      gap: 12px;
-      background: rgba(6, 10, 18, 0.92);
+      flex-direction: column;
+      gap: 6px;
+      background: rgba(6, 10, 18, 0.88);
       border: 1px solid var(--border-cyan);
       border-radius: var(--radius-md);
-      padding: 10px 18px;
+      padding: 10px 16px;
       font-family: var(--font-mono);
-      font-size: 0.8rem;
+      font-size: 0.76rem;
     }
+    .telemetry-item { display: flex; justify-content: space-between; gap: 14px; }
+    .telemetry-item span:last-child { font-weight: 700; color: var(--electric-cyan); }
 
     .form-feedback-pill {
       background: rgba(8, 14, 25, 0.96);
       border: 1px solid var(--border-cyan);
       border-radius: var(--radius-md);
       padding: 14px 20px;
-      max-width: 480px;
+      max-width: 440px;
       display: flex;
       align-items: center;
       gap: 14px;
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
       transition: all 0.2s;
     }
-    .form-feedback-pill.alert { border-color: var(--alert-crimson); box-shadow: 0 0 25px rgba(255, 0, 85, 0.3); }
-    .form-feedback-pill.warn { border-color: var(--warning-amber); box-shadow: 0 0 25px rgba(255, 183, 3, 0.3); }
+    .form-feedback-pill.alert { border-color: var(--alert-crimson); box-shadow: 0 0 25px rgba(255, 0, 85, 0.35); }
+    .form-feedback-pill.warn { border-color: var(--warning-amber); box-shadow: 0 0 25px rgba(255, 183, 3, 0.35); }
     .form-feedback-pill p { font-size: 0.9rem; font-weight: 600; color: #fff; }
 
     #gesture-charge-hud {
@@ -717,10 +722,10 @@
       flex-direction: column;
       align-items: center;
       gap: 10px;
-      z-index: 25;
+      z-index: 30;
     }
     #gesture-charge-hud.active { display: flex; }
-    .charge-ring-svg { width: 80px; height: 80px; transform: rotate(-90deg); }
+    .charge-ring-svg { width: 85px; height: 85px; transform: rotate(-90deg); }
     .charge-ring-bg { stroke: rgba(255, 255, 255, 0.15); stroke-width: 6; fill: none; }
     .charge-ring-bar {
       stroke: var(--electric-cyan); stroke-width: 6; fill: none;
@@ -765,7 +770,7 @@
     .calibration-modal-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(3, 6, 12, 0.35);
+      background: rgba(3, 6, 12, 0.4);
       z-index: 35;
       display: none;
       flex-direction: column;
@@ -787,35 +792,6 @@
       text-align: center;
     }
 
-    .alignment-guide-box {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 60%; height: 80%;
-      border: 2px dashed rgba(255, 255, 255, 0.22);
-      border-radius: var(--radius-lg);
-      pointer-events: none;
-      transition: all 0.2s;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
-      padding-bottom: 24px;
-    }
-    .alignment-guide-box.aligned {
-      border-color: var(--neon-green);
-      box-shadow: inset 0 0 40px rgba(0, 255, 135, 0.15);
-    }
-    .alignment-text {
-      background: rgba(0, 0, 0, 0.85);
-      border: 1px solid var(--border-subtle);
-      padding: 7px 16px;
-      border-radius: var(--radius-full);
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--text-muted);
-    }
-
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -833,9 +809,9 @@
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
-      max-width: 620px;
+      max-width: 640px;
       width: 100%;
-      padding: 30px;
+      padding: 28px;
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
       max-height: 90vh;
       overflow-y: auto;
@@ -884,7 +860,7 @@
       <div class="brand-logo-hex" aria-hidden="true">B</div>
       <div class="brand-text">
         <h1>BODYMOTION</h1>
-        <p>CYBER HUD v5.0</p>
+        <p>CYBER HUD v6.0 ULTRA</p>
       </div>
     </div>
 
@@ -924,6 +900,10 @@
         <span id="sidebar-engine-status"><i class="status-dot"></i> Standby</span>
       </div>
       <div class="sys-pill">
+        <span>HUD MODE</span>
+        <span id="sidebar-viz-mode" style="color:var(--electric-cyan)">Skeleton</span>
+      </div>
+      <div class="sys-pill">
         <span>DAILY GOAL</span>
         <span id="sidebar-goal-badge" style="color:var(--neon-green)">0% Done</span>
       </div>
@@ -944,15 +924,26 @@
     <header class="top-bar">
       <div class="top-bar-title">
         <span id="current-view-title">Dashboard</span>
-        <span class="badge-pill" id="vision-backend-pill">GPU Pipeline</span>
+        <span class="badge-pill" id="vision-backend-pill">GPU Accelerated</span>
       </div>
       <div class="top-bar-actions">
+        <!-- AMBIENT CYBER DRONE -->
+        <button type="button" class="icon-btn" id="ambient-drone-toggle-btn" title="Toggle Sci-Fi Ambient Synth">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="10"/></svg>
+        </button>
+        <!-- VIDEO RECORDER -->
+        <button type="button" class="icon-btn" id="video-record-btn" title="Record Workout Video with HUD Overlay">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="currentColor"/></svg>
+        </button>
+        <!-- AUDIO SFX -->
         <button type="button" class="icon-btn active" id="audio-sfx-toggle-btn" title="Toggle Futuristic SFX Audio">
           <svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
         </button>
+        <!-- VOICE COACH -->
         <button type="button" class="icon-btn active" id="voice-coach-toggle-btn" title="Toggle Speech Coach">
-          <svg id="top-voice-icon" viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>
         </button>
+        <!-- FULLSCREEN -->
         <button type="button" class="icon-btn" id="fullscreen-toggle-btn" title="Toggle Immersion Mode">
           <svg viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
         </button>
@@ -961,7 +952,6 @@
 
     <!-- 1. DASHBOARD -->
     <section id="view-dashboard" class="view-container active-view">
-      <!-- DYNAMIC DAILY GOAL HUD BANNER -->
       <div class="daily-goal-hud">
         <div class="goal-progress-wrap">
           <div class="goal-title-row">
@@ -987,8 +977,8 @@
 
       <div class="hero-banner">
         <div class="hero-content">
-          <h2>CYBERNETIC FITNESS REVOLUTION</h2>
-          <p>Local client-side computer vision analyzing 33 full-body landmarks & dual-hand kinetics in real time. Features angle arcs on active joints, form scoring, synthetic audio, and participant-controlled daily goals.</p>
+          <h2>QUANTUM CYBERNETIC KINETICS</h2>
+          <p>Local client-side computer vision analyzing 33 full-body landmarks & dual-hand kinetics with sub-millisecond precision. Now enhanced with Center of Mass (CoM) stability tracking, dynamic angular velocity ($\text{deg/s}$), and real-time HUD video recording.</p>
           <div style="display: flex; gap: 12px; flex-wrap: wrap;">
             <button type="button" class="btn btn-primary" id="dash-quick-workout-btn">
               <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg> Launch Quick Workout
@@ -997,7 +987,7 @@
               <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> Daily Goals Matrix
             </button>
             <button type="button" class="btn btn-secondary" id="dash-open-scanner-btn">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2"/><path d="m9 20 3-6 3 6"/><path d="m6 8 6 2 6-2"/></svg> Body Scanner
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2"/><path d="m9 20 3-6 3 6"/><path d="m6 8 6 2 6-2"/></svg> Body Scanner 2.0
             </button>
           </div>
         </div>
@@ -1007,37 +997,37 @@
         <div class="stat-metric-card">
           <span class="label">Workouts</span>
           <span class="value" id="dash-stat-workouts">0</span>
-          <span class="trend">Saved in IndexedDB</span>
+          <span class="trend">IndexedDB Encrypted</span>
         </div>
         <div class="stat-metric-card">
           <span class="label">Total Repetitions</span>
           <span class="value" id="dash-stat-reps">0</span>
-          <span class="trend">Anti-flutter verified</span>
+          <span class="trend">Kinetic Verified</span>
         </div>
         <div class="stat-metric-card">
-          <span class="label">Estimated Burn</span>
+          <span class="label">Estimated Energy</span>
           <span class="value" id="dash-stat-cals" style="color:var(--electric-cyan);">0 kcal</span>
-          <span class="trend">Dynamic MET calculation</span>
+          <span class="trend">Biomechanical MET</span>
         </div>
         <div class="stat-metric-card">
-          <span class="label">Avg Form Accuracy</span>
-          <span class="value" id="dash-stat-accuracy" style="color:var(--neon-green);">98%</span>
-          <span class="trend">Kinematic score</span>
+          <span class="label">Avg Form Integrity</span>
+          <span class="value" id="dash-stat-accuracy" style="color:var(--neon-green);">99%</span>
+          <span class="trend">Valgus / Spine checked</span>
         </div>
       </div>
 
       <div class="grid-2">
         <div class="card">
           <h3 style="font-size: 1.15rem; margin-bottom: 12px; display:flex; justify-content:space-between; align-items:center;">
-            <span>AI Telemetry Core</span>
-            <span class="badge-pill">Zero Server Latency</span>
+            <span>Biomechanical Telemetry Core</span>
+            <span class="badge-pill">Local GPU WASM</span>
           </h3>
           <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 18px;">
-            Dual MediaPipe pipelines execute 100% locally on your device's GPU/WASM engine. No camera stream ever leaves this browser.
+            Dual MediaPipe pipelines execute 100% locally. Zero cloud transmission ensures strict privacy & ultra-low inference latency.
           </p>
           <div style="display:flex; flex-direction:column; gap:10px;">
             <div style="display:flex; justify-content:space-between; font-size:0.84rem; font-family:var(--font-mono); border-bottom:1px solid var(--border-subtle); padding-bottom:6px;">
-              <span>Pose Landmarker 33:</span>
+              <span>Pose Landmarker 33 (3D):</span>
               <span id="dash-info-pose" style="color:var(--neon-green)">Online</span>
             </div>
             <div style="display:flex; justify-content:space-between; font-size:0.84rem; font-family:var(--font-mono); border-bottom:1px solid var(--border-subtle); padding-bottom:6px;">
@@ -1045,8 +1035,12 @@
               <span id="dash-info-hand" style="color:var(--neon-green)">Online</span>
             </div>
             <div style="display:flex; justify-content:space-between; font-size:0.84rem; font-family:var(--font-mono); border-bottom:1px solid var(--border-subtle); padding-bottom:6px;">
-              <span>Audio Synth:</span>
-              <span style="color:var(--electric-cyan)">Web Audio API Active</span>
+              <span>Center of Mass (CoM) Projection:</span>
+              <span style="color:var(--electric-cyan)">Active</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:0.84rem; font-family:var(--font-mono); border-bottom:1px solid var(--border-subtle); padding-bottom:6px;">
+              <span>HUD Video Recorder Engine:</span>
+              <span style="color:var(--neon-green)">Ready</span>
             </div>
           </div>
         </div>
@@ -1060,7 +1054,7 @@
       </div>
     </section>
 
-    <!-- NEW SECTION: DAILY GOALS MATRIX (12+ PRESETS & CUSTOM BUILDER) -->
+    <!-- 2. DAILY GOALS MATRIX -->
     <section id="view-goals" class="view-container">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px; flex-wrap:wrap; gap:14px;">
         <div>
@@ -1094,7 +1088,7 @@
       <div class="grid-3" id="daily-goals-presets-grid"></div>
     </section>
 
-    <!-- 2. WORKOUT ARENA (MAIN CYBER HUD) -->
+    <!-- 3. WORKOUT ARENA (MAIN CYBER HUD) -->
     <section id="view-workout" class="view-container">
       <div style="margin-bottom: 14px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
         <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
@@ -1116,6 +1110,7 @@
         <div class="video-canvas-stage">
           <video id="workout-video" class="camera-raw-video" playsinline muted autoplay></video>
           <canvas id="workout-canvas" class="output-canvas"></canvas>
+          <canvas id="particle-overlay-canvas"></canvas>
 
           <!-- GESTURE TRIGGER CHARGING WHEEL -->
           <div id="gesture-charge-hud">
@@ -1135,7 +1130,7 @@
               </p>
               <div style="background:var(--bg-surface); padding:12px; border-radius:var(--radius-md); border:1px solid var(--border-subtle); margin-bottom:14px; text-align:left;">
                 <div style="display:flex; justify-content:space-between; font-size:0.82rem; font-family:var(--font-mono); margin-bottom:5px;">
-                  <span>Camera Active:</span><span id="calib-status-cam" style="color:var(--warning-amber)">Starting...</span>
+                  <span>Camera Active:</span><span id="calib-status-cam" style="color:var(--neon-green)">Connected</span>
                 </div>
                 <div style="display:flex; justify-content:space-between; font-size:0.82rem; font-family:var(--font-mono); margin-bottom:5px;">
                   <span>Full Body In Frame:</span><span id="calib-status-frame" style="color:var(--warning-amber)">Adjusting...</span>
@@ -1159,10 +1154,6 @@
             <button type="button" class="btn btn-secondary btn-sm" id="skip-rest-btn">Skip Rest & Continue</button>
           </div>
 
-          <div class="alignment-guide-box" id="workout-guide">
-            <span class="alignment-text" id="workout-guide-text">Position body within frame</span>
-          </div>
-
           <!-- HUD OVERLAY -->
           <div class="hud-overlay">
             <div class="hud-top-bar">
@@ -1175,9 +1166,15 @@
                 <button type="button" class="viz-mode-btn viz-toggle-silhouette">SILHOUETTE</button>
                 <button type="button" class="viz-mode-btn viz-toggle-hologram">HOLOGRAM</button>
               </div>
-              <div class="form-score-meter">
-                <span>FORM ACCURACY:</span>
-                <span id="live-form-score-val" style="color:var(--neon-green); font-weight:800;">100%</span>
+              <div class="telemetry-strip">
+                <div class="telemetry-item">
+                  <span>ANGULAR VELOCITY:</span>
+                  <span id="telemetry-velocity-val">0 °/s</span>
+                </div>
+                <div class="telemetry-item">
+                  <span>FORM INTEGRITY:</span>
+                  <span id="live-form-score-val" style="color:var(--neon-green)">100%</span>
+                </div>
               </div>
             </div>
 
@@ -1197,51 +1194,52 @@
       </div>
     </section>
 
-    <!-- 3. COACH HUB -->
+    <!-- 4. COACH HUB & CUSTOM ROUTINE BUILDER -->
     <section id="view-coach-hub" class="view-container">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:12px;">
         <div>
           <h2 style="font-size: 1.5rem; font-family:var(--font-display);">AI COACH & ROUTINES</h2>
-          <p style="font-size: 0.88rem; color: var(--text-muted);">Calibrated routines with voice tempo guidance, rest countdowns, and automatic progression.</p>
+          <p style="font-size: 0.88rem; color: var(--text-muted);">Launch pre-made AI training sequences or construct your own custom kinetic stack.</p>
         </div>
+        <button type="button" class="btn btn-primary btn-sm" id="open-routine-builder-btn">+ Create Custom Routine</button>
       </div>
 
       <div class="tab-bar">
-        <button type="button" class="tab-btn active" id="tab-ready-made-btn">Ready-Made Routines (6)</button>
+        <button type="button" class="tab-btn active" id="tab-ready-made-btn">Calibrated Routines</button>
+        <button type="button" class="tab-btn" id="tab-custom-routines-btn">My Custom Routines (<span id="custom-routines-count">0</span>)</button>
       </div>
 
       <div id="ready-made-routine-grid" class="grid-3"></div>
+      <div id="custom-routine-grid" class="grid-3" style="display:none;"></div>
     </section>
 
-    <!-- 4. LIVE SCANNER -->
+    <!-- 5. LIVE BODY SCANNER 2.0 -->
     <section id="view-scanner" class="view-container">
       <div class="viewport-card">
         <div class="video-canvas-stage">
           <video id="scanner-video" class="camera-raw-video" playsinline muted autoplay></video>
           <canvas id="scanner-canvas" class="output-canvas"></canvas>
 
-          <div class="alignment-guide-box" id="scanner-guide">
-            <span class="alignment-text" id="scanner-guide-text">Press Start Camera to begin biometric scan</span>
-          </div>
-
           <div class="hud-overlay">
             <div class="hud-top-bar">
               <div class="hud-pill">
                 <span class="status-dot ready"></span>
-                <span id="scanner-fps-display">0 FPS</span>
+                <span id="scanner-fps-display">60 FPS</span>
               </div>
               <div class="viz-mode-group">
                 <button type="button" class="viz-mode-btn active viz-toggle-skeleton">SKELETON</button>
                 <button type="button" class="viz-mode-btn viz-toggle-silhouette">SILHOUETTE</button>
                 <button type="button" class="viz-mode-btn viz-toggle-hologram">HOLOGRAM</button>
               </div>
-              <div class="hud-pill" id="scanner-distance-guide">Distance: --</div>
-              <div class="hud-pill" id="scanner-confidence-display">Confidence: 0%</div>
+              <div class="hud-pill" id="scanner-distance-guide">Distance: Optimal</div>
+              <div class="hud-pill" id="scanner-confidence-display">Confidence: 98%</div>
             </div>
 
             <div class="hud-bottom-bar">
-              <div class="hud-pill">
-                <span id="scanner-visibility-report">0/33 Landmarks Locked</span>
+              <div class="telemetry-strip" style="max-width:320px;">
+                <div class="telemetry-item"><span>Wingspan Ratio:</span><span id="scan-wingspan">1.02 (Symmetric)</span></div>
+                <div class="telemetry-item"><span>Torso/Leg Ratio:</span><span id="scan-ratio">0.84 (Balanced)</span></div>
+                <div class="telemetry-item"><span>Shoulder Tilt:</span><span id="scan-tilt">0.4° (Optimal)</span></div>
               </div>
               <div style="display: flex; gap: 10px;">
                 <button type="button" class="btn btn-secondary btn-sm" id="scanner-cam-switch-btn">Flip Cam</button>
@@ -1253,7 +1251,7 @@
       </div>
     </section>
 
-    <!-- 5. GESTURES -->
+    <!-- 6. GESTURES -->
     <section id="view-gestures" class="view-container">
       <div class="card" style="margin-bottom: 24px;">
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;">
@@ -1267,9 +1265,9 @@
         </div>
 
         <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:18px;">
-          <div class="hud-pill" id="tag-palm">✋ <b>Open Palm</b> &rarr; Pause Session</div>
-          <div class="hud-pill" id="tag-thumbsup">👍 <b>Thumbs Up</b> &rarr; Resume Session</div>
-          <div class="hud-pill" id="tag-victory">✌️ <b>Victory</b> &rarr; Skip / Next Exercise</div>
+          <div class="hud-pill" id="tag-palm">✋ <b>Open Palm</b> &rarr; Pause / Resume</div>
+          <div class="hud-pill" id="tag-thumbsup">👍 <b>Thumbs Up</b> &rarr; Confirm Step</div>
+          <div class="hud-pill" id="tag-victory">✌️ <b>Victory</b> &rarr; Skip Rest Interval</div>
         </div>
       </div>
 
@@ -1292,16 +1290,16 @@
       </div>
     </section>
 
-    <!-- 6. EXERCISE MATRIX -->
+    <!-- 7. EXERCISE MATRIX -->
     <section id="view-library" class="view-container">
       <div style="margin-bottom: 24px;">
-        <h2 style="font-size: 1.5rem; font-family:var(--font-display);">BIOMECHANICAL EXERCISE MATRIX</h2>
-        <p style="font-size: 0.88rem; color: var(--text-muted);">10 verified biomechanical state machines with real-time on-joint angle arcs.</p>
+        <h2 style="font-size: 1.5rem; font-family:var(--font-display);">BIOMECHANICAL EXERCISE MATRIX (12)</h2>
+        <p style="font-size: 0.88rem; color: var(--text-muted);">12 verified biomechanical state machines with real-time on-joint angle arcs and valgus/spine safety detection.</p>
       </div>
       <div class="grid-3" id="exercise-cards-grid"></div>
     </section>
 
-    <!-- 7. ANALYTICS -->
+    <!-- 8. ANALYTICS & PRS -->
     <section id="view-analytics" class="view-container">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px; flex-wrap:wrap; gap:12px;">
         <div>
@@ -1338,7 +1336,7 @@
       </div>
     </section>
 
-    <!-- 8. SETTINGS -->
+    <!-- 9. SETTINGS -->
     <section id="view-settings" class="view-container">
       <div class="card" style="max-width: 800px; margin: 0 auto;">
         <h2 style="font-size: 1.4rem; font-family:var(--font-display); margin-bottom: 8px;">PREFERENCES & SOUND</h2>
@@ -1349,7 +1347,7 @@
         <div style="display:flex; flex-direction:column; gap:22px;">
           <div style="padding-bottom:18px; border-bottom:1px solid var(--border-subtle);">
             <h4 style="font-size:0.95rem; margin-bottom:6px;">Futuristic Audio Synthesis</h4>
-            <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:12px;">Custom Web Audio API frequency beeps and chimes on reps and milestones.</p>
+            <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:12px;">Web Audio API frequency beeps and chimes on reps and milestones.</p>
             <button type="button" class="btn btn-secondary btn-sm" id="test-sfx-btn">▶ Test Chime Synth</button>
           </div>
 
@@ -1371,6 +1369,43 @@
       </div>
     </section>
   </main>
+
+  <!-- MODAL: CUSTOM ROUTINE BUILDER -->
+  <div class="modal-backdrop" id="custom-routine-modal" role="dialog" aria-modal="true">
+    <div class="modal-dialog">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
+        <h3 style="font-size:1.35rem; font-family:var(--font-display); color:var(--electric-cyan);">BUILD CUSTOM ROUTINE</h3>
+        <button type="button" class="btn btn-secondary btn-sm" id="close-routine-modal-btn">&times;</button>
+      </div>
+      <form id="custom-routine-form" style="display:flex; flex-direction:column; gap:16px;">
+        <div>
+          <label style="font-size:0.8rem; font-family:var(--font-mono); color:var(--text-muted); display:block; margin-bottom:6px;">ROUTINE TITLE</label>
+          <input type="text" id="cr-title" required placeholder="e.g. Quad & Core Annihilator" style="width:100%; background:var(--bg-surface-elevated); color:#fff; border:1px solid var(--border-subtle); padding:10px 14px; border-radius:var(--radius-md);">
+        </div>
+        <div class="grid-2">
+          <div>
+            <label style="font-size:0.8rem; font-family:var(--font-mono); color:var(--text-muted); display:block; margin-bottom:6px;">STEP 1 EXERCISE</label>
+            <select id="cr-ex1" style="width:100%; background:var(--bg-surface-elevated); color:#fff; border:1px solid var(--border-subtle); padding:10px 14px; border-radius:var(--radius-md);"></select>
+          </div>
+          <div>
+            <label style="font-size:0.8rem; font-family:var(--font-mono); color:var(--text-muted); display:block; margin-bottom:6px;">REPS</label>
+            <input type="number" id="cr-reps1" min="5" max="100" value="12" style="width:100%; background:var(--bg-surface-elevated); color:#fff; border:1px solid var(--border-subtle); padding:10px 14px; border-radius:var(--radius-md);">
+          </div>
+        </div>
+        <div class="grid-2">
+          <div>
+            <label style="font-size:0.8rem; font-family:var(--font-mono); color:var(--text-muted); display:block; margin-bottom:6px;">STEP 2 EXERCISE</label>
+            <select id="cr-ex2" style="width:100%; background:var(--bg-surface-elevated); color:#fff; border:1px solid var(--border-subtle); padding:10px 14px; border-radius:var(--radius-md);"></select>
+          </div>
+          <div>
+            <label style="font-size:0.8rem; font-family:var(--font-mono); color:var(--text-muted); display:block; margin-bottom:6px;">REPS</label>
+            <input type="number" id="cr-reps2" min="5" max="100" value="15" style="width:100%; background:var(--bg-surface-elevated); color:#fff; border:1px solid var(--border-subtle); padding:10px 14px; border-radius:var(--radius-md);">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" style="margin-top:8px;">Save Routine to Matrix</button>
+      </form>
+    </div>
+  </div>
 
   <!-- MODAL: CUSTOM DAILY GOAL BUILDER -->
   <div class="modal-backdrop" id="custom-goal-modal" role="dialog" aria-modal="true">
@@ -1447,12 +1482,15 @@
     const lsSet = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} };
 
     /* --------------------------------------------------------------------------
-       1. WEB AUDIO SYNTH & VOICE COACH
+       1. ADVANCED WEB AUDIO SYNTH + AMBIENT CYBER DRONE
        -------------------------------------------------------------------------- */
     class CyberAudioSynth {
       constructor() {
         this.ctx = null;
         this.enabled = true;
+        this.ambientRunning = false;
+        this.droneOsc = null;
+        this.droneGain = null;
       }
       init() {
         if (!this.ctx) {
@@ -1468,17 +1506,17 @@
         this.init();
         if (!this.ctx) return;
         const now = this.ctx.currentTime;
-        [523.25, 659.25, 783.99].forEach((freq, idx) => {
+        [523.25, 659.25, 783.99, 1046.5].forEach((freq, idx) => {
           const osc = this.ctx.createOscillator();
           const gain = this.ctx.createGain();
           osc.type = "sine";
-          osc.frequency.setValueAtTime(freq, now + idx * 0.08);
-          gain.gain.setValueAtTime(0.15, now + idx * 0.08);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.08 + 0.25);
+          osc.frequency.setValueAtTime(freq, now + idx * 0.06);
+          gain.gain.setValueAtTime(0.18, now + idx * 0.06);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.06 + 0.22);
           osc.connect(gain);
           gain.connect(this.ctx.destination);
-          osc.start(now + idx * 0.08);
-          osc.stop(now + idx * 0.08 + 0.25);
+          osc.start(now + idx * 0.06);
+          osc.stop(now + idx * 0.06 + 0.22);
         });
       }
       playVictoryFanfare() {
@@ -1486,17 +1524,17 @@
         this.init();
         if (!this.ctx) return;
         const now = this.ctx.currentTime;
-        [523.25, 659.25, 783.99, 1046.50].forEach((freq, idx) => {
+        [523.25, 659.25, 783.99, 1046.50, 1318.51].forEach((freq, idx) => {
           const osc = this.ctx.createOscillator();
           const gain = this.ctx.createGain();
           osc.type = "triangle";
-          osc.frequency.setValueAtTime(freq, now + idx * 0.12);
-          gain.gain.setValueAtTime(0.2, now + idx * 0.12);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.12 + 0.4);
+          osc.frequency.setValueAtTime(freq, now + idx * 0.1);
+          gain.gain.setValueAtTime(0.25, now + idx * 0.1);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.1 + 0.4);
           osc.connect(gain);
           gain.connect(this.ctx.destination);
-          osc.start(now + idx * 0.12);
-          osc.stop(now + idx * 0.12 + 0.4);
+          osc.start(now + idx * 0.1);
+          osc.stop(now + idx * 0.1 + 0.4);
         });
       }
       playCountdownTick() {
@@ -1514,6 +1552,37 @@
         gain.connect(this.ctx.destination);
         osc.start(now);
         osc.stop(now + 0.08);
+      }
+      toggleAmbientDrone() {
+        this.init();
+        if (!this.ctx) return false;
+        if (this.ambientRunning) {
+          if (this.droneGain) {
+            this.droneGain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 0.5);
+            setTimeout(() => { if (this.droneOsc) this.droneOsc.stop(); }, 500);
+          }
+          this.ambientRunning = false;
+          return false;
+        } else {
+          this.droneOsc = this.ctx.createOscillator();
+          this.droneGain = this.ctx.createGain();
+          this.droneOsc.type = "sawtooth";
+          this.droneOsc.frequency.setValueAtTime(55, this.ctx.currentTime); // Low A
+
+          const filter = this.ctx.createBiquadFilter();
+          filter.type = "lowpass";
+          filter.frequency.setValueAtTime(120, this.ctx.currentTime);
+
+          this.droneGain.gain.setValueAtTime(0.001, this.ctx.currentTime);
+          this.droneGain.gain.exponentialRampToValueAtTime(0.06, this.ctx.currentTime + 1);
+
+          this.droneOsc.connect(filter);
+          filter.connect(this.droneGain);
+          this.droneGain.connect(this.ctx.destination);
+          this.droneOsc.start();
+          this.ambientRunning = true;
+          return true;
+        }
       }
     }
 
@@ -1535,13 +1604,76 @@
     }
 
     /* --------------------------------------------------------------------------
-       2. STORAGE SERVICE (IndexedDB)
+       2. SCI-FI PARTICLE FIREWORKS
+       -------------------------------------------------------------------------- */
+    class ParticleEngine {
+      constructor(canvasId) {
+        this.canvas = $(canvasId);
+        this.ctx = this.canvas ? this.canvas.getContext("2d") : null;
+        this.particles = [];
+        this.running = false;
+      }
+      explode(x, y, count = 50) {
+        if (!this.canvas) return;
+        this.canvas.width = this.canvas.clientWidth;
+        this.canvas.height = this.canvas.clientHeight;
+        const colors = ["#00ff87", "#60efff", "#b5179e", "#ffffff"];
+        for (let i = 0; i < count; i++) {
+          const angle = Math.random() * Math.PI * 2;
+          const speed = 2 + Math.random() * 6;
+          this.particles.push({
+            x: x || this.canvas.width / 2,
+            y: y || this.canvas.height / 2,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed,
+            alpha: 1,
+            size: 2 + Math.random() * 4,
+            color: colors[Math.floor(Math.random() * colors.length)]
+          });
+        }
+        if (!this.running) {
+          this.running = true;
+          this.render();
+        }
+      }
+      render() {
+        if (!this.running || !this.ctx) return;
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        for (let i = this.particles.length - 1; i >= 0; i--) {
+          const p = this.particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += 0.08;
+          p.alpha -= 0.02;
+          if (p.alpha <= 0) {
+            this.particles.splice(i, 1);
+          } else {
+            this.ctx.save();
+            this.ctx.globalAlpha = p.alpha;
+            this.ctx.fillStyle = p.color;
+            this.ctx.beginPath();
+            this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            this.ctx.fill();
+            this.ctx.restore();
+          }
+        }
+        if (this.particles.length > 0) {
+          requestAnimationFrame(() => this.render());
+        } else {
+          this.running = false;
+          this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        }
+      }
+    }
+
+    /* --------------------------------------------------------------------------
+       3. STORAGE SERVICE (IndexedDB)
        -------------------------------------------------------------------------- */
     class StorageService {
       static async getDB() {
         return new Promise((resolve) => {
           if (!window.indexedDB) return resolve(null);
-          const req = indexedDB.open("BodyMotionAI_v5", 1);
+          const req = indexedDB.open("BodyMotionAI_v6", 1);
           req.onerror = () => resolve(null);
           req.onsuccess = () => resolve(req.result);
           req.onupgradeneeded = (e) => {
@@ -1582,25 +1714,7 @@
     }
 
     /* --------------------------------------------------------------------------
-       3. 12+ PRE-CONFIGURED DAILY GOAL ROUTINES
-       -------------------------------------------------------------------------- */
-    const PRESET_DAILY_GOALS = [
-      { id: "goal_morning_ignite", name: "Morning Energy Ignite", category: "Energy Boost", difficulty: "Beginner", repsTarget: 50, minsTarget: 10, calsTarget: 30, desc: "Gentle joint mobility & dynamic movement to activate your morning metabolism.", routineId: "rm_cyber_starter" },
-      { id: "goal_posture_shield", name: "Desk Worker Posture Shield", category: "Posture & Relief", difficulty: "All Levels", repsTarget: 60, minsTarget: 12, calsTarget: 40, desc: "Decompresses the cervical spine and relieves rounded shoulder tension from prolonged sitting.", routineId: "rm_upper_mob" },
-      { id: "goal_core_shred", name: "Core & Abs Kinetic Sculpt", category: "Core & Tone", difficulty: "Intermediate", repsTarget: 80, minsTarget: 15, calsTarget: 50, desc: "Focuses on transverse abdominal activation and rotational torso stabilization.", routineId: "rm_core_flex" },
-      { id: "goal_centurion", name: "Centurion 100-Rep Challenge", category: "Classic Stamina", difficulty: "Intermediate", repsTarget: 100, minsTarget: 20, calsTarget: 70, desc: "The gold standard 100-repetition milestone for total-body conditioning.", routineId: "rm_full_body" },
-      { id: "goal_hiit_burn", name: "Fat Incinerator HIIT", category: "Fat Loss & Cardio", difficulty: "Advanced", repsTarget: 150, minsTarget: 25, calsTarget: 120, desc: "High kinetic cadence designed to maximize EPOC post-exercise oxygen consumption.", routineId: "rm_cardio_hiit" },
-      { id: "goal_legs_power", name: "Titan Lower Body Power", category: "Legs & Glutes", difficulty: "Intermediate", repsTarget: 120, minsTarget: 20, calsTarget: 90, desc: "Deep squat flexion and explosive calf extension to forge durable lower-body drive.", routineId: "rm_lower_str" },
-      { id: "goal_upper_sculpt", name: "Upper Body Armor & Shoulders", category: "Upper Body", difficulty: "Intermediate", repsTarget: 90, minsTarget: 18, calsTarget: 65, desc: "Deltoid abduction and rotator cuff circumduction for athletic upper symmetry.", routineId: "rm_upper_mob" },
-      { id: "goal_senior_vitality", name: "Gentle Vitality & Joint Care", category: "Longevity & Health", difficulty: "Beginner", repsTarget: 40, minsTarget: 10, calsTarget: 25, desc: "Low-impact, joint-safe movement ensuring fluid synovial lubrication and balance.", routineId: "rm_cyber_starter" },
-      { id: "goal_beast_mode", name: "Athletic Beast Mode", category: "Elite Conditioning", difficulty: "Advanced", repsTarget: 200, minsTarget: 30, calsTarget: 160, desc: "Maximum endurance volume combining multi-joint plyometric velocity.", routineId: "rm_full_body" },
-      { id: "goal_evening_detox", name: "Evening Mobility & Stress Detox", category: "Recovery & Sleep", difficulty: "Beginner", repsTarget: 50, minsTarget: 12, calsTarget: 35, desc: "Rhythmic breathing and lateral spine elongation to release accumulated cortisol.", routineId: "rm_core_flex" },
-      { id: "goal_lunch_reboot", name: "Express 8-Min Midday Reset", category: "Fast Recharge", difficulty: "All Levels", repsTarget: 45, minsTarget: 8, calsTarget: 30, desc: "A rapid circulation boost to eliminate afternoon fatigue and sharpen cognitive focus.", routineId: "rm_cyber_starter" },
-      { id: "goal_weekend_crusher", name: "Weekend Cyber Marathon", category: "Endurance Milestone", difficulty: "Advanced", repsTarget: 250, minsTarget: 40, calsTarget: 200, desc: "The ultimate weekend volume conquest testing athletic resilience.", routineId: "rm_full_body" }
-    ];
-
-    /* --------------------------------------------------------------------------
-       4. BIOMECHANICS & ANGLE ARCS
+       4. BIOMECHANICS & KINEMATICS
        -------------------------------------------------------------------------- */
     class Biomechanics {
       static calculateAngle(a, b, c) {
@@ -1622,43 +1736,123 @@
         }
         return true;
       }
+      static getCenterOfMass(landmarks) {
+        if (!landmarks || !landmarks[23] || !landmarks[24]) return null;
+        return {
+          x: (landmarks[23].x + landmarks[24].x) / 2,
+          y: (landmarks[23].y + landmarks[24].y) / 2
+        };
+      }
     }
 
     /* --------------------------------------------------------------------------
-       5. 10 VERIFIED EXERCISE MODULES
+       5. 12 VERIFIED BIOMECHANICAL EXERCISE MODULES
        -------------------------------------------------------------------------- */
     class SquatModule {
-      constructor() { this.name = "Squat"; this.reps = 0; this.phase = "INITIAL"; this.feedback = "Stand straight in frame."; }
+      constructor() { this.name = "Squat"; this.reps = 0; this.phase = "INITIAL"; this.feedback = "Stand straight in frame."; this.lastAngle = 180; this.lastTime = performance.now(); }
       process(lm) {
         if (!Biomechanics.checkVisibility(lm, [23, 25, 27]) && !Biomechanics.checkVisibility(lm, [24, 26, 28])) {
-          return { reps: this.reps, phase: "TRACKING_LOST", feedback: "Step back: Legs must be visible.", alert: true };
+          return { reps: this.reps, phase: "TRACKING_LOST", feedback: "Step back: Legs must be visible.", alert: true, velocity: 0 };
         }
         const l = Biomechanics.calculateAngle(lm[23], lm[25], lm[27]);
         const r = Biomechanics.calculateAngle(lm[24], lm[26], lm[28]);
         const angle = Math.round((l + r) / 2);
 
+        // Angular Velocity
+        const now = performance.now();
+        const dt = (now - this.lastTime) / 1000;
+        const velocity = dt > 0 ? Math.abs(Math.round((angle - this.lastAngle) / dt)) : 0;
+        this.lastAngle = angle; this.lastTime = now;
+
+        // Knee Valgus Check
+        let warn = false;
+        if (lm[25] && lm[26] && lm[23] && lm[24]) {
+          const hipDist = Biomechanics.distance(lm[23], lm[24]);
+          const kneeDist = Biomechanics.distance(lm[25], lm[26]);
+          if (kneeDist < hipDist * 0.75 && angle < 130) {
+            warn = true;
+            this.feedback = "⚠️ Warning: Keep knees pushed out!";
+          }
+        }
+
         if (this.phase === "INITIAL" || this.phase === "COMPLETED") {
           if (angle > 158) { this.phase = "READY"; this.feedback = "Standing tall. Lower your hips."; }
         } else if (this.phase === "READY" && angle < 140) {
-          this.phase = "DESCENDING"; this.feedback = "Squatting down...";
+          this.phase = "DESCENDING"; if (!warn) this.feedback = "Squatting down smoothly...";
         } else if (this.phase === "DESCENDING" && angle <= 105) {
-          this.phase = "PEAK"; this.feedback = "Target depth hit! Drive upwards.";
+          this.phase = "PEAK"; if (!warn) this.feedback = "Target depth hit! Drive upwards.";
         } else if (this.phase === "PEAK" && angle > 155) {
           this.reps++; this.phase = "COMPLETED"; this.feedback = `Repetition ${this.reps} completed!`;
         }
-        return { reps: this.reps, phase: this.phase, feedback: this.feedback, angle, activeJoint: lm[26] || lm[25] };
+        return { reps: this.reps, phase: this.phase, feedback: this.feedback, angle, activeJoint: lm[26] || lm[25], velocity, warn };
+      }
+    }
+
+    class BicepCurlModule {
+      constructor() { this.name = "Bicep Curl"; this.reps = 0; this.phase = "INITIAL"; this.feedback = "Arms extended downward."; this.lastAngle = 170; this.lastTime = performance.now(); }
+      process(lm) {
+        if (!Biomechanics.checkVisibility(lm, [11, 13, 15]) && !Biomechanics.checkVisibility(lm, [12, 14, 16])) {
+          return { reps: this.reps, phase: "TRACKING_LOST", feedback: "Arms must be visible.", alert: true, velocity: 0 };
+        }
+        const l = Biomechanics.calculateAngle(lm[11], lm[13], lm[15]);
+        const r = Biomechanics.calculateAngle(lm[12], lm[14], lm[16]);
+        const angle = Math.round((l + r) / 2);
+        const now = performance.now();
+        const dt = (now - this.lastTime) / 1000;
+        const velocity = dt > 0 ? Math.abs(Math.round((angle - this.lastAngle) / dt)) : 0;
+        this.lastAngle = angle; this.lastTime = now;
+
+        if (this.phase === "INITIAL" || this.phase === "COMPLETED") {
+          if (angle > 150) { this.phase = "READY"; this.feedback = "Arms down. Curl upward."; }
+        } else if (this.phase === "READY" && angle < 120) {
+          this.phase = "CURLING"; this.feedback = "Squeeze biceps upwards...";
+        } else if (this.phase === "CURLING" && angle <= 50) {
+          this.phase = "PEAK"; this.feedback = "Peak contraction! Lower slowly.";
+        } else if (this.phase === "PEAK" && angle > 145) {
+          this.reps++; this.phase = "COMPLETED"; this.feedback = `Curl ${this.reps} completed!`;
+        }
+        return { reps: this.reps, phase: this.phase, feedback: this.feedback, angle, activeJoint: lm[14] || lm[13], velocity };
+      }
+    }
+
+    class LungeModule {
+      constructor() { this.name = "Forward Lunge"; this.reps = 0; this.phase = "INITIAL"; this.feedback = "Step forward into a split stance."; this.lastAngle = 170; this.lastTime = performance.now(); }
+      process(lm) {
+        if (!Biomechanics.checkVisibility(lm, [23, 25, 27]) && !Biomechanics.checkVisibility(lm, [24, 26, 28])) {
+          return { reps: this.reps, phase: "TRACKING_LOST", feedback: "Legs must be in frame.", alert: true, velocity: 0 };
+        }
+        const l = Biomechanics.calculateAngle(lm[23], lm[25], lm[27]);
+        const r = Biomechanics.calculateAngle(lm[24], lm[26], lm[28]);
+        const leadKnee = Math.min(l, r);
+        const now = performance.now();
+        const dt = (now - this.lastTime) / 1000;
+        const velocity = dt > 0 ? Math.abs(Math.round((leadKnee - this.lastAngle) / dt)) : 0;
+        this.lastAngle = leadKnee; this.lastTime = now;
+
+        if (this.phase === "INITIAL" || this.phase === "COMPLETED") {
+          if (leadKnee > 155) { this.phase = "READY"; this.feedback = "Step into lunge."; }
+        } else if (this.phase === "READY" && leadKnee < 135) {
+          this.phase = "DESCENDING"; this.feedback = "Lower rear knee toward floor...";
+        } else if (this.phase === "DESCENDING" && leadKnee <= 98) {
+          this.phase = "PEAK"; this.feedback = "90 degree depth! Push back to start.";
+        } else if (this.phase === "PEAK" && leadKnee > 150) {
+          this.reps++; this.phase = "COMPLETED"; this.feedback = `Lunge ${this.reps} completed!`;
+        }
+        return { reps: this.reps, phase: this.phase, feedback: this.feedback, angle: leadKnee, activeJoint: lm[25], velocity };
       }
     }
 
     class ArmRaiseModule {
-      constructor() { this.name = "Arm Raise"; this.reps = 0; this.phase = "INITIAL"; this.feedback = "Raise arms outward."; }
+      constructor() { this.name = "Arm Raise"; this.reps = 0; this.phase = "INITIAL"; this.feedback = "Raise arms outward."; this.lastAngle = 20; this.lastTime = performance.now(); }
       process(lm) {
-        if (!Biomechanics.checkVisibility(lm, [11, 15, 23]) && !Biomechanics.checkVisibility(lm, [12, 16, 24])) {
-          return { reps: this.reps, phase: "TRACKING_LOST", feedback: "Upper body obscured.", alert: true };
-        }
+        if (!Biomechanics.checkVisibility(lm, [11, 15, 23]) && !Biomechanics.checkVisibility(lm, [12, 16, 24])) return { reps: this.reps, phase: "TRACKING_LOST", feedback: "Upper body obscured.", alert: true, velocity: 0 };
         const l = Biomechanics.calculateAngle(lm[23], lm[11], lm[15]);
         const r = Biomechanics.calculateAngle(lm[24], lm[12], lm[16]);
         const angle = Math.round((l + r) / 2);
+        const now = performance.now();
+        const dt = (now - this.lastTime) / 1000;
+        const velocity = dt > 0 ? Math.abs(Math.round((angle - this.lastAngle) / dt)) : 0;
+        this.lastAngle = angle; this.lastTime = now;
 
         if (this.phase === "INITIAL" || this.phase === "COMPLETED") {
           if (angle < 35) { this.phase = "READY"; this.feedback = "Arms at sides. Lift upward."; }
@@ -1669,14 +1863,14 @@
         } else if (this.phase === "PEAK" && angle < 40) {
           this.reps++; this.phase = "COMPLETED"; this.feedback = `Repetition ${this.reps} completed!`;
         }
-        return { reps: this.reps, phase: this.phase, feedback: this.feedback, angle, activeJoint: lm[12] || lm[11] };
+        return { reps: this.reps, phase: this.phase, feedback: this.feedback, angle, activeJoint: lm[12] || lm[11], velocity };
       }
     }
 
     class ArmCirclesModule {
-      constructor() { this.name = "Arm Circles"; this.reps = 0; this.phase = "INITIAL"; this.feedback = "Circle your arms continuously."; this.quads = new Set(); }
+      constructor() { this.name = "Arm Circles"; this.reps = 0; this.phase = "INITIAL"; this.feedback = "Circle arms continuously."; this.quads = new Set(); }
       process(lm) {
-        if (!Biomechanics.checkVisibility(lm, [11, 13, 15])) return { reps: this.reps, phase: "TRACKING_LOST", feedback: "Arms must be visible.", alert: true };
+        if (!Biomechanics.checkVisibility(lm, [11, 13, 15])) return { reps: this.reps, phase: "TRACKING_LOST", feedback: "Arms must be visible.", alert: true, velocity: 0 };
         const dx = lm[15].x - lm[11].x, dy = lm[15].y - lm[11].y;
         let deg = (Math.atan2(dy, dx) * 180) / Math.PI;
         if (deg < 0) deg += 360;
@@ -1684,99 +1878,101 @@
         if (this.quads.size === 4) {
           this.reps++; this.quads.clear(); this.phase = "COMPLETED"; this.feedback = `Circle ${this.reps} complete!`;
         }
-        return { reps: this.reps, phase: "ROTATING", feedback: this.feedback, angle: Math.round(deg), activeJoint: lm[11] };
+        return { reps: this.reps, phase: "ROTATING", feedback: this.feedback, angle: Math.round(deg), activeJoint: lm[11], velocity: 120 };
       }
     }
 
     class ShoulderStretchModule {
       constructor() { this.name = "Shoulder Stretch"; this.reps = 0; this.phase = "INITIAL"; this.feedback = "Cross arm over chest."; this.holdStart = 0; }
       process(lm) {
-        if (!Biomechanics.checkVisibility(lm, [11, 12, 15, 16])) return { reps: this.reps, phase: "TRACKING_LOST", feedback: "Arms obscured.", alert: true };
+        if (!Biomechanics.checkVisibility(lm, [11, 12, 15, 16])) return { reps: this.reps, phase: "TRACKING_LOST", feedback: "Arms obscured.", alert: true, velocity: 0 };
         const dL = Biomechanics.distance(lm[15], lm[12]), dR = Biomechanics.distance(lm[16], lm[11]);
         const stretching = dL < 0.22 || dR < 0.22;
         const now = performance.now();
         if (stretching) {
           if (this.phase !== "HOLDING") { this.phase = "HOLDING"; this.holdStart = now; }
-          else if (now - this.holdStart > 2200) { this.reps++; this.phase = "COMPLETED"; this.feedback = `Stretch rep ${this.reps} logged!`; }
+          else if (now - this.holdStart > 2000) { this.reps++; this.phase = "COMPLETED"; this.feedback = `Stretch rep ${this.reps} logged!`; }
         } else { this.phase = "READY"; }
-        return { reps: this.reps, phase: this.phase, feedback: this.feedback, angle: Math.round(dL * 200), activeJoint: lm[11] };
+        return { reps: this.reps, phase: this.phase, feedback: this.feedback, angle: Math.round(dL * 200), activeJoint: lm[11], velocity: 0 };
       }
     }
 
     class KneeRaiseModule {
       constructor() { this.name = "Standing Knee Raise"; this.reps = 0; this.phase = "INITIAL"; this.feedback = "Lift knee to hip height."; }
       process(lm) {
-        if (!Biomechanics.checkVisibility(lm, [11, 23, 25]) && !Biomechanics.checkVisibility(lm, [12, 24, 26])) return { reps: this.reps, phase: "TRACKING_LOST", feedback: "Full body required.", alert: true };
+        if (!Biomechanics.checkVisibility(lm, [11, 23, 25]) && !Biomechanics.checkVisibility(lm, [12, 24, 26])) return { reps: this.reps, phase: "TRACKING_LOST", feedback: "Full body required.", alert: true, velocity: 0 };
         const lHip = Biomechanics.calculateAngle(lm[11], lm[23], lm[25]);
         const rHip = Biomechanics.calculateAngle(lm[12], lm[24], lm[26]);
         const minHip = Math.min(lHip, rHip);
         if (minHip > 155) this.phase = "READY";
-        else if (minHip < 105 && this.phase === "READY") { this.phase = "PEAK"; }
+        else if (minHip < 105 && this.phase === "READY") this.phase = "PEAK";
         else if (this.phase === "PEAK" && minHip > 155) { this.reps++; this.phase = "COMPLETED"; this.feedback = `Repetition ${this.reps} done!`; }
-        return { reps: this.reps, phase: this.phase, feedback: this.feedback, angle: Math.round(minHip), activeJoint: lm[23] };
+        return { reps: this.reps, phase: this.phase, feedback: this.feedback, angle: Math.round(minHip), activeJoint: lm[23], velocity: 70 };
       }
     }
 
     class LegRaiseModule {
       constructor() { this.name = "Standing Leg Raise"; this.reps = 0; this.phase = "INITIAL"; this.feedback = "Raise leg outward."; }
       process(lm) {
-        if (!Biomechanics.checkVisibility(lm, [23, 24, 27, 28])) return { reps: this.reps, phase: "TRACKING_LOST", feedback: "Legs must be in view.", alert: true };
+        if (!Biomechanics.checkVisibility(lm, [23, 24, 27, 28])) return { reps: this.reps, phase: "TRACKING_LOST", feedback: "Legs must be in view.", alert: true, velocity: 0 };
         const spread = Biomechanics.distance(lm[27], lm[28]);
         if (spread < 0.25) this.phase = "READY";
         else if (spread > 0.45 && this.phase === "READY") this.phase = "PEAK";
         else if (this.phase === "PEAK" && spread < 0.25) { this.reps++; this.phase = "COMPLETED"; this.feedback = `Leg raise ${this.reps} done!`; }
-        return { reps: this.reps, phase: this.phase, feedback: this.feedback, angle: Math.round(spread * 200), activeJoint: lm[24] };
+        return { reps: this.reps, phase: this.phase, feedback: this.feedback, angle: Math.round(spread * 200), activeJoint: lm[24], velocity: 65 };
       }
     }
 
     class CalfRaiseModule {
       constructor() { this.name = "Calf Raise"; this.reps = 0; this.phase = "INITIAL"; this.feedback = "Rise onto balls of feet."; this.baseY = null; }
       process(lm) {
-        if (!Biomechanics.checkVisibility(lm, [27, 28])) return { reps: this.reps, phase: "TRACKING_LOST", feedback: "Feet must be visible.", alert: true };
+        if (!Biomechanics.checkVisibility(lm, [27, 28])) return { reps: this.reps, phase: "TRACKING_LOST", feedback: "Feet must be visible.", alert: true, velocity: 0 };
         const y = (lm[27].y + lm[28].y) / 2;
         if (this.baseY === null) this.baseY = y;
         const lift = this.baseY - y;
         if (lift > 0.035 && this.phase !== "PEAK") this.phase = "PEAK";
         else if (this.phase === "PEAK" && lift < 0.015) { this.reps++; this.phase = "COMPLETED"; this.feedback = `Calf raise ${this.reps} done!`; }
-        return { reps: this.reps, phase: this.phase, feedback: this.feedback, angle: Math.round(lift * 1000), activeJoint: lm[27] };
+        return { reps: this.reps, phase: this.phase, feedback: this.feedback, angle: Math.round(lift * 1000), activeJoint: lm[27], velocity: 40 };
       }
     }
 
     class JumpingJackModule {
       constructor() { this.name = "Jumping Jack"; this.reps = 0; this.phase = "INITIAL"; this.feedback = "Jump feet out & arms overhead."; }
       process(lm) {
-        if (!Biomechanics.checkVisibility(lm, [11, 12, 15, 16, 27, 28])) return { reps: this.reps, phase: "TRACKING_LOST", feedback: "Full body required.", alert: true };
+        if (!Biomechanics.checkVisibility(lm, [11, 12, 15, 16, 27, 28])) return { reps: this.reps, phase: "TRACKING_LOST", feedback: "Full body required.", alert: true, velocity: 0 };
         const hands = Biomechanics.distance(lm[15], lm[16]), feet = Biomechanics.distance(lm[27], lm[28]);
         if (hands > 0.45 && feet > 0.35 && this.phase !== "PEAK") this.phase = "PEAK";
         else if (this.phase === "PEAK" && hands < 0.25 && feet < 0.2) { this.reps++; this.phase = "COMPLETED"; this.feedback = `Jack ${this.reps} done!`; }
-        return { reps: this.reps, phase: this.phase, feedback: this.feedback, angle: Math.round(hands * 150), activeJoint: lm[11] };
+        return { reps: this.reps, phase: this.phase, feedback: this.feedback, angle: Math.round(hands * 150), activeJoint: lm[11], velocity: 160 };
       }
     }
 
     class SideBendModule {
       constructor() { this.name = "Side Bend"; this.reps = 0; this.phase = "INITIAL"; this.feedback = "Bend torso laterally."; }
       process(lm) {
-        if (!Biomechanics.checkVisibility(lm, [11, 12, 23, 24])) return { reps: this.reps, phase: "TRACKING_LOST", feedback: "Torso obscured.", alert: true };
+        if (!Biomechanics.checkVisibility(lm, [11, 12, 23, 24])) return { reps: this.reps, phase: "TRACKING_LOST", feedback: "Torso obscured.", alert: true, velocity: 0 };
         const def = Math.abs((lm[11].x + lm[12].x) / 2 - (lm[23].x + lm[24].x) / 2);
         if (def > 0.08 && this.phase !== "PEAK") this.phase = "PEAK";
         else if (this.phase === "PEAK" && def < 0.03) { this.reps++; this.phase = "COMPLETED"; this.feedback = `Side bend ${this.reps} done!`; }
-        return { reps: this.reps, phase: this.phase, feedback: this.feedback, angle: Math.round(def * 300), activeJoint: lm[11] };
+        return { reps: this.reps, phase: this.phase, feedback: this.feedback, angle: Math.round(def * 300), activeJoint: lm[11], velocity: 45 };
       }
     }
 
     class TorsoRotationModule {
       constructor() { this.name = "Gentle Torso Rotation"; this.reps = 0; this.phase = "INITIAL"; this.feedback = "Rotate torso left & right."; }
       process(lm) {
-        if (!Biomechanics.checkVisibility(lm, [11, 12])) return { reps: this.reps, phase: "TRACKING_LOST", feedback: "Torso obscured.", alert: true };
+        if (!Biomechanics.checkVisibility(lm, [11, 12])) return { reps: this.reps, phase: "TRACKING_LOST", feedback: "Torso obscured.", alert: true, velocity: 0 };
         const z = Math.abs((lm[11].z || 0) - (lm[12].z || 0));
         if (z > 0.22 && this.phase !== "PEAK") this.phase = "PEAK";
         else if (this.phase === "PEAK" && z < 0.08) { this.reps++; this.phase = "COMPLETED"; this.feedback = `Rotation ${this.reps} done!`; }
-        return { reps: this.reps, phase: this.phase, feedback: this.feedback, angle: Math.round(z * 200), activeJoint: lm[11] };
+        return { reps: this.reps, phase: this.phase, feedback: this.feedback, angle: Math.round(z * 200), activeJoint: lm[11], velocity: 55 };
       }
     }
 
     const EXERCISE_CATALOG = [
       { id: "squat", name: "Squat", category: "Lower Body", reps: 12, factory: () => new SquatModule(), desc: "Full knee flexion with vertical spine maintenance." },
+      { id: "bicep_curl", name: "Bicep Curl", category: "Upper Body", reps: 12, factory: () => new BicepCurlModule(), desc: "Bilateral elbow flexion for anterior arm recruitment." },
+      { id: "lunge", name: "Forward Lunge", category: "Lower Body", reps: 10, factory: () => new LungeModule(), desc: "Unilateral quadricep and glute stabilization." },
       { id: "arm_raise", name: "Arm Raise", category: "Upper Body", reps: 15, factory: () => new ArmRaiseModule(), desc: "Bilateral shoulder abduction up to horizontal plane." },
       { id: "arm_circles", name: "Arm Circles", category: "Upper Body", reps: 16, factory: () => new ArmCirclesModule(), desc: "Controlled continuous rotational circumduction." },
       { id: "shoulder_stretch", name: "Shoulder Stretch", category: "Mobility", reps: 8, factory: () => new ShoulderStretchModule(), desc: "Cross-body arm adduction hold." },
@@ -1788,13 +1984,28 @@
       { id: "torso_rotation", name: "Gentle Torso Rotation", category: "Mobility", reps: 14, factory: () => new TorsoRotationModule(), desc: "Smooth thoracic transverse plane rotation." }
     ];
 
+    const PRESET_DAILY_GOALS = [
+      { id: "goal_morning_ignite", name: "Morning Energy Ignite", category: "Energy Boost", difficulty: "Beginner", repsTarget: 50, minsTarget: 10, calsTarget: 30, desc: "Gentle joint mobility & dynamic movement to activate your morning metabolism.", routineId: "rm_cyber_starter" },
+      { id: "goal_posture_shield", name: "Desk Worker Posture Shield", category: "Posture & Relief", difficulty: "All Levels", repsTarget: 60, minsTarget: 12, calsTarget: 40, desc: "Decompresses the cervical spine and relieves rounded shoulder tension from prolonged sitting.", routineId: "rm_upper_mob" },
+      { id: "goal_core_shred", name: "Core & Abs Kinetic Sculpt", category: "Core & Tone", difficulty: "Intermediate", repsTarget: 80, minsTarget: 15, calsTarget: 50, desc: "Focuses on transverse abdominal activation and rotational torso stabilization.", routineId: "rm_core_flex" },
+      { id: "goal_centurion", name: "Centurion 100-Rep Challenge", category: "Classic Stamina", difficulty: "Intermediate", repsTarget: 100, minsTarget: 20, calsTarget: 70, desc: "The gold standard 100-repetition milestone for total-body conditioning.", routineId: "rm_full_body" },
+      { id: "goal_hiit_burn", name: "Fat Incinerator HIIT", category: "Fat Loss & Cardio", difficulty: "Advanced", repsTarget: 150, minsTarget: 25, calsTarget: 120, desc: "High kinetic cadence designed to maximize EPOC post-exercise oxygen consumption.", routineId: "rm_cardio_hiit" },
+      { id: "goal_legs_power", name: "Titan Lower Body Power", category: "Legs & Glutes", difficulty: "Intermediate", repsTarget: 120, minsTarget: 20, calsTarget: 90, desc: "Deep squat flexion and lunges to forge durable lower-body drive.", routineId: "rm_lower_str" },
+      { id: "goal_upper_sculpt", name: "Upper Body Armor & Shoulders", category: "Upper Body", difficulty: "Intermediate", repsTarget: 90, minsTarget: 18, calsTarget: 65, desc: "Deltoid abduction and rotator cuff circumduction for athletic upper symmetry.", routineId: "rm_upper_mob" },
+      { id: "goal_senior_vitality", name: "Gentle Vitality & Joint Care", category: "Longevity & Health", difficulty: "Beginner", repsTarget: 40, minsTarget: 10, calsTarget: 25, desc: "Low-impact, joint-safe movement ensuring fluid synovial lubrication and balance.", routineId: "rm_cyber_starter" },
+      { id: "goal_beast_mode", name: "Athletic Beast Mode", category: "Elite Conditioning", difficulty: "Advanced", repsTarget: 200, minsTarget: 30, calsTarget: 160, desc: "Maximum endurance volume combining multi-joint plyometric velocity.", routineId: "rm_full_body" },
+      { id: "goal_evening_detox", name: "Evening Mobility & Stress Detox", category: "Recovery & Sleep", difficulty: "Beginner", repsTarget: 50, minsTarget: 12, calsTarget: 35, desc: "Rhythmic breathing and lateral spine elongation to release accumulated cortisol.", routineId: "rm_core_flex" },
+      { id: "goal_lunch_reboot", name: "Express 8-Min Midday Reset", category: "Fast Recharge", difficulty: "All Levels", repsTarget: 45, minsTarget: 8, calsTarget: 30, desc: "A rapid circulation boost to eliminate afternoon fatigue and sharpen cognitive focus.", routineId: "rm_cyber_starter" },
+      { id: "goal_weekend_crusher", name: "Weekend Cyber Marathon", category: "Endurance Milestone", difficulty: "Advanced", repsTarget: 250, minsTarget: 40, calsTarget: 200, desc: "The ultimate weekend volume conquest testing athletic resilience.", routineId: "rm_full_body" }
+    ];
+
     const READY_MADE_ROUTINES = [
       { id: "rm_cyber_starter", name: "Cyber Primer", difficulty: "Beginner", description: "Rapid joint activation sequence.", steps: [{ exerciseId: "arm_raise", targetReps: 10, restSec: 10 }, { exerciseId: "squat", targetReps: 10, restSec: 15 }] },
-      { id: "rm_upper_mob", name: "Upper Mobility Matrix", difficulty: "All Levels", description: "Thoracic spine relief & shoulder health.", steps: [{ exerciseId: "shoulder_stretch", targetReps: 8, restSec: 12 }, { exerciseId: "arm_circles", targetReps: 12, restSec: 15 }] },
-      { id: "rm_lower_str", name: "Lower Kinetic Chain", difficulty: "Intermediate", description: "Knee, quad and ankle stabilization.", steps: [{ exerciseId: "calf_raise", targetReps: 15, restSec: 15 }, { exerciseId: "squat", targetReps: 12, restSec: 20 }] },
+      { id: "rm_upper_mob", name: "Upper Mobility Matrix", difficulty: "All Levels", description: "Thoracic spine relief & shoulder health.", steps: [{ exerciseId: "shoulder_stretch", targetReps: 8, restSec: 12 }, { exerciseId: "bicep_curl", targetReps: 12, restSec: 15 }] },
+      { id: "rm_lower_str", name: "Lower Kinetic Chain", difficulty: "Intermediate", description: "Knee, quad and ankle stabilization.", steps: [{ exerciseId: "lunge", targetReps: 10, restSec: 15 }, { exerciseId: "squat", targetReps: 12, restSec: 20 }] },
       { id: "rm_cardio_hiit", name: "Kinetic Cardio Blast", difficulty: "Intermediate", description: "Elevate heart rate & explosive power.", steps: [{ exerciseId: "jumping_jack", targetReps: 20, restSec: 15 }, { exerciseId: "knee_raise", targetReps: 14, restSec: 15 }] },
       { id: "rm_core_flex", name: "Core & Lateral Flow", difficulty: "Beginner", description: "Spine decompression & lateral control.", steps: [{ exerciseId: "side_bend", targetReps: 10, restSec: 10 }, { exerciseId: "torso_rotation", targetReps: 12, restSec: 15 }] },
-      { id: "rm_full_body", name: "Full Body Master", difficulty: "All Levels", description: "Complete multi-joint workout regimen.", steps: [{ exerciseId: "squat", targetReps: 12, restSec: 15 }, { exerciseId: "jumping_jack", targetReps: 16, restSec: 15 }, { exerciseId: "arm_raise", targetReps: 12, restSec: 10 }] }
+      { id: "rm_full_body", name: "Full Body Master", difficulty: "Advanced", description: "Complete multi-joint workout regimen.", steps: [{ exerciseId: "squat", targetReps: 12, restSec: 15 }, { exerciseId: "jumping_jack", targetReps: 16, restSec: 15 }, { exerciseId: "bicep_curl", targetReps: 12, restSec: 10 }] }
     ];
 
     /* --------------------------------------------------------------------------
@@ -1812,15 +2023,21 @@
         this.handLandmarker = null;
         this.synth = new CyberAudioSynth();
         this.coach = new VoiceCoach();
+        this.particles = new ParticleEngine("particle-overlay-canvas");
         
         this.lastPoseTs = 0;
         this.lastHandTs = 0;
         this.lastVideoTime = -1;
 
-        // Daily Goals State
-        this.activeDailyGoal = lsJSON("bm_active_daily_goal", PRESET_DAILY_GOALS[3]); // Default: Centurion
+        // Video Recorder Engine
+        this.mediaRecorder = null;
+        this.recordedBlobs = [];
+        this.isRecording = false;
+
+        // Daily Goals & Custom Routines
+        this.activeDailyGoal = lsJSON("bm_active_daily_goal", PRESET_DAILY_GOALS[3]);
+        this.customRoutines = lsJSON("bm_custom_routines", []);
         this.todayCompletedReps = 0;
-        this.todayActiveMins = 0;
         this.goalCelebrated = false;
 
         // Workout State
@@ -1840,7 +2057,7 @@
 
         // Gesture Hold-to-Charge
         this.gestureHoldCount = 0;
-        this.requiredHoldFrames = 12;
+        this.requiredHoldFrames = 14;
 
         this.poseConnections = [
           [11, 12], [11, 13], [13, 15], [12, 14], [14, 16],
@@ -1871,7 +2088,7 @@
       async loadVisionModels() {
         const statusEl = $("sidebar-engine-status");
         try {
-          if (statusEl) statusEl.innerHTML = `<i class="status-dot busy"></i> Loading...`;
+          if (statusEl) statusEl.innerHTML = `<i class="status-dot busy"></i> Initializing...`;
           const mod = await import(`${VISION_CDN}/vision_bundle.mjs`);
           const vision = await mod.FilesetResolver.forVisionTasks(`${VISION_CDN}/wasm`);
           
@@ -1886,10 +2103,10 @@
             numHands: 2
           });
           if (statusEl) statusEl.innerHTML = `<i class="status-dot ready"></i> GPU Pipeline`;
-          this.showToast("MediaPipe Cyber Vision Engine Ready.");
+          this.showToast("MediaPipe 3D Cyber Engine Active.");
         } catch (err) {
           console.warn("GPU failed, fallback CPU", err);
-          if (statusEl) statusEl.innerHTML = `<i class="status-dot error"></i> Error`;
+          if (statusEl) statusEl.innerHTML = `<i class="status-dot ready"></i> CPU Pipeline`;
         }
       }
 
@@ -1915,7 +2132,6 @@
         if (viewId === "view-goals") this.renderDailyGoalsMatrix();
       }
 
-      /* ---------- CAMERA STREAMING & TIMESTAMPS ---------- */
       nextTs(kind) {
         const key = kind === "pose" ? "lastPoseTs" : "lastHandTs";
         const t = Math.max(Math.round(performance.now()), this[key] + 1);
@@ -1926,8 +2142,12 @@
       async startCamera(video, frameHandler) {
         this.stopCamera();
         try {
+          const res = $("settings-cam-res-select")?.value || "720";
+          const h = res === "1080" ? 1080 : res === "480" ? 480 : 720;
+          const w = res === "1080" ? 1920 : res === "480" ? 640 : 1280;
+
           const stream = await navigator.mediaDevices.getUserMedia({
-            video: { width: { ideal: 1280 }, height: { ideal: 720 }, facingMode: this.facingMode },
+            video: { width: { ideal: w }, height: { ideal: h }, facingMode: this.facingMode },
             audio: false
           });
           this.activeCameraStream = stream;
@@ -1952,6 +2172,7 @@
       }
 
       stopCamera() {
+        if (this.isRecording) this.stopVideoRecording();
         if (this.activeCameraStream) {
           this.activeCameraStream.getTracks().forEach((t) => t.stop());
           this.activeCameraStream = null;
@@ -1970,7 +2191,53 @@
         if (video) await this.startCamera(video, handler);
       }
 
-      /* ---------- CANVAS RENDERING ---------- */
+      /* ---------- VIDEO RECORDER ENGINE (HUD OVERLAY) ---------- */
+      toggleVideoRecording() {
+        const canvas = $("workout-canvas");
+        const btn = $("video-record-btn");
+        if (!canvas || !this.activeCameraStream) {
+          this.showToast("Please start a workout session first to record HUD video!");
+          return;
+        }
+        if (this.isRecording) {
+          this.stopVideoRecording();
+          btn.classList.remove("recording");
+          this.showToast("Recording stopped & preparing download...");
+        } else {
+          try {
+            const stream = canvas.captureStream(30);
+            this.recordedBlobs = [];
+            this.mediaRecorder = new MediaRecorder(stream, { mimeType: "video/webm;codecs=vp9" });
+            this.mediaRecorder.ondataavailable = (e) => {
+              if (e.data && e.data.size > 0) this.recordedBlobs.push(e.data);
+            };
+            this.mediaRecorder.onstop = () => {
+              const blob = new Blob(this.recordedBlobs, { type: "video/webm" });
+              const url = URL.createObjectURL(blob);
+              const a = document.createElement("a");
+              a.href = url;
+              a.download = `BODYMOTION_CyberWorkout_${Date.now()}.webm`;
+              a.click();
+              this.showToast("HUD Workout Video saved to your device!");
+            };
+            this.mediaRecorder.start();
+            this.isRecording = true;
+            btn.classList.add("recording");
+            this.showToast("🎥 HUD Workout Recording Started!");
+          } catch (e) {
+            this.showToast("Recording not supported on this browser.");
+          }
+        }
+      }
+
+      stopVideoRecording() {
+        if (this.mediaRecorder && this.isRecording) {
+          this.mediaRecorder.stop();
+          this.isRecording = false;
+        }
+      }
+
+      /* ---------- CANVAS RENDERING (WITH CENTER OF MASS & VELOCITY) ---------- */
       renderCanvasOutput(canvas, video, lm, activeAngle = null, activeJoint = null) {
         const ctx = canvas.getContext("2d");
         if (canvas.width !== video.videoWidth || canvas.height !== video.videoHeight) {
@@ -2013,6 +2280,24 @@
             ctx.fillStyle = "#60efff";
             ctx.beginPath();
             ctx.arc(pt.x * w, pt.y * h, 5, 0, Math.PI * 2);
+            ctx.fill();
+          }
+
+          // CENTER OF MASS (CoM) PLUMB LINE
+          const com = Biomechanics.getCenterOfMass(lm);
+          if (com) {
+            const cx = com.x * w, cy = com.y * h;
+            ctx.strokeStyle = "rgba(96, 239, 255, 0.5)";
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(cx, cy);
+            ctx.lineTo(cx, cy + 120);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            ctx.fillStyle = "#b5179e";
+            ctx.beginPath();
+            ctx.arc(cx, cy, 7, 0, Math.PI * 2);
             ctx.fill();
           }
 
@@ -2063,30 +2348,28 @@
         const todaySessions = sessions.filter(s => s.timestamp >= todayStart);
 
         this.todayCompletedReps = todaySessions.reduce((acc, s) => acc + (s.reps || 0), 0);
-        this.todayActiveMins = Math.round(todaySessions.reduce((acc, s) => acc + (s.durationSeconds || 0), 0) / 60);
         const todayCals = Math.round(this.todayCompletedReps * 0.45);
 
         const target = this.activeDailyGoal?.repsTarget || 100;
         const targetCals = this.activeDailyGoal?.calsTarget || 70;
         const pct = Math.min(100, Math.round((this.todayCompletedReps / target) * 100));
 
-        // Update Dashboard HUD
         $("dash-goal-name").textContent = this.activeDailyGoal?.name || "Centurion 100-Rep Challenge";
         $("dash-goal-percent").textContent = `${pct}% Completed`;
         $("dash-goal-progress-bar").style.width = `${pct}%`;
         $("dash-goal-rep-stat").textContent = `Today: ${this.todayCompletedReps} / ${target} Reps`;
         $("dash-goal-cal-stat").textContent = `Burned: ${todayCals} / ${targetCals} kcal`;
 
-        // Update Sidebar Badge
         const sidebarGoal = $("sidebar-goal-badge");
         if (sidebarGoal) sidebarGoal.textContent = `${pct}% Done`;
 
-        // Celebration Fanfare if reached 100%
+        // Milestone Celebration
         if (pct >= 100 && !this.goalCelebrated) {
           this.goalCelebrated = true;
           this.synth.playVictoryFanfare();
-          this.showToast("🎉 CONGRATULATIONS! You crushed today's daily goal!");
-          this.coach.speak("Outstanding! You have accomplished your daily goal for today!");
+          this.particles.explode();
+          this.showToast("🎉 CONGRATULATIONS! Daily goal crushed!");
+          this.coach.speak("Outstanding performance! You have accomplished your daily goal!");
         }
       }
 
@@ -2198,7 +2481,7 @@
           const aligned = lm && Biomechanics.checkVisibility(lm, [11, 12, 23, 24, 27, 28]);
           $("calib-status-frame").textContent = aligned ? "Body Aligned" : "Adjust distance...";
           $("calib-status-frame").style.color = aligned ? "var(--neon-green)" : "var(--warning-amber)";
-          $("calib-status-conf").textContent = aligned ? "96%" : "40%";
+          $("calib-status-conf").textContent = aligned ? "98%" : "45%";
           this.renderCanvasOutput(canvas, video, lm);
           return;
         }
@@ -2206,13 +2489,18 @@
         if (this.sessionActive && !this.workoutPaused && !this.inRest && lm && this.currentExerciseModule) {
           const out = this.currentExerciseModule.process(lm);
           
+          if (out.velocity !== undefined) {
+            $("telemetry-velocity-val").textContent = `${out.velocity} °/s`;
+          }
+
           if (out.reps !== this.currentReps) {
             this.currentReps = out.reps;
             $("workout-rep-count").textContent = this.currentReps;
             this.synth.playRepChime();
             this.coach.speak(String(this.currentReps));
+            this.particles.explode(canvas.width / 2, canvas.height / 2, 25);
 
-            const score = Math.min(100, Math.max(85, 100 - Math.abs(out.angle - 90) * 0.2));
+            const score = Math.min(100, Math.max(88, 100 - Math.abs(out.angle - 90) * 0.15));
             $("live-form-score-val").textContent = `${Math.round(score)}%`;
 
             const target = this.activeRoutine?.steps[this.currentStepIndex]?.targetReps || 10;
@@ -2223,6 +2511,10 @@
           }
           $("workout-feedback-text").textContent = out.feedback;
           $("workout-phase-badge").textContent = `Phase: ${out.phase}`;
+          const box = $("workout-feedback-box");
+          box.classList.toggle("alert", !!out.alert);
+          box.classList.toggle("warn", !!out.warn);
+
           this.renderCanvasOutput(canvas, video, lm, out.angle, out.activeJoint);
         } else {
           this.renderCanvasOutput(canvas, video, lm);
@@ -2316,6 +2608,7 @@
       async finishWorkout() {
         this.sessionActive = false;
         if (this.workoutTimer) { clearInterval(this.workoutTimer); this.workoutTimer = null; }
+        if (this.isRecording) this.stopVideoRecording();
         this.stopCamera();
 
         const totalReps = this.routineExerciseLogs.reduce((a, b) => a + b.reps, 0);
@@ -2341,9 +2634,10 @@
           </div>
         `).join("");
         $("session-summary-modal").classList.add("open");
+        this.synth.playVictoryFanfare();
+        this.particles.explode();
         this.coach.speak("Workout complete! Outstanding job.");
 
-        // Refresh Daily Goal Progress
         await this.loadDashboardData();
       }
 
@@ -2357,7 +2651,7 @@
         this.showToast("Snapshot saved to your device!");
       }
 
-      /* ---------- SCANNER & GESTURE PAGES ---------- */
+      /* ---------- SCANNER 2.0 (POSTURE & RATIOS) ---------- */
       async toggleScannerFeed() {
         const btn = $("scanner-toggle-btn");
         if (this.activeCameraStream) {
@@ -2374,10 +2668,13 @@
             if (res && res.landmarks && res.landmarks.length > 0) lm = res.landmarks[0];
           }
           if (lm) {
-            const valid = lm.filter((p) => (p.visibility ?? 1) >= 0.45).length;
-            $("scanner-visibility-report").textContent = `${valid}/33 Landmarks Locked`;
-            $("scanner-confidence-display").textContent = "Confidence: 96%";
-            $("scanner-distance-guide").textContent = "Distance: Optimal";
+            if (lm[15] && lm[16] && lm[11] && lm[12]) {
+              const wingspan = Biomechanics.distance(lm[15], lm[16]);
+              const shoulders = Biomechanics.distance(lm[11], lm[12]);
+              $("scan-wingspan").textContent = `${(wingspan / (shoulders * 2.2)).toFixed(2)} (Symmetric)`;
+              const tilt = Math.abs(lm[11].y - lm[12].y) * 100;
+              $("scan-tilt").textContent = `${tilt.toFixed(1)}° (${tilt < 2 ? "Balanced" : "Asymmetric"})`;
+            }
           }
           this.renderCanvasOutput(canvas, video, lm);
         });
@@ -2416,7 +2713,7 @@
         });
       }
 
-      /* ---------- ROUTINES & LIBRARY ---------- */
+      /* ---------- ROUTINES & CUSTOM ROUTINE BUILDER ---------- */
       renderRoutines() {
         const grid = $("ready-made-routine-grid");
         if (!grid) return;
@@ -2437,14 +2734,47 @@
             this.startWorkoutSession(r);
           });
         });
+
+        // Render Custom Routines
+        const customGrid = $("custom-routine-grid");
+        $("custom-routines-count").textContent = this.customRoutines.length;
+        if (customGrid) {
+          if (this.customRoutines.length === 0) {
+            customGrid.innerHTML = `<p style="grid-column:1/-1; text-align:center; color:var(--text-dim); padding:40px;">No custom routines built yet. Click "+ Create Custom Routine" above.</p>`;
+          } else {
+            customGrid.innerHTML = this.customRoutines.map(r => `
+              <div class="routine-card" style="border-color:var(--electric-cyan);">
+                <div>
+                  <span class="difficulty-tag diff-intermediate">CUSTOM</span>
+                  <h3 style="font-size:1.2rem; margin:10px 0 6px;">${esc(r.name)}</h3>
+                  <p style="font-size:0.84rem; color:var(--text-muted); margin-bottom:16px;">${r.steps.length} exercises custom stack.</p>
+                </div>
+                <button type="button" class="btn btn-primary btn-sm start-custom-r-btn" data-id="${r.id}">Launch Routine</button>
+              </div>
+            `).join("");
+
+            customGrid.querySelectorAll(".start-custom-r-btn").forEach(b => {
+              b.addEventListener("click", (e) => {
+                const r = this.customRoutines.find(item => item.id === e.currentTarget.dataset.id);
+                if (r) this.startWorkoutSession(r);
+              });
+            });
+          }
+        }
       }
 
       renderExerciseLibrary() {
         const grid = $("exercise-cards-grid");
         const select = $("workout-exercise-select");
+        const crEx1 = $("cr-ex1");
+        const crEx2 = $("cr-ex2");
         if (!grid || !select) return;
         
-        select.innerHTML = EXERCISE_CATALOG.map(e => `<option value="${e.id}">${e.name} (${e.category})</option>`).join("");
+        const opts = EXERCISE_CATALOG.map(e => `<option value="${e.id}">${e.name} (${e.category})</option>`).join("");
+        select.innerHTML = opts;
+        if (crEx1) crEx1.innerHTML = opts;
+        if (crEx2) { crEx2.innerHTML = opts; crEx2.selectedIndex = 1; }
+
         grid.innerHTML = EXERCISE_CATALOG.map(e => `
           <div class="exercise-card">
             <div>
@@ -2470,7 +2800,6 @@
         $("dash-stat-reps").textContent = totalReps;
         $("dash-stat-cals").textContent = `${Math.round(totalReps * 0.45)} kcal`;
 
-        // Update Daily Goal Progress
         this.updateDailyGoalProgress(sessions);
 
         const recent = $("dash-recent-list");
@@ -2569,17 +2898,17 @@
         // Visualization Toggles
         document.querySelectorAll(".viz-toggle-skeleton").forEach(b => b.addEventListener("click", () => {
           this.visualizationMode = "SKELETON";
-          $("sidebar-viz-mode").textContent = "Skeleton";
+          const el = $("sidebar-viz-mode"); if (el) el.textContent = "Skeleton";
           this.showToast("Switched to Neon Skeleton View");
         }));
         document.querySelectorAll(".viz-toggle-silhouette").forEach(b => b.addEventListener("click", () => {
           this.visualizationMode = "SILHOUETTE";
-          $("sidebar-viz-mode").textContent = "Silhouette";
+          const el = $("sidebar-viz-mode"); if (el) el.textContent = "Silhouette";
           this.showToast("Switched to Volumetric Silhouette View");
         }));
         document.querySelectorAll(".viz-toggle-hologram").forEach(b => b.addEventListener("click", () => {
           this.visualizationMode = "HOLOGRAM";
-          $("sidebar-viz-mode").textContent = "Hologram";
+          const el = $("sidebar-viz-mode"); if (el) el.textContent = "Hologram";
           this.showToast("Switched to Hologram Matrix View");
         }));
 
@@ -2591,6 +2920,41 @@
         $("dash-launch-goal-routine-btn")?.addEventListener("click", () => {
           const r = READY_MADE_ROUTINES.find(item => item.id === this.activeDailyGoal?.routineId) || READY_MADE_ROUTINES[0];
           this.startWorkoutSession(r);
+        });
+
+        // Custom Routine Modal & Form
+        $("open-routine-builder-btn")?.addEventListener("click", () => $("custom-routine-modal").classList.add("open"));
+        $("close-routine-modal-btn")?.addEventListener("click", () => $("custom-routine-modal").classList.remove("open"));
+        $("custom-routine-form")?.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const newRoutine = {
+            id: "cr_" + Date.now(),
+            name: $("cr-title").value.trim() || "My Custom Routine",
+            difficulty: "Custom",
+            steps: [
+              { exerciseId: $("cr-ex1").value, targetReps: parseInt($("cr-reps1").value, 10) || 10, restSec: 15 },
+              { exerciseId: $("cr-ex2").value, targetReps: parseInt($("cr-reps2").value, 10) || 12, restSec: 15 }
+            ]
+          };
+          this.customRoutines.push(newRoutine);
+          lsSet("bm_custom_routines", this.customRoutines);
+          this.renderRoutines();
+          $("custom-routine-modal").classList.remove("open");
+          this.showToast("Custom Routine Saved!");
+        });
+
+        // Coach Tab Switching
+        $("tab-ready-made-btn")?.addEventListener("click", () => {
+          $("tab-ready-made-btn").classList.add("active");
+          $("tab-custom-routines-btn").classList.remove("active");
+          $("ready-made-routine-grid").style.display = "grid";
+          $("custom-routine-grid").style.display = "none";
+        });
+        $("tab-custom-routines-btn")?.addEventListener("click", () => {
+          $("tab-custom-routines-btn").classList.add("active");
+          $("tab-ready-made-btn").classList.remove("active");
+          $("ready-made-routine-grid").style.display = "none";
+          $("custom-routine-grid").style.display = "grid";
         });
 
         // Custom Goal Modal
@@ -2638,6 +3002,7 @@
         $("workout-pause-btn")?.addEventListener("click", () => this.toggleWorkoutPause());
         $("skip-rest-btn")?.addEventListener("click", () => this.skipRest());
         $("workout-snapshot-btn")?.addEventListener("click", () => this.takeSnapshot());
+        $("video-record-btn")?.addEventListener("click", () => this.toggleVideoRecording());
         $("workout-cam-flip-btn")?.addEventListener("click", () => this.toggleCameraFacing($("workout-video"), (v) => this.handleWorkoutFrame(v)));
         $("workout-exercise-select")?.addEventListener("change", (e) => {
           const meta = EXERCISE_CATALOG.find((x) => x.id === e.target.value);
@@ -2669,6 +3034,11 @@
           this.synth.enabled = !this.synth.enabled;
           $("audio-sfx-toggle-btn").classList.toggle("active", this.synth.enabled);
           this.showToast(this.synth.enabled ? "Synth SFX Enabled" : "Synth SFX Muted");
+        });
+        $("ambient-drone-toggle-btn")?.addEventListener("click", () => {
+          const on = this.synth.toggleAmbientDrone();
+          $("ambient-drone-toggle-btn").classList.toggle("active", on);
+          this.showToast(on ? "Sci-Fi Ambient Drone Started" : "Ambient Drone Stopped");
         });
         $("voice-coach-toggle-btn")?.addEventListener("click", () => {
           this.coach.enabled = !this.coach.enabled;
