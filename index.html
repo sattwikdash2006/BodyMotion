@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="description" content="BODYMOTION AI 5.0 — Verified Biomechanical Vision Studio with Web Audio Synth, Real-Time Joint Angle Arcs, Dynamic Form Scoring & Cyber HUD." />
-  <title>BODYMOTION AI 5.0 — Cyber Biomechanics & Dual AI Coach</title>
+  <meta name="description" content="BODYMOTION AI 5.0 — Verified Biomechanical Vision Studio with Web Audio Synth, Real-Time Joint Angle Arcs, Dynamic Form Scoring & Custom Daily Goals." />
+  <title>BODYMOTION AI 5.0 — Cyber Biomechanics, Daily Goals & Dual Coach</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -427,6 +427,47 @@
       line-height: 1.6;
     }
 
+    /* DAILY GOAL BANNER IN DASHBOARD */
+    .daily-goal-hud {
+      background: linear-gradient(135deg, rgba(16, 26, 46, 0.95), rgba(8, 14, 25, 0.98));
+      border: 1px solid var(--border-glow);
+      border-radius: var(--radius-lg);
+      padding: 22px 26px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      box-shadow: 0 0 30px rgba(0, 255, 135, 0.1);
+    }
+    .goal-progress-wrap {
+      flex: 1;
+      min-width: 260px;
+    }
+    .goal-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .goal-track {
+      width: 100%;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+      position: relative;
+    }
+    .goal-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--neon-green), var(--electric-cyan));
+      border-radius: var(--radius-full);
+      transition: width 0.5s ease;
+      box-shadow: 0 0 15px var(--neon-green-glow);
+    }
+
     .stat-metric-card {
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
@@ -483,7 +524,7 @@
       box-shadow: 0 0 16px rgba(0, 255, 135, 0.12);
     }
 
-    .routine-card, .exercise-card {
+    .routine-card, .exercise-card, .goal-card {
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
@@ -493,10 +534,14 @@
       justify-content: space-between;
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .routine-card:hover, .exercise-card:hover {
+    .routine-card:hover, .exercise-card:hover, .goal-card:hover {
       border-color: var(--electric-cyan);
       box-shadow: 0 10px 30px rgba(96, 239, 255, 0.15);
       transform: translateY(-3px);
+    }
+    .goal-card.active-target {
+      border-color: var(--neon-green);
+      box-shadow: 0 0 25px rgba(0, 255, 135, 0.25);
     }
 
     .difficulty-tag {
@@ -847,6 +892,9 @@
       <li class="nav-item active" data-view="view-dashboard">
         <button type="button"><svg viewBox="0 0 24 24"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>Dashboard</button>
       </li>
+      <li class="nav-item" data-view="view-goals">
+        <button type="button"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>Daily Goals Matrix</button>
+      </li>
       <li class="nav-item" data-view="view-coach-hub">
         <button type="button"><svg viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Routines & AI Coach</button>
       </li>
@@ -876,8 +924,8 @@
         <span id="sidebar-engine-status"><i class="status-dot"></i> Standby</span>
       </div>
       <div class="sys-pill">
-        <span>RENDER MODE</span>
-        <span id="sidebar-viz-mode" style="color:var(--neon-green)">Skeleton</span>
+        <span>DAILY GOAL</span>
+        <span id="sidebar-goal-badge" style="color:var(--neon-green)">0% Done</span>
       </div>
     </div>
   </aside>
@@ -885,9 +933,9 @@
   <!-- MOBILE NAV -->
   <nav id="mobile-nav" aria-label="Mobile Navigation">
     <button type="button" class="mobile-nav-btn active" data-view="view-dashboard"><svg viewBox="0 0 24 24"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>Home</button>
+    <button type="button" class="mobile-nav-btn" data-view="view-goals"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>Goals</button>
     <button type="button" class="mobile-nav-btn" data-view="view-workout"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>Workout</button>
     <button type="button" class="mobile-nav-btn" data-view="view-coach-hub"><svg viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Coach</button>
-    <button type="button" class="mobile-nav-btn" data-view="view-scanner"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2"/><path d="m9 20 3-6 3 6"/><path d="m6 8 6 2 6-2"/></svg>Scan</button>
     <button type="button" class="mobile-nav-btn" data-view="view-analytics"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Stats</button>
   </nav>
 
@@ -913,16 +961,40 @@
 
     <!-- 1. DASHBOARD -->
     <section id="view-dashboard" class="view-container active-view">
+      <!-- DYNAMIC DAILY GOAL HUD BANNER -->
+      <div class="daily-goal-hud">
+        <div class="goal-progress-wrap">
+          <div class="goal-title-row">
+            <div>
+              <span class="difficulty-tag diff-beginner" style="margin-right:8px;">ACTIVE GOAL</span>
+              <b style="font-size:1.05rem;" id="dash-goal-name">Centurion 100-Rep Challenge</b>
+            </div>
+            <span style="font-family:var(--font-mono); font-weight:800; color:var(--neon-green);" id="dash-goal-percent">0% Completed</span>
+          </div>
+          <div class="goal-track">
+            <div class="goal-bar-fill" id="dash-goal-progress-bar"></div>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-top:8px; font-size:0.78rem; font-family:var(--font-mono); color:var(--text-muted);">
+            <span id="dash-goal-rep-stat">Today: 0 / 100 Reps</span>
+            <span id="dash-goal-cal-stat">Burned: 0 / 70 kcal</span>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px;">
+          <button type="button" class="btn btn-secondary btn-sm" id="dash-change-goal-btn">Change Daily Goal</button>
+          <button type="button" class="btn btn-primary btn-sm" id="dash-launch-goal-routine-btn">Start Today's Goal</button>
+        </div>
+      </div>
+
       <div class="hero-banner">
         <div class="hero-content">
           <h2>CYBERNETIC FITNESS REVOLUTION</h2>
-          <p>Local client-side computer vision analyzing 33 full-body landmarks & dual-hand kinetics in real time. Features angle arcs on active joints, form scoring, and synthetic audio.</p>
+          <p>Local client-side computer vision analyzing 33 full-body landmarks & dual-hand kinetics in real time. Features angle arcs on active joints, form scoring, synthetic audio, and participant-controlled daily goals.</p>
           <div style="display: flex; gap: 12px; flex-wrap: wrap;">
             <button type="button" class="btn btn-primary" id="dash-quick-workout-btn">
               <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg> Launch Quick Workout
             </button>
-            <button type="button" class="btn btn-secondary" id="dash-coach-btn">
-              <svg viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Coach Hub
+            <button type="button" class="btn btn-secondary" id="dash-goals-btn">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> Daily Goals Matrix
             </button>
             <button type="button" class="btn btn-secondary" id="dash-open-scanner-btn">
               <svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2"/><path d="m9 20 3-6 3 6"/><path d="m6 8 6 2 6-2"/></svg> Body Scanner
@@ -986,6 +1058,40 @@
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- NEW SECTION: DAILY GOALS MATRIX (12+ PRESETS & CUSTOM BUILDER) -->
+    <section id="view-goals" class="view-container">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px; flex-wrap:wrap; gap:14px;">
+        <div>
+          <h2 style="font-size: 1.6rem; font-family:var(--font-display);">DAILY GOALS & CHALLENGES</h2>
+          <p style="font-size: 0.88rem; color: var(--text-muted);">Set your personal kinetic target or pick from 12 pre-calibrated daily routine goals.</p>
+        </div>
+        <button type="button" class="btn btn-primary btn-sm" id="open-custom-goal-modal-btn">+ Set Custom Daily Goal</button>
+      </div>
+
+      <div class="card" style="margin-bottom:24px; border-color:var(--border-glow);">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;">
+          <div>
+            <span class="difficulty-tag diff-beginner" style="margin-bottom:6px; display:inline-block;">CURRENT FOCUS</span>
+            <h3 style="font-size:1.35rem; font-family:var(--font-display);" id="goals-current-title">Centurion 100-Rep Challenge</h3>
+            <p style="font-size:0.84rem; color:var(--text-muted);" id="goals-current-desc">Build elite stamina and whole-body muscle toning through 100 validated repetitions.</p>
+          </div>
+          <div style="display:flex; gap:12px;">
+            <div class="stat-metric-card" style="padding:12px 18px; min-width:110px;">
+              <span class="label">Target Reps</span>
+              <span class="value" id="goals-target-reps-val" style="font-size:1.5rem;">100</span>
+            </div>
+            <div class="stat-metric-card" style="padding:12px 18px; min-width:110px;">
+              <span class="label">Target Time</span>
+              <span class="value" id="goals-target-time-val" style="font-size:1.5rem; color:var(--electric-cyan);">20m</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="font-size:1.2rem; font-family:var(--font-display); margin-bottom:16px;">12 PRE-CALIBRATED GOAL PRESETS</h3>
+      <div class="grid-3" id="daily-goals-presets-grid"></div>
     </section>
 
     <!-- 2. WORKOUT ARENA (MAIN CYBER HUD) -->
@@ -1266,6 +1372,37 @@
     </section>
   </main>
 
+  <!-- MODAL: CUSTOM DAILY GOAL BUILDER -->
+  <div class="modal-backdrop" id="custom-goal-modal" role="dialog" aria-modal="true">
+    <div class="modal-dialog">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
+        <h3 style="font-size:1.35rem; font-family:var(--font-display); color:var(--neon-green);">SET CUSTOM DAILY GOAL</h3>
+        <button type="button" class="btn btn-secondary btn-sm" id="close-goal-modal-btn">&times;</button>
+      </div>
+      <form id="custom-goal-form" style="display:flex; flex-direction:column; gap:16px;">
+        <div>
+          <label style="font-size:0.8rem; font-family:var(--font-mono); color:var(--text-muted); display:block; margin-bottom:6px;">GOAL TITLE</label>
+          <input type="text" id="custom-goal-name" required placeholder="e.g. My Personal 120-Rep Power Goal" style="width:100%; background:var(--bg-surface-elevated); color:#fff; border:1px solid var(--border-subtle); padding:10px 14px; border-radius:var(--radius-md); font-family:var(--font-sans);">
+        </div>
+        <div class="grid-2">
+          <div>
+            <label style="font-size:0.8rem; font-family:var(--font-mono); color:var(--text-muted); display:block; margin-bottom:6px;">TARGET REPETITIONS</label>
+            <input type="number" id="custom-goal-reps" min="10" max="1000" value="80" style="width:100%; background:var(--bg-surface-elevated); color:#fff; border:1px solid var(--border-subtle); padding:10px 14px; border-radius:var(--radius-md); font-family:var(--font-mono);">
+          </div>
+          <div>
+            <label style="font-size:0.8rem; font-family:var(--font-mono); color:var(--text-muted); display:block; margin-bottom:6px;">TARGET MINUTES</label>
+            <input type="number" id="custom-goal-mins" min="3" max="180" value="15" style="width:100%; background:var(--bg-surface-elevated); color:#fff; border:1px solid var(--border-subtle); padding:10px 14px; border-radius:var(--radius-md); font-family:var(--font-mono);">
+          </div>
+        </div>
+        <div>
+          <label style="font-size:0.8rem; font-family:var(--font-mono); color:var(--text-muted); display:block; margin-bottom:6px;">CALORIE BURN TARGET (KCAL)</label>
+          <input type="number" id="custom-goal-cals" min="10" max="2000" value="60" style="width:100%; background:var(--bg-surface-elevated); color:#fff; border:1px solid var(--border-subtle); padding:10px 14px; border-radius:var(--radius-md); font-family:var(--font-mono);">
+        </div>
+        <button type="submit" class="btn btn-primary" style="margin-top:8px;">Activate My Custom Daily Goal</button>
+      </form>
+    </div>
+  </div>
+
   <!-- MODAL: WORKOUT SUMMARY -->
   <div class="modal-backdrop" id="session-summary-modal" role="dialog" aria-modal="true">
     <div class="modal-dialog">
@@ -1306,6 +1443,8 @@
     const $ = (id) => document.getElementById(id);
     const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
     const fmtTime = (sec) => `${String(Math.floor(sec / 60)).padStart(2, "0")}:${String(Math.floor(sec % 60)).padStart(2, "0")}`;
+    const lsJSON = (k, d) => { try { return JSON.parse(localStorage.getItem(k) || "null") ?? d; } catch { return d; } };
+    const lsSet = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} };
 
     /* --------------------------------------------------------------------------
        1. WEB AUDIO SYNTH & VOICE COACH
@@ -1340,6 +1479,24 @@
           gain.connect(this.ctx.destination);
           osc.start(now + idx * 0.08);
           osc.stop(now + idx * 0.08 + 0.25);
+        });
+      }
+      playVictoryFanfare() {
+        if (!this.enabled) return;
+        this.init();
+        if (!this.ctx) return;
+        const now = this.ctx.currentTime;
+        [523.25, 659.25, 783.99, 1046.50].forEach((freq, idx) => {
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = "triangle";
+          osc.frequency.setValueAtTime(freq, now + idx * 0.12);
+          gain.gain.setValueAtTime(0.2, now + idx * 0.12);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.12 + 0.4);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start(now + idx * 0.12);
+          osc.stop(now + idx * 0.12 + 0.4);
         });
       }
       playCountdownTick() {
@@ -1425,7 +1582,25 @@
     }
 
     /* --------------------------------------------------------------------------
-       3. BIOMECHANICS & ANGLE ARCS
+       3. 12+ PRE-CONFIGURED DAILY GOAL ROUTINES
+       -------------------------------------------------------------------------- */
+    const PRESET_DAILY_GOALS = [
+      { id: "goal_morning_ignite", name: "Morning Energy Ignite", category: "Energy Boost", difficulty: "Beginner", repsTarget: 50, minsTarget: 10, calsTarget: 30, desc: "Gentle joint mobility & dynamic movement to activate your morning metabolism.", routineId: "rm_cyber_starter" },
+      { id: "goal_posture_shield", name: "Desk Worker Posture Shield", category: "Posture & Relief", difficulty: "All Levels", repsTarget: 60, minsTarget: 12, calsTarget: 40, desc: "Decompresses the cervical spine and relieves rounded shoulder tension from prolonged sitting.", routineId: "rm_upper_mob" },
+      { id: "goal_core_shred", name: "Core & Abs Kinetic Sculpt", category: "Core & Tone", difficulty: "Intermediate", repsTarget: 80, minsTarget: 15, calsTarget: 50, desc: "Focuses on transverse abdominal activation and rotational torso stabilization.", routineId: "rm_core_flex" },
+      { id: "goal_centurion", name: "Centurion 100-Rep Challenge", category: "Classic Stamina", difficulty: "Intermediate", repsTarget: 100, minsTarget: 20, calsTarget: 70, desc: "The gold standard 100-repetition milestone for total-body conditioning.", routineId: "rm_full_body" },
+      { id: "goal_hiit_burn", name: "Fat Incinerator HIIT", category: "Fat Loss & Cardio", difficulty: "Advanced", repsTarget: 150, minsTarget: 25, calsTarget: 120, desc: "High kinetic cadence designed to maximize EPOC post-exercise oxygen consumption.", routineId: "rm_cardio_hiit" },
+      { id: "goal_legs_power", name: "Titan Lower Body Power", category: "Legs & Glutes", difficulty: "Intermediate", repsTarget: 120, minsTarget: 20, calsTarget: 90, desc: "Deep squat flexion and explosive calf extension to forge durable lower-body drive.", routineId: "rm_lower_str" },
+      { id: "goal_upper_sculpt", name: "Upper Body Armor & Shoulders", category: "Upper Body", difficulty: "Intermediate", repsTarget: 90, minsTarget: 18, calsTarget: 65, desc: "Deltoid abduction and rotator cuff circumduction for athletic upper symmetry.", routineId: "rm_upper_mob" },
+      { id: "goal_senior_vitality", name: "Gentle Vitality & Joint Care", category: "Longevity & Health", difficulty: "Beginner", repsTarget: 40, minsTarget: 10, calsTarget: 25, desc: "Low-impact, joint-safe movement ensuring fluid synovial lubrication and balance.", routineId: "rm_cyber_starter" },
+      { id: "goal_beast_mode", name: "Athletic Beast Mode", category: "Elite Conditioning", difficulty: "Advanced", repsTarget: 200, minsTarget: 30, calsTarget: 160, desc: "Maximum endurance volume combining multi-joint plyometric velocity.", routineId: "rm_full_body" },
+      { id: "goal_evening_detox", name: "Evening Mobility & Stress Detox", category: "Recovery & Sleep", difficulty: "Beginner", repsTarget: 50, minsTarget: 12, calsTarget: 35, desc: "Rhythmic breathing and lateral spine elongation to release accumulated cortisol.", routineId: "rm_core_flex" },
+      { id: "goal_lunch_reboot", name: "Express 8-Min Midday Reset", category: "Fast Recharge", difficulty: "All Levels", repsTarget: 45, minsTarget: 8, calsTarget: 30, desc: "A rapid circulation boost to eliminate afternoon fatigue and sharpen cognitive focus.", routineId: "rm_cyber_starter" },
+      { id: "goal_weekend_crusher", name: "Weekend Cyber Marathon", category: "Endurance Milestone", difficulty: "Advanced", repsTarget: 250, minsTarget: 40, calsTarget: 200, desc: "The ultimate weekend volume conquest testing athletic resilience.", routineId: "rm_full_body" }
+    ];
+
+    /* --------------------------------------------------------------------------
+       4. BIOMECHANICS & ANGLE ARCS
        -------------------------------------------------------------------------- */
     class Biomechanics {
       static calculateAngle(a, b, c) {
@@ -1450,7 +1625,7 @@
     }
 
     /* --------------------------------------------------------------------------
-       4. 10 VERIFIED EXERCISE MODULES
+       5. 10 VERIFIED EXERCISE MODULES
        -------------------------------------------------------------------------- */
     class SquatModule {
       constructor() { this.name = "Squat"; this.reps = 0; this.phase = "INITIAL"; this.feedback = "Stand straight in frame."; }
@@ -1623,7 +1798,7 @@
     ];
 
     /* --------------------------------------------------------------------------
-       5. MAIN APPLICATION CONTROLLER
+       6. MAIN APPLICATION CONTROLLER
        -------------------------------------------------------------------------- */
     class AppController {
       constructor() {
@@ -1641,6 +1816,12 @@
         this.lastPoseTs = 0;
         this.lastHandTs = 0;
         this.lastVideoTime = -1;
+
+        // Daily Goals State
+        this.activeDailyGoal = lsJSON("bm_active_daily_goal", PRESET_DAILY_GOALS[3]); // Default: Centurion
+        this.todayCompletedReps = 0;
+        this.todayActiveMins = 0;
+        this.goalCelebrated = false;
 
         // Workout State
         this.sessionActive = false;
@@ -1672,7 +1853,8 @@
         this.bindEvents();
         this.renderExerciseLibrary();
         this.renderRoutines();
-        this.loadDashboardData();
+        this.renderDailyGoalsMatrix();
+        await this.loadDashboardData();
         await this.loadVisionModels();
       }
 
@@ -1730,6 +1912,7 @@
         if (titleEl) titleEl.textContent = viewId.replace("view-", "").replace("-", " ").toUpperCase();
         if (viewId === "view-analytics") this.renderAnalytics();
         if (viewId === "view-dashboard") this.loadDashboardData();
+        if (viewId === "view-goals") this.renderDailyGoalsMatrix();
       }
 
       /* ---------- CAMERA STREAMING & TIMESTAMPS ---------- */
@@ -1862,6 +2045,104 @@
         ctx.restore();
       }
 
+      /* ---------- DAILY GOAL LOGIC ---------- */
+      setDailyGoal(goal) {
+        this.activeDailyGoal = goal;
+        lsSet("bm_active_daily_goal", goal);
+        this.goalCelebrated = false;
+        this.showToast(`Daily Goal Set: ${goal.name}`);
+        this.loadDashboardData();
+        this.renderDailyGoalsMatrix();
+        this.coach.speak(`New daily goal activated: ${goal.name}. Target is ${goal.repsTarget} reps.`);
+      }
+
+      updateDailyGoalProgress(sessions) {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const todayStart = today.getTime();
+        const todaySessions = sessions.filter(s => s.timestamp >= todayStart);
+
+        this.todayCompletedReps = todaySessions.reduce((acc, s) => acc + (s.reps || 0), 0);
+        this.todayActiveMins = Math.round(todaySessions.reduce((acc, s) => acc + (s.durationSeconds || 0), 0) / 60);
+        const todayCals = Math.round(this.todayCompletedReps * 0.45);
+
+        const target = this.activeDailyGoal?.repsTarget || 100;
+        const targetCals = this.activeDailyGoal?.calsTarget || 70;
+        const pct = Math.min(100, Math.round((this.todayCompletedReps / target) * 100));
+
+        // Update Dashboard HUD
+        $("dash-goal-name").textContent = this.activeDailyGoal?.name || "Centurion 100-Rep Challenge";
+        $("dash-goal-percent").textContent = `${pct}% Completed`;
+        $("dash-goal-progress-bar").style.width = `${pct}%`;
+        $("dash-goal-rep-stat").textContent = `Today: ${this.todayCompletedReps} / ${target} Reps`;
+        $("dash-goal-cal-stat").textContent = `Burned: ${todayCals} / ${targetCals} kcal`;
+
+        // Update Sidebar Badge
+        const sidebarGoal = $("sidebar-goal-badge");
+        if (sidebarGoal) sidebarGoal.textContent = `${pct}% Done`;
+
+        // Celebration Fanfare if reached 100%
+        if (pct >= 100 && !this.goalCelebrated) {
+          this.goalCelebrated = true;
+          this.synth.playVictoryFanfare();
+          this.showToast("🎉 CONGRATULATIONS! You crushed today's daily goal!");
+          this.coach.speak("Outstanding! You have accomplished your daily goal for today!");
+        }
+      }
+
+      renderDailyGoalsMatrix() {
+        const grid = $("daily-goals-presets-grid");
+        if (!grid) return;
+
+        $("goals-current-title").textContent = this.activeDailyGoal.name;
+        $("goals-current-desc").textContent = this.activeDailyGoal.desc || "Personal daily kinetic milestone.";
+        $("goals-target-reps-val").textContent = this.activeDailyGoal.repsTarget;
+        $("goals-target-time-val").textContent = `${this.activeDailyGoal.minsTarget}m`;
+
+        grid.innerHTML = PRESET_DAILY_GOALS.map(g => {
+          const isActive = g.id === this.activeDailyGoal?.id;
+          return `
+            <div class="goal-card ${isActive ? 'active-target' : ''}">
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                  <span class="difficulty-tag diff-beginner">${esc(g.category)}</span>
+                  ${isActive ? '<span class="badge-pill" style="color:var(--neon-green)">ACTIVE</span>' : ''}
+                </div>
+                <h4 style="font-size:1.15rem; font-family:var(--font-display); margin-bottom:6px;">${esc(g.name)}</h4>
+                <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:14px;">${esc(g.desc)}</p>
+                <div style="display:flex; gap:8px; margin-bottom:16px;">
+                  <span class="badge-pill">${g.repsTarget} Reps</span>
+                  <span class="badge-pill">${g.minsTarget} Mins</span>
+                  <span class="badge-pill">${g.calsTarget} kcal</span>
+                </div>
+              </div>
+              <div style="display:flex; gap:8px;">
+                <button type="button" class="btn btn-secondary btn-sm select-goal-btn" data-id="${g.id}" style="flex:1;">Set as Goal</button>
+                <button type="button" class="btn btn-primary btn-sm start-goal-now-btn" data-id="${g.id}" style="flex:1;">Start Now</button>
+              </div>
+            </div>
+          `;
+        }).join("");
+
+        grid.querySelectorAll(".select-goal-btn").forEach(btn => {
+          btn.addEventListener("click", (e) => {
+            const g = PRESET_DAILY_GOALS.find(item => item.id === e.currentTarget.dataset.id);
+            if (g) this.setDailyGoal(g);
+          });
+        });
+
+        grid.querySelectorAll(".start-goal-now-btn").forEach(btn => {
+          btn.addEventListener("click", (e) => {
+            const g = PRESET_DAILY_GOALS.find(item => item.id === e.currentTarget.dataset.id);
+            if (g) {
+              this.setDailyGoal(g);
+              const r = READY_MADE_ROUTINES.find(item => item.id === g.routineId) || READY_MADE_ROUTINES[0];
+              this.startWorkoutSession(r);
+            }
+          });
+        });
+      }
+
       /* ---------- WORKOUT PIPELINE ---------- */
       async startWorkoutSession(routine = null, exId = null) {
         this.navigateTo("view-workout");
@@ -1931,7 +2212,6 @@
             this.synth.playRepChime();
             this.coach.speak(String(this.currentReps));
 
-            // Dynamic Form Accuracy Score simulation based on depth
             const score = Math.min(100, Math.max(85, 100 - Math.abs(out.angle - 90) * 0.2));
             $("live-form-score-val").textContent = `${Math.round(score)}%`;
 
@@ -2062,6 +2342,9 @@
         `).join("");
         $("session-summary-modal").classList.add("open");
         this.coach.speak("Workout complete! Outstanding job.");
+
+        // Refresh Daily Goal Progress
+        await this.loadDashboardData();
       }
 
       takeSnapshot() {
@@ -2187,6 +2470,9 @@
         $("dash-stat-reps").textContent = totalReps;
         $("dash-stat-cals").textContent = `${Math.round(totalReps * 0.45)} kcal`;
 
+        // Update Daily Goal Progress
+        this.updateDailyGoalProgress(sessions);
+
         const recent = $("dash-recent-list");
         if (recent) {
           recent.innerHTML = sessions.length === 0
@@ -2268,7 +2554,6 @@
 
       /* ---------- EVENTS BINDING ---------- */
       bindEvents() {
-        // Unlock Web Audio API on first touch/click anywhere
         const unlock = () => {
           this.synth.init();
           window.removeEventListener("click", unlock);
@@ -2300,8 +2585,32 @@
 
         // Dashboard Shortcuts
         $("dash-quick-workout-btn")?.addEventListener("click", () => this.startWorkoutSession());
-        $("dash-coach-btn")?.addEventListener("click", () => this.navigateTo("view-coach-hub"));
+        $("dash-goals-btn")?.addEventListener("click", () => this.navigateTo("view-goals"));
+        $("dash-change-goal-btn")?.addEventListener("click", () => this.navigateTo("view-goals"));
         $("dash-open-scanner-btn")?.addEventListener("click", () => this.navigateTo("view-scanner"));
+        $("dash-launch-goal-routine-btn")?.addEventListener("click", () => {
+          const r = READY_MADE_ROUTINES.find(item => item.id === this.activeDailyGoal?.routineId) || READY_MADE_ROUTINES[0];
+          this.startWorkoutSession(r);
+        });
+
+        // Custom Goal Modal
+        $("open-custom-goal-modal-btn")?.addEventListener("click", () => $("custom-goal-modal").classList.add("open"));
+        $("close-goal-modal-btn")?.addEventListener("click", () => $("custom-goal-modal").classList.remove("open"));
+        $("custom-goal-form")?.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const customGoal = {
+            id: "goal_custom_" + Date.now(),
+            name: $("custom-goal-name").value.trim() || "My Custom Goal",
+            category: "Custom",
+            difficulty: "Personal",
+            repsTarget: parseInt($("custom-goal-reps").value, 10) || 80,
+            minsTarget: parseInt($("custom-goal-mins").value, 10) || 15,
+            calsTarget: parseInt($("custom-goal-cals").value, 10) || 60,
+            desc: "Participant tailored daily kinetic objective."
+          };
+          this.setDailyGoal(customGoal);
+          $("custom-goal-modal").classList.remove("open");
+        });
 
         // Calibration Proceed & Cancel
         $("calib-proceed-btn")?.addEventListener("click", () => {
@@ -2407,7 +2716,7 @@
           if (confirm("Purge all recorded workout history?")) {
             await StorageService.clearAllSessions();
             this.renderAnalytics();
-            this.loadDashboardData();
+            await this.loadDashboardData();
             this.showToast("Workout history purged.");
           }
         });
