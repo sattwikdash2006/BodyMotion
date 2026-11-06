@@ -1558,7 +1558,73 @@
     /* ==========================================================================
        4. HAND GESTURE ANALYZER
        ========================================================================== */
+    /* Robust, rotation- and distance-independent classifier:
+       - finger state from 3D joint ANGLES (not absolute pixel distances)
+       - thumb measured relative to hand size
+       - Open Palm ignores the thumb (it is unreliable), Thumbs Up requires a vertical thumb */
     class AdvancedHandAnalyzer {
+      static d3(a, b) { return Math.hypot(a.x - b.x, a.y - b.y, (a.z || 0) - (b.z || 0)); }
+
+      static angle3(a, b, c) {
+        const v1 = { x: a.x - b.x, y: a.y - b.y, z: (a.z || 0) - (b.z || 0) };
+        const v2 = { x: c.x - b.x, y: c.y - b.y, z: (c.z || 0) - (b.z || 0) };
+        const dot = v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
+        const m = Math.hypot(v1.x, v1.y, v1.z) * Math.hypot(v2.x, v2.y, v2.z);
+        if (!m) return 0;
+        return Math.acos(Math.max(-1, Math.min(1, dot / m))) * 180 / Math.PI;
+      }
+
+      static analyze(lm, label = "Right") {
+        if (!lm || lm.length < 21) return null;
+        const wrist = lm[0];
+        const handSize = this.d3(lm[0], lm[9]) || 0.1;
+
+        // finger extended = joint is nearly straight AND tip is farther from wrist than the middle joint
+        const fingerExt = (mcp, pip, tip) =>
+          this.angle3(lm[mcp], lm[pip], lm[tip]) > 135 && this.d3(lm[tip], wrist) > this.d3(lm[pip], wrist) * 1.05;
+
+        const indexExt = fingerExt(5, 6, 8);
+        const middleExt = fingerExt(9, 10, 12);
+        const ringExt = fingerExt(13, 14, 16);
+        const pinkyExt = fingerExt(17, 18, 20);
+        const fourFolded = !indexExt && !middleExt && !ringExt && !pinkyExt;
+        const fourExtended = indexExt && middleExt && ringExt && pinkyExt;
+
+        // thumb: straight joint and tip clearly away from the index knuckle (scaled by hand size)
+        const thumbStraight = this.angle3(lm[2], lm[3], lm[4]) > 140;
+        const thumbAway = this.d3(lm[4], lm[5]) / handSize > 0.55;
+        const thumbExt = thumbStraight && thumbAway;
+
+        // thumb direction: mostly vertical and pointing up (image y grows downward)
+        const dx = lm[4].x - lm[2].x;
+        const dy = lm[4].y - lm[2].y;
+        const topKnuckleY = Math.min(lm[5].y, lm[9].y, lm[13].y, lm[17].y);
+        const thumbPointsUp = dy < 0 && Math.abs(dy) > Math.abs(dx) * 0.9 && lm[4].y < topKnuckleY - handSize * 0.1;
+
+        let gesture = "UNKNOWN";
+        if (fourExtended) gesture = "OPEN_PALM";
+        else if (fourFolded && thumbExt && thumbPointsUp) gesture = "THUMBS_UP";
+        else if (fourFolded) gesture = "FIST";
+        else if (indexExt && middleExt && !ringExt && !pinkyExt) gesture = "VICTORY";
+        else if (indexExt && !middleExt && !ringExt && !pinkyExt) gesture = "POINTING";
+
+        // Palm facing: sign of the palm normal. MediaPipe labels hands as if the image were mirrored,
+        // while our raw video is not, so the label is swapped to show the user's REAL hand.
+        const v1 = { x: lm[5].x - wrist.x, y: lm[5].y - wrist.y };
+        const v2 = { x: lm[17].x - wrist.x, y: lm[17].y - wrist.y };
+        const nz = v1.x * v2.y - v1.y * v2.x;
+        const rawIsLeft = label === "Left";
+        const facingCamera = rawIsLeft ? nz < 0 : nz > 0;
+
+        return {
+          gesture,
+          facing: facingCamera ? "Facing Camera" : "Facing Away",
+          side: rawIsLeft ? "Right" : "Left"
+        };
+      }
+    }
+
+    class LegacyHandAnalyzer {
       static analyze(landmarks) {
         if (!landmarks || landmarks.length < 21) return null;
         const wrist = landmarks[0];
@@ -2292,6 +2358,20 @@
       }
 
       /* ---------- gestures ---------- */
+      // Majority vote over the last ~450 ms so a single noisy frame can't flip the gesture
+      stabilizeGesture(a) {
+        if (!a) return null;
+        const now = performance.now();
+        this.gestureHistory = (this.gestureHistory || []).filter((h) => now - h.t < 450);
+        this.gestureHistory.push({ t: now, g: a.gesture });
+        const counts = {};
+        this.gestureHistory.forEach((h) => { counts[h.g] = (counts[h.g] || 0) + 1; });
+        let best = "UNKNOWN", bc = 0;
+        for (const k in counts) if (counts[k] > bc) { best = k; bc = counts[k]; }
+        const stable = bc / this.gestureHistory.length >= 0.6;
+        return { ...a, gesture: stable ? best : "UNKNOWN" };
+      }
+
       processGesture(analysis) {
         if (!analysis) return;
         if (analysis.gesture === this.lastDetectedGesture && analysis.gesture !== "UNKNOWN") {
@@ -2323,11 +2403,11 @@
             this.drawHandSkeleton(ctx, results.landmarks[i], canvas.width, canvas.height, handed ? handed.categoryName === "Right" : true);
           }
 
-          const analysis = AdvancedHandAnalyzer.analyze(results.landmarks[0]);
-          const handedness = results.handednesses?.[0]?.[0]?.categoryName || "Unknown";
+          const rawLabel = results.handednesses?.[0]?.[0]?.categoryName || "Right";
+          const analysis = this.stabilizeGesture(AdvancedHandAnalyzer.analyze(results.landmarks[0], rawLabel));
           if (analysis) {
             $("gesture-detected-label").textContent = `Gesture: ${analysis.gesture.replace("_", " ")}`;
-            $("gesture-hand-side-label").textContent = `Side: ${handedness}`;
+            $("gesture-hand-side-label").textContent = `Side: ${analysis.side}`;
             $("gesture-palm-facing-label").textContent = `Palm: ${analysis.facing}`;
 
             const tagMap = { OPEN_PALM: "tag-palm", THUMBS_UP: "tag-thumbsup", VICTORY: "tag-victory", FIST: "tag-fist", POINTING: "tag-pointing" };
@@ -2536,10 +2616,11 @@
         if (!this.modelReady) { ctx.restore(); return; }
 
         // Gesture control — runs on every 2nd frame, also while paused so Resume works
-        if (this.gestureTriggersActive && this.handLandmarker && this.frameIndex % 2 === 0) {
+        if (this.gestureTriggersActive && this.handLandmarker && (this.workoutPaused || this.frameIndex % 2 === 0)) {
           const handRes = this.detectHands(video, timestamp);
           if (handRes && handRes.landmarks && handRes.landmarks.length > 0) {
-            this.processGesture(AdvancedHandAnalyzer.analyze(handRes.landmarks[0]));
+            const rawLabel = handRes.handednesses?.[0]?.[0]?.categoryName || "Right";
+            this.processGesture(this.stabilizeGesture(AdvancedHandAnalyzer.analyze(handRes.landmarks[0], rawLabel)));
           } else {
             this.lastDetectedGesture = "NONE";
             this.gestureConsecutiveCount = 0;
