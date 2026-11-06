@@ -832,7 +832,6 @@
 
     <!-- 1. DASHBOARD -->
     <section id="view-dashboard" class="view-container active-view">
-      <!-- DYNAMIC CUSTOM DAILY GOAL HUD -->
       <div class="daily-goal-hud">
         <div class="goal-progress-wrap">
           <div class="goal-title-row">
@@ -859,7 +858,7 @@
       <div class="hero-banner">
         <div class="hero-content">
           <h2>50 FREE HAND BIOMECHANICAL SUITE</h2>
-          <p>Zero equipment required. Computer-vision kinetics powered by 33 full-body landmarks running 100% locally on your browser. Complete with custom daily goal setting, angular velocity, and automatic repetition counting.</p>
+          <p>Zero equipment required. Computer-vision kinetics powered by 33 full-body landmarks running 100% locally on your browser. Complete with scale-invariant metric analysis, custom daily goal setting, angular velocity, and precision rep counting.</p>
           <div style="display: flex; gap: 12px; flex-wrap: wrap;">
             <button type="button" class="btn btn-primary" id="dash-quick-workout-btn">
               <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg> Open 50 Workout Arena
@@ -941,7 +940,6 @@
         <button type="button" class="btn btn-primary" id="open-custom-goal-modal-btn">+ Configure Custom Goal</button>
       </div>
 
-      <!-- CURRENT ACTIVE CUSTOM GOAL CARD -->
       <div class="card" style="margin-bottom:28px; border-color:var(--border-glow); background:linear-gradient(135deg, rgba(17,26,46,0.95), rgba(6,10,18,0.98));">
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;">
           <div>
@@ -996,7 +994,6 @@
           <canvas id="workout-canvas" class="output-canvas"></canvas>
           <canvas id="particle-overlay-canvas"></canvas>
 
-          <!-- REST OVERLAY -->
           <div class="rest-countdown-overlay" id="workout-rest-overlay" role="dialog" aria-modal="true">
             <p style="font-size:1.2rem; font-family:var(--font-display); letter-spacing:2px; color:var(--text-muted); margin-bottom:6px;">REST INTERVAL</p>
             <div class="rest-num" id="rest-counter-val">15</div>
@@ -1004,7 +1001,6 @@
             <button type="button" class="btn btn-secondary btn-sm" id="skip-rest-btn">Skip Rest & Continue</button>
           </div>
 
-          <!-- HUD OVERLAY -->
           <div class="hud-overlay">
             <div class="hud-top-bar">
               <div class="hud-pill">
@@ -1114,26 +1110,26 @@
       </div>
       <form id="custom-goal-form" style="display:flex; flex-direction:column; gap:16px;">
         <div>
-          <label style="font-size:0.8rem; font-family:var(--font-mono); color:var(--text-muted); display:block; margin-bottom:6px;">GOAL TITLE</label>
+          <label for="custom-goal-name" style="font-size:0.8rem; font-family:var(--font-mono); color:var(--text-muted); display:block; margin-bottom:6px;">GOAL TITLE</label>
           <input type="text" id="custom-goal-name" required placeholder="e.g. My 150-Rep Free Hand Power Goal" style="width:100%; background:var(--bg-surface-elevated); color:#fff; border:1px solid var(--border-subtle); padding:10px 14px; border-radius:var(--radius-md);">
         </div>
         <div class="grid-2">
           <div>
-            <label style="font-size:0.8rem; font-family:var(--font-mono); color:var(--text-muted); display:block; margin-bottom:6px;">TARGET REPETITIONS</label>
+            <label for="custom-goal-reps" style="font-size:0.8rem; font-family:var(--font-mono); color:var(--text-muted); display:block; margin-bottom:6px;">TARGET REPETITIONS</label>
             <input type="number" id="custom-goal-reps" min="10" max="1000" value="120" style="width:100%; background:var(--bg-surface-elevated); color:#fff; border:1px solid var(--border-subtle); padding:10px 14px; border-radius:var(--radius-md); font-family:var(--font-mono);">
           </div>
           <div>
-            <label style="font-size:0.8rem; font-family:var(--font-mono); color:var(--text-muted); display:block; margin-bottom:6px;">TARGET MINUTES</label>
+            <label for="custom-goal-mins" style="font-size:0.8rem; font-family:var(--font-mono); color:var(--text-muted); display:block; margin-bottom:6px;">TARGET MINUTES</label>
             <input type="number" id="custom-goal-mins" min="3" max="180" value="15" style="width:100%; background:var(--bg-surface-elevated); color:#fff; border:1px solid var(--border-subtle); padding:10px 14px; border-radius:var(--radius-md); font-family:var(--font-mono);">
           </div>
         </div>
         <div class="grid-2">
           <div>
-            <label style="font-size:0.8rem; font-family:var(--font-mono); color:var(--text-muted); display:block; margin-bottom:6px;">CALORIE BURN TARGET (KCAL)</label>
+            <label for="custom-goal-cals" style="font-size:0.8rem; font-family:var(--font-mono); color:var(--text-muted); display:block; margin-bottom:6px;">CALORIE BURN TARGET (KCAL)</label>
             <input type="number" id="custom-goal-cals" min="10" max="2000" value="80" style="width:100%; background:var(--bg-surface-elevated); color:#fff; border:1px solid var(--border-subtle); padding:10px 14px; border-radius:var(--radius-md); font-family:var(--font-mono);">
           </div>
           <div>
-            <label style="font-size:0.8rem; font-family:var(--font-mono); color:var(--text-muted); display:block; margin-bottom:6px;">FOCUS CATEGORY</label>
+            <label for="custom-goal-category" style="font-size:0.8rem; font-family:var(--font-mono); color:var(--text-muted); display:block; margin-bottom:6px;">FOCUS CATEGORY</label>
             <select id="custom-goal-category" style="width:100%; background:var(--bg-surface-elevated); color:#fff; border:1px solid var(--border-subtle); padding:10px 14px; border-radius:var(--radius-md); font-family:var(--font-mono);">
               <option value="All">All 50 Free Hand Exercises</option>
               <option value="Lower Body">Lower Body Focus</option>
@@ -1144,7 +1140,7 @@
           </div>
         </div>
         <div>
-          <label style="font-size:0.8rem; font-family:var(--font-mono); color:var(--text-muted); display:block; margin-bottom:6px;">MOTIVATIONAL MANTRA</label>
+          <label for="custom-goal-mantra" style="font-size:0.8rem; font-family:var(--font-mono); color:var(--text-muted); display:block; margin-bottom:6px;">MOTIVATIONAL MANTRA</label>
           <input type="text" id="custom-goal-mantra" placeholder="e.g. Pure kinetic discipline every morning." style="width:100%; background:var(--bg-surface-elevated); color:#fff; border:1px solid var(--border-subtle); padding:10px 14px; border-radius:var(--radius-md);">
         </div>
         <button type="submit" class="btn btn-primary" style="margin-top:8px;">Activate My Custom Daily Goal</button>
@@ -1252,6 +1248,7 @@
         if (!this.enabled || !this.synth) return;
         try {
           if (this.synth.speaking) this.synth.cancel();
+          if (this.synth.paused) this.synth.resume();
           const u = new SpeechSynthesisUtterance(text);
           u.rate = 1.05;
           this.synth.speak(u);
@@ -1271,8 +1268,8 @@
       }
       explode(x, y, count = 45) {
         if (!this.canvas) return;
-        this.canvas.width = this.canvas.clientWidth;
-        this.canvas.height = this.canvas.clientHeight;
+        this.canvas.width = this.canvas.clientWidth || 640;
+        this.canvas.height = this.canvas.clientHeight || 480;
         const colors = ["#00ff87", "#60efff", "#b5179e", "#ffffff"];
         for (let i = 0; i < count; i++) {
           const angle = Math.random() * Math.PI * 2;
@@ -1374,13 +1371,20 @@
         const radians = Math.atan2(c.y - b.y, c.x - b.x) - Math.atan2(a.y - b.y, a.x - b.x);
         let angle = Math.abs((radians * 180.0) / Math.PI);
         if (angle > 180.0) angle = 360.0 - angle;
-        return angle;
+        return isNaN(angle) ? 0 : angle;
       }
       static distance(a, b) {
         if (!a || !b) return 0;
         return Math.hypot(a.x - b.x, a.y - b.y);
       }
-      static checkVisibility(landmarks, indices, minConf = 0.40) {
+      static getTorsoScale(lm) {
+        if (!lm || !lm[11] || !lm[23]) return 1.0;
+        const leftH = Math.hypot(lm[11].x - lm[23].x, lm[11].y - lm[23].y);
+        const rightH = (lm[12] && lm[24]) ? Math.hypot(lm[12].x - lm[24].x, lm[12].y - lm[24].y) : leftH;
+        const torso = Math.max((leftH + rightH) / 2, 0.1);
+        return torso;
+      }
+      static checkVisibility(landmarks, indices, minConf = 0.35) {
         if (!landmarks || landmarks.length === 0) return false;
         for (const idx of indices) {
           const lm = landmarks[idx];
@@ -1399,6 +1403,7 @@
         this.feedback = cfg.prompt || "Stand in position.";
         this.lastVal = cfg.startVal || 180;
         this.lastTime = performance.now();
+        this.lastRepTimestamp = 0;
         this.holdStart = 0;
         this.circumSet = new Set();
       }
@@ -1432,9 +1437,12 @@
           }
         } else if (this.cfg.evalType === "distance") {
           const d = Biomechanics.distance(lm[this.cfg.distPair[0]], lm[this.cfg.distPair[1]]);
-          val = Math.round(d * 180);
-          isPeak = this.cfg.distGreater ? d >= this.cfg.peakDist : d <= this.cfg.peakDist;
-          isReset = this.cfg.distGreater ? d <= this.cfg.resetDist : d >= this.cfg.resetDist;
+          const torsoScale = Biomechanics.getTorsoScale(lm);
+          const normalizedDist = d / (torsoScale * 2.2);
+          val = Math.round(normalizedDist * 180);
+
+          isPeak = this.cfg.distGreater ? normalizedDist >= this.cfg.peakDist : normalizedDist <= this.cfg.peakDist;
+          isReset = this.cfg.distGreater ? normalizedDist <= this.cfg.resetDist : normalizedDist >= this.cfg.resetDist;
         } else if (this.cfg.evalType === "hold") {
           const angle = Biomechanics.calculateAngle(lm[this.cfg.jointTriplet[0]], lm[this.cfg.jointTriplet[1]], lm[this.cfg.jointTriplet[2]]);
           val = Math.round(angle);
@@ -1464,6 +1472,7 @@
         this.lastVal = val;
         this.lastTime = now;
 
+        // STATE MACHINE WITH HYSTERESIS & DEBOUNCING
         if (this.phase === "INITIAL" || this.phase === "COMPLETED") {
           if (isReset || this.cfg.evalType === "hold" || this.cfg.evalType === "circle") {
             this.phase = "READY";
@@ -1474,16 +1483,22 @@
           this.feedback = "Motion active...";
         } else if ((this.phase === "IN_MOTION" || this.phase === "READY" || this.phase === "HOLDING") && isPeak) {
           this.phase = "PEAK";
-          this.feedback = "Target depth/contraction hit!";
+          this.feedback = "Target depth hit!";
           if (this.cfg.evalType === "hold" || this.cfg.evalType === "circle") {
+            if (now - this.lastRepTimestamp > 500) {
+              this.reps++;
+              this.lastRepTimestamp = now;
+              this.phase = "COMPLETED";
+              this.feedback = `Repetition ${this.reps} completed!`;
+            }
+          }
+        } else if (this.phase === "PEAK" && isReset) {
+          if (now - this.lastRepTimestamp > 500) {
             this.reps++;
+            this.lastRepTimestamp = now;
             this.phase = "COMPLETED";
             this.feedback = `Repetition ${this.reps} completed!`;
           }
-        } else if (this.phase === "PEAK" && isReset) {
-          this.reps++;
-          this.phase = "COMPLETED";
-          this.feedback = `Repetition ${this.reps} completed!`;
         }
 
         return { reps: this.reps, phase: this.phase, feedback: this.feedback, angle: val, activeJoint, velocity };
@@ -1508,17 +1523,17 @@
       { id: "lateral_lunge", name: "6. Side Lateral Lunge", category: "Lower Body", reps: 12, desc: "Unilateral hip hinge and knee bend to side.",
         evalType: "angle", jointTriplet: [23, 25, 27], bilateralTriplet: [24, 26, 28], requiredLandmarks: [23, 25, 27, 24, 26, 28], activeJointIdx: 25, takeMin: true, flexionDirection: "less", peakThreshold: 110, resetThreshold: 155 },
       { id: "calf_raise", name: "7. Standing Calf Raise", category: "Lower Body", reps: 20, desc: "Bilateral plantarflexion elevating heels off ground.",
-        evalType: "distance", distPair: [27, 31], requiredLandmarks: [27, 28, 31, 32], activeJointIdx: 27, distGreater: true, peakDist: 0.16, resetDist: 0.10 },
+        evalType: "distance", distPair: [27, 31], requiredLandmarks: [27, 28, 31, 32], activeJointIdx: 27, distGreater: true, peakDist: 0.28, resetDist: 0.16 },
       { id: "single_calf_raise", name: "8. Single-Leg Calf Raise", category: "Lower Body", reps: 15, desc: "Unilateral gastrocnemius drive on single support foot.",
-        evalType: "distance", distPair: [27, 31], requiredLandmarks: [27, 31], activeJointIdx: 27, distGreater: true, peakDist: 0.17, resetDist: 0.11 },
+        evalType: "distance", distPair: [27, 31], requiredLandmarks: [27, 31], activeJointIdx: 27, distGreater: true, peakDist: 0.29, resetDist: 0.17 },
       { id: "high_knees", name: "9. Standing Knee Raise", category: "Lower Body", reps: 16, desc: "Dynamic hip flexion driving knee above hip level.",
         evalType: "angle", jointTriplet: [11, 23, 25], bilateralTriplet: [12, 24, 26], requiredLandmarks: [11, 12, 23, 24, 25, 26], activeJointIdx: 23, takeMin: true, flexionDirection: "less", peakThreshold: 105, resetThreshold: 155 },
       { id: "standing_side_kick", name: "10. Standing Leg Abduction", category: "Lower Body", reps: 14, desc: "Straight leg lateral hip abduction for gluteus medius.",
-        evalType: "distance", distPair: [27, 28], requiredLandmarks: [27, 28], activeJointIdx: 28, distGreater: true, peakDist: 0.45, resetDist: 0.22 },
+        evalType: "distance", distPair: [27, 28], requiredLandmarks: [27, 28], activeJointIdx: 28, distGreater: true, peakDist: 0.58, resetDist: 0.28 },
       { id: "front_leg_kick", name: "11. Front Leg Kick", category: "Lower Body", reps: 14, desc: "Straight leg sagittal kick upward.",
         evalType: "angle", jointTriplet: [11, 23, 27], bilateralTriplet: [12, 24, 28], requiredLandmarks: [11, 12, 23, 24, 27, 28], activeJointIdx: 23, takeMin: true, flexionDirection: "less", peakThreshold: 115, resetThreshold: 160 },
       { id: "glute_kickback", name: "12. Standing Glute Kickback", category: "Lower Body", reps: 14, desc: "Posterior hip extension squeezing glutes.",
-        evalType: "distance", distPair: [27, 28], requiredLandmarks: [23, 24, 27, 28], activeJointIdx: 28, distGreater: true, peakDist: 0.38, resetDist: 0.20 },
+        evalType: "distance", distPair: [27, 28], requiredLandmarks: [23, 24, 27, 28], activeJointIdx: 28, distGreater: true, peakDist: 0.48, resetDist: 0.25 },
       { id: "butt_kicks", name: "13. Butt Kicks", category: "Lower Body", reps: 20, desc: "Rapid knee flexion pulling heels straight to glutes.",
         evalType: "angle", jointTriplet: [23, 25, 27], bilateralTriplet: [24, 26, 28], requiredLandmarks: [23, 24, 25, 26, 27, 28], activeJointIdx: 25, takeMin: true, flexionDirection: "less", peakThreshold: 80, resetThreshold: 145 },
       { id: "curtsy_lunge", name: "14. Curtsy Lunge", category: "Lower Body", reps: 12, desc: "Cross-behind diagonal lunge targeting outer hip stability.",
@@ -1546,29 +1561,29 @@
       { id: "overhead_press", name: "24. Free Hand Shoulder Press", category: "Upper Body", reps: 15, desc: "Vertical upward pressing to complete elbow lockout.",
         evalType: "angle", jointTriplet: [11, 13, 15], bilateralTriplet: [12, 14, 16], requiredLandmarks: [11, 12, 13, 14, 15, 16], activeJointIdx: 13, flexionDirection: "more", peakThreshold: 155, resetThreshold: 90 },
       { id: "chest_fly", name: "25. Horizontal Chest Opener Fly", category: "Upper Body", reps: 15, desc: "Wide arm horizontal expansion and chest squeeze.",
-        evalType: "distance", distPair: [15, 16], requiredLandmarks: [15, 16], activeJointIdx: 15, distGreater: false, peakDist: 0.18, resetDist: 0.45 },
+        evalType: "distance", distPair: [15, 16], requiredLandmarks: [15, 16], activeJointIdx: 15, distGreater: false, peakDist: 0.28, resetDist: 0.70 },
       { id: "jab_punches", name: "26. Straight Boxing Jabs", category: "Upper Body", reps: 20, desc: "Alternating explosive elbow extension punches.",
         evalType: "angle", jointTriplet: [11, 13, 15], bilateralTriplet: [12, 14, 16], requiredLandmarks: [11, 12, 13, 14, 15, 16], activeJointIdx: 13, takeMin: false, flexionDirection: "more", peakThreshold: 145, resetThreshold: 95 },
       { id: "cross_hooks", name: "27. Cross Body Hook Punches", category: "Upper Body", reps: 16, desc: "Rotational punches with bent elbow across midline.",
-        evalType: "distance", distPair: [15, 12], requiredLandmarks: [15, 16, 11, 12], activeJointIdx: 15, distGreater: false, peakDist: 0.16, resetDist: 0.35 },
+        evalType: "distance", distPair: [15, 12], requiredLandmarks: [15, 16, 11, 12], activeJointIdx: 15, distGreater: false, peakDist: 0.25, resetDist: 0.55 },
       { id: "uppercut_punches", name: "28. Kinetic Uppercuts", category: "Upper Body", reps: 16, desc: "Upward fist drive from hip height toward chin level.",
-        evalType: "distance", distPair: [15, 11], requiredLandmarks: [15, 16, 11, 12], activeJointIdx: 15, distGreater: false, peakDist: 0.18, resetDist: 0.40 },
+        evalType: "distance", distPair: [15, 11], requiredLandmarks: [15, 16, 11, 12], activeJointIdx: 15, distGreater: false, peakDist: 0.28, resetDist: 0.60 },
       { id: "high_plank_hold", name: "29. High Plank Posture Hold", category: "Upper Body", reps: 10, desc: "Isometric push-up plank position holding straight alignment.",
         evalType: "hold", jointTriplet: [11, 23, 27], requiredLandmarks: [11, 23, 27], activeJointIdx: 11, targetAngle: 170, tolerance: 20, holdMs: 2500 },
       { id: "plank_shoulder_taps", name: "30. Plank Shoulder Taps", category: "Upper Body", reps: 14, desc: "Anti-rotational hand tap to opposite shoulder.",
-        evalType: "distance", distPair: [15, 12], requiredLandmarks: [15, 16, 11, 12], activeJointIdx: 15, distGreater: false, peakDist: 0.18, resetDist: 0.35 },
+        evalType: "distance", distPair: [15, 12], requiredLandmarks: [15, 16, 11, 12], activeJointIdx: 15, distGreater: false, peakDist: 0.28, resetDist: 0.55 },
 
       // --- CORE & ABS (10) ---
       { id: "bicycle_crunches", name: "31. Standing Bicycle Crunch", category: "Core", reps: 16, desc: "Diagonal elbow to contralateral knee drive.",
-        evalType: "distance", distPair: [13, 26], requiredLandmarks: [13, 14, 25, 26], activeJointIdx: 26, distGreater: false, peakDist: 0.22, resetDist: 0.48 },
+        evalType: "distance", distPair: [13, 26], requiredLandmarks: [13, 14, 25, 26], activeJointIdx: 26, distGreater: false, peakDist: 0.35, resetDist: 0.75 },
       { id: "side_bend", name: "32. Standing Oblique Side Bend", category: "Core", reps: 14, desc: "Lateral spine flexion squeezing the quadratus lumborum.",
         evalType: "angle", jointTriplet: [11, 23, 25], requiredLandmarks: [11, 12, 23, 24, 25], activeJointIdx: 11, flexionDirection: "less", peakThreshold: 145, resetThreshold: 172 },
       { id: "torso_rotation", name: "33. Thoracic Torso Rotation", category: "Core", reps: 16, desc: "Controlled horizontal spinal rotation left and right.",
-        evalType: "distance", distPair: [11, 12], requiredLandmarks: [11, 12], activeJointIdx: 11, distGreater: false, peakDist: 0.16, resetDist: 0.32 },
+        evalType: "distance", distPair: [11, 12], requiredLandmarks: [11, 12], activeJointIdx: 11, distGreater: false, peakDist: 0.24, resetDist: 0.48 },
       { id: "oblique_knee_drive", name: "34. Same-Side Oblique Knee Crunch", category: "Core", reps: 14, desc: "Lateral knee drive to meet same-side elbow.",
-        evalType: "distance", distPair: [13, 25], requiredLandmarks: [13, 25], activeJointIdx: 25, distGreater: false, peakDist: 0.24, resetDist: 0.48 },
+        evalType: "distance", distPair: [13, 25], requiredLandmarks: [13, 25], activeJointIdx: 25, distGreater: false, peakDist: 0.36, resetDist: 0.72 },
       { id: "standing_windmill", name: "35. Standing Windmill", category: "Core", reps: 12, desc: "Hand reaching down diagonally to contralateral ankle.",
-        evalType: "distance", distPair: [15, 28], requiredLandmarks: [15, 16, 27, 28], activeJointIdx: 15, distGreater: false, peakDist: 0.26, resetDist: 0.55 },
+        evalType: "distance", distPair: [15, 28], requiredLandmarks: [15, 16, 27, 28], activeJointIdx: 15, distGreater: false, peakDist: 0.38, resetDist: 0.85 },
       { id: "good_mornings", name: "36. Free Hand Good Mornings", category: "Core", reps: 14, desc: "Hip hinge with flat back strengthening spinal erectors.",
         evalType: "angle", jointTriplet: [11, 23, 25], requiredLandmarks: [11, 23, 25], activeJointIdx: 23, flexionDirection: "less", peakThreshold: 115, resetThreshold: 165 },
       { id: "standing_climbers", name: "37. Standing Mountain Climbers", category: "Core", reps: 20, desc: "Rhythmic high knee drive with synchronous arm pull.",
@@ -1582,17 +1597,17 @@
 
       // --- CARDIO & FULL BODY (6) ---
       { id: "jumping_jacks", name: "41. Classic Jumping Jack", category: "Cardio", reps: 20, desc: "Synchronous arm abduction and stance expansion.",
-        evalType: "distance", distPair: [15, 16], requiredLandmarks: [15, 16, 27, 28], activeJointIdx: 11, distGreater: true, peakDist: 0.42, resetDist: 0.22 },
+        evalType: "distance", distPair: [15, 16], requiredLandmarks: [15, 16, 27, 28], activeJointIdx: 11, distGreater: true, peakDist: 0.65, resetDist: 0.32 },
       { id: "seal_jacks", name: "42. Seal Jacks", category: "Cardio", reps: 20, desc: "Horizontal arm clap with jumping foot spread.",
-        evalType: "distance", distPair: [15, 16], requiredLandmarks: [15, 16, 27, 28], activeJointIdx: 15, distGreater: false, peakDist: 0.20, resetDist: 0.50 },
+        evalType: "distance", distPair: [15, 16], requiredLandmarks: [15, 16, 27, 28], activeJointIdx: 15, distGreater: false, peakDist: 0.32, resetDist: 0.75 },
       { id: "half_burpee", name: "43. Half Burpee Squat Thrust", category: "Cardio", reps: 12, desc: "Rapid transition from upright stance to crouch thrust.",
         evalType: "angle", jointTriplet: [11, 23, 25], requiredLandmarks: [11, 23, 25], activeJointIdx: 23, flexionDirection: "less", peakThreshold: 90, resetThreshold: 160 },
       { id: "skater_hops", name: "44. Speed Skater Hops", category: "Cardio", reps: 16, desc: "Lateral plyometric bound with trailing cross leg.",
-        evalType: "distance", distPair: [27, 28], requiredLandmarks: [27, 28], activeJointIdx: 27, distGreater: true, peakDist: 0.46, resetDist: 0.24 },
+        evalType: "distance", distPair: [27, 28], requiredLandmarks: [27, 28], activeJointIdx: 27, distGreater: true, peakDist: 0.70, resetDist: 0.35 },
       { id: "fast_high_knees", name: "45. Fast High Knee Cadence", category: "Cardio", reps: 24, desc: "Maximum cadence stationary high knee sprint.",
         evalType: "angle", jointTriplet: [11, 23, 25], bilateralTriplet: [12, 24, 26], requiredLandmarks: [11, 12, 23, 24, 25, 26], activeJointIdx: 23, takeMin: true, flexionDirection: "less", peakThreshold: 105, resetThreshold: 155 },
       { id: "cross_jacks", name: "46. Cross Jacks", category: "Cardio", reps: 18, desc: "Alternating cross-arm and cross-foot jumping jacks.",
-        evalType: "distance", distPair: [15, 16], requiredLandmarks: [15, 16], activeJointIdx: 15, distGreater: true, peakDist: 0.45, resetDist: 0.18 },
+        evalType: "distance", distPair: [15, 16], requiredLandmarks: [15, 16], activeJointIdx: 15, distGreater: true, peakDist: 0.68, resetDist: 0.28 },
 
       // --- MOBILITY & STRETCH (4) ---
       { id: "shoulder_cross_stretch", name: "47. Cross Body Shoulder Stretch", category: "Mobility", reps: 8, desc: "Sustained posterior deltoid adduction hold.",
@@ -1602,14 +1617,14 @@
       { id: "hamstring_sweep", name: "49. Hamstring Dynamic Sweep", category: "Mobility", reps: 12, desc: "Forward hip hinge sweeping arms past front heel.",
         evalType: "angle", jointTriplet: [11, 23, 25], requiredLandmarks: [11, 23, 25], activeJointIdx: 23, flexionDirection: "less", peakThreshold: 120, resetThreshold: 165 },
       { id: "neck_shoulder_roll", name: "50. Shoulder Shrug & Decompression", category: "Mobility", reps: 14, desc: "Scapular elevation and depression to release neck tension.",
-        evalType: "distance", distPair: [0, 11], requiredLandmarks: [0, 11], activeJointIdx: 11, distGreater: false, peakDist: 0.20, resetDist: 0.29 }
+        evalType: "distance", distPair: [0, 11], requiredLandmarks: [0, 11], activeJointIdx: 11, distGreater: false, peakDist: 0.30, resetDist: 0.44 }
     ];
 
     /* --------------------------------------------------------------------------
        6. CALIBRATED ROUTINES PRESETS
        -------------------------------------------------------------------------- */
     const READY_MADE_ROUTINES = [
-      { id: "rm_starter_50", name: "Cyber Primer 50", difficulty: "Beginner", description: "Rapid joint activation sequence.", steps: [{ exerciseId: "lateral_arm_raise", targetReps: 12, restSec: 10 }, { exerciseId: "squat", targetReps: 12, resetSec: 15 }] },
+      { id: "rm_starter_50", name: "Cyber Primer 50", difficulty: "Beginner", description: "Rapid joint activation sequence.", steps: [{ exerciseId: "lateral_arm_raise", targetReps: 12, restSec: 10 }, { exerciseId: "squat", targetReps: 12, restSec: 15 }] },
       { id: "rm_lower_beast", name: "Titan Lower Chain", difficulty: "Intermediate", description: "Legs and gluteus biomechanical gauntlet.", steps: [{ exerciseId: "squat", targetReps: 15, restSec: 15 }, { exerciseId: "forward_lunge", targetReps: 12, restSec: 15 }, { exerciseId: "calf_raise", targetReps: 20, restSec: 10 }] },
       { id: "rm_upper_armor", name: "Upper Kinetic Matrix", difficulty: "Intermediate", description: "Push-ups, tricep extension and boxing jabs.", steps: [{ exerciseId: "push_up", targetReps: 12, restSec: 15 }, { exerciseId: "bicep_curl_tension", targetReps: 15, restSec: 12 }, { exerciseId: "jab_punches", targetReps: 20, restSec: 10 }] },
       { id: "rm_core_sculpt", name: "Abdominal Kinetic Flow", difficulty: "Beginner", description: "Bicycle crunches and oblique decompression.", steps: [{ exerciseId: "bicycle_crunches", targetReps: 16, restSec: 12 }, { exerciseId: "side_bend", targetReps: 14, restSec: 10 }, { exerciseId: "torso_rotation", targetReps: 16, restSec: 10 }] },
@@ -1701,26 +1716,42 @@
 
       async loadVisionModel() {
         const statusEl = $("sidebar-engine-status");
+        if (statusEl) statusEl.innerHTML = `<i class="status-dot busy"></i> Initializing...`;
+
         try {
-          if (statusEl) statusEl.innerHTML = `<i class="status-dot busy"></i> Loading AI...`;
           const mod = await import(`${VISION_CDN}/vision_bundle.mjs`);
           const vision = await mod.FilesetResolver.forVisionTasks(`${VISION_CDN}/wasm`);
-          this.poseLandmarker = await mod.PoseLandmarker.createFromOptions(vision, {
-            baseOptions: { modelAssetPath: POSE_MODEL, delegate: "GPU" },
-            runningMode: "VIDEO",
-            numPoses: 1
-          });
-          if (statusEl) statusEl.innerHTML = `<i class="status-dot ready"></i> 50 Modules Ready`;
+          
+          try {
+            this.poseLandmarker = await mod.PoseLandmarker.createFromOptions(vision, {
+              baseOptions: { modelAssetPath: POSE_MODEL, delegate: "GPU" },
+              runningMode: "VIDEO",
+              numPoses: 1
+            });
+            if (statusEl) statusEl.innerHTML = `<i class="status-dot ready"></i> GPU Active`;
+          } catch (gpuErr) {
+            console.warn("GPU initialization failed, switching to CPU fallback...", gpuErr);
+            this.poseLandmarker = await mod.PoseLandmarker.createFromOptions(vision, {
+              baseOptions: { modelAssetPath: POSE_MODEL, delegate: "CPU" },
+              runningMode: "VIDEO",
+              numPoses: 1
+            });
+            if (statusEl) statusEl.innerHTML = `<i class="status-dot ready"></i> CPU Active`;
+          }
           this.showToast("MediaPipe 50-Exercise AI Engine Initialized.");
         } catch (err) {
-          console.warn("GPU failed, fallback CPU", err);
-          if (statusEl) statusEl.innerHTML = `<i class="status-dot ready"></i> CPU Active`;
+          console.error("AI Model Loading Error:", err);
+          if (statusEl) statusEl.innerHTML = `<i class="status-dot busy"></i> Load Error`;
+          this.showToast("Could not load AI vision engine. Please check internet connection.");
         }
       }
 
       navigateTo(viewId) {
         if (this.currentView === viewId) return;
-        if (this.activeCameraStream && this.currentView !== "view-workout") this.stopCamera();
+        if (this.activeCameraStream && this.currentView === "view-workout" && viewId !== "view-workout") {
+          this.stopCamera();
+          if (this.workoutTimer) clearInterval(this.workoutTimer);
+        }
 
         document.querySelectorAll(".view-container").forEach((el) => el.classList.remove("active-view"));
         document.querySelectorAll(".nav-item").forEach((el) => el.classList.remove("active"));
@@ -1794,8 +1825,8 @@
       renderCanvasOutput(canvas, video, lm, activeAngle = null, activeJoint = null) {
         const ctx = canvas.getContext("2d");
         if (canvas.width !== video.videoWidth || canvas.height !== video.videoHeight) {
-          canvas.width = video.videoWidth;
-          canvas.height = video.videoHeight;
+          canvas.width = video.videoWidth || 640;
+          canvas.height = video.videoHeight || 480;
         }
         ctx.save();
         if (this.facingMode === "user") {
@@ -1839,32 +1870,33 @@
             ctx.stroke();
 
             ctx.save();
-            if (this.facingMode === "user") {
-              ctx.translate(jx, jy);
-              ctx.scale(-1, 1);
-              ctx.fillStyle = "#fff";
-              ctx.font = "bold 13px 'Orbitron', monospace";
-              ctx.fillText(`${activeAngle}°`, 12, -12);
-            } else {
-              ctx.fillStyle = "#fff";
-              ctx.font = "bold 13px 'Orbitron', monospace";
-              ctx.fillText(`${activeAngle}°`, jx + 12, jy - 12);
-            }
             ctx.restore();
           }
         }
         ctx.restore();
+
+        // Render clean non-mirrored HUD text over canvas
+        if (activeAngle !== null && activeJoint && lm) {
+          const w = canvas.width, h = canvas.height;
+          const displayX = this.facingMode === "user" ? (1 - activeJoint.x) * w : activeJoint.x * w;
+          const displayY = activeJoint.y * h;
+          ctx.save();
+          ctx.fillStyle = "#ffffff";
+          ctx.font = "bold 13px 'Orbitron', monospace";
+          ctx.fillText(`${activeAngle}°`, displayX + 12, displayY - 12);
+          ctx.restore();
+        }
       }
 
       /* --------------------------------------------------------------------------
          CUSTOM DAILY GOAL SYSTEM
          -------------------------------------------------------------------------- */
-      setCustomDailyGoal(goal) {
+      async setCustomDailyGoal(goal) {
         this.activeDailyGoal = goal;
         lsSet("bm_custom_daily_goal", goal);
         this.goalCelebrated = false;
         this.showToast(`Custom Goal Activated: ${goal.name}`);
-        this.loadDashboardData();
+        await this.loadDashboardData();
         this.renderDailyGoalsMatrix();
         this.coach.speak(`New custom daily goal set: ${goal.name}. Target is ${goal.repsTarget} reps.`);
       }
@@ -2000,6 +2032,10 @@
         this.setupCurrentStep();
 
         this.sessionActive = true;
+        this.workoutPaused = false;
+        $("workout-pause-btn").textContent = "Pause";
+        $("workout-start-btn").textContent = "Finish Session";
+
         if (this.workoutTimer) clearInterval(this.workoutTimer);
         this.workoutTimer = setInterval(() => {
           if (!this.workoutPaused && !this.inRest) {
@@ -2032,8 +2068,12 @@
         let lm = null;
 
         if (this.poseLandmarker) {
-          const res = this.poseLandmarker.detectForVideo(video, this.nextTs());
-          if (res && res.landmarks && res.landmarks.length > 0) lm = res.landmarks[0];
+          try {
+            const res = this.poseLandmarker.detectForVideo(video, this.nextTs());
+            if (res && res.landmarks && res.landmarks.length > 0) lm = res.landmarks[0];
+          } catch (e) {
+            // Drop frame gracefully if timestamp error occurs
+          }
         }
 
         if (this.sessionActive && !this.workoutPaused && !this.inRest && lm && this.currentExerciseModule) {
@@ -2109,7 +2149,21 @@
       async finishWorkout() {
         this.sessionActive = false;
         if (this.workoutTimer) { clearInterval(this.workoutTimer); this.workoutTimer = null; }
+        if (this.restTimer) { clearInterval(this.restTimer); this.restTimer = null; }
+        $("workout-rest-overlay").classList.remove("active");
+        $("workout-start-btn").textContent = "Start Session";
         this.stopCamera();
+
+        // Push current unlogged step if prematurely terminated
+        if (this.currentExerciseModule && this.currentReps > 0) {
+          const alreadyLogged = this.routineExerciseLogs.some(l => l.name === this.currentExerciseModule.name);
+          if (!alreadyLogged) {
+            this.routineExerciseLogs.push({
+              name: this.currentExerciseModule.name,
+              reps: this.currentReps
+            });
+          }
+        }
 
         const totalReps = this.routineExerciseLogs.reduce((a, b) => a + b.reps, 0);
         const sessionData = {
@@ -2126,12 +2180,15 @@
         $("summary-reps").textContent = totalReps;
         $("summary-duration").textContent = fmtTime(this.workoutSeconds);
         const breakdown = $("summary-breakdown-list");
-        breakdown.innerHTML = this.routineExerciseLogs.map(l => `
-          <div style="display:flex; justify-content:space-between; font-size:0.85rem; padding:4px 0; border-bottom:1px solid rgba(255,255,255,0.06);">
-            <span>${esc(l.name)}</span>
-            <span style="color:var(--neon-green); font-family:var(--font-mono); font-weight:700;">${l.reps} reps</span>
-          </div>
-        `).join("");
+        breakdown.innerHTML = this.routineExerciseLogs.length === 0
+          ? `<p style="font-size:0.8rem; color:var(--text-dim);">No reps recorded in this session.</p>`
+          : this.routineExerciseLogs.map(l => `
+              <div style="display:flex; justify-content:space-between; font-size:0.85rem; padding:4px 0; border-bottom:1px solid rgba(255,255,255,0.06);">
+                <span>${esc(l.name)}</span>
+                <span style="color:var(--neon-green); font-family:var(--font-mono); font-weight:700;">${l.reps} reps</span>
+              </div>
+            `).join("");
+
         $("session-summary-modal").classList.add("open");
         this.synth.playVictoryFanfare();
         this.particles.explode();
@@ -2155,11 +2212,11 @@
           <div class="exercise-card">
             <div>
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-                <span class="badge-pill">${e.category}</span>
+                <span class="badge-pill">${esc(e.category)}</span>
                 <span style="font-size:0.75rem; font-family:var(--font-mono); color:var(--text-dim);">${e.reps} Reps Target</span>
               </div>
-              <h3 style="font-size:1.1rem; margin:8px 0 6px;">${e.name}</h3>
-              <p style="font-size:0.84rem; color:var(--text-muted); margin-bottom:14px;">${e.desc}</p>
+              <h3 style="font-size:1.1rem; margin:8px 0 6px;">${esc(e.name)}</h3>
+              <p style="font-size:0.84rem; color:var(--text-muted); margin-bottom:14px;">${esc(e.desc)}</p>
             </div>
             <button type="button" class="btn btn-secondary btn-sm library-launch-btn" data-id="${e.id}">Launch Exercise</button>
           </div>
@@ -2176,9 +2233,9 @@
         grid.innerHTML = READY_MADE_ROUTINES.map(r => `
           <div class="routine-card">
             <div>
-              <span class="difficulty-tag diff-beginner">${r.difficulty}</span>
-              <h3 style="font-size:1.2rem; margin:10px 0 6px;">${r.name}</h3>
-              <p style="font-size:0.84rem; color:var(--text-muted); margin-bottom:16px;">${r.description}</p>
+              <span class="difficulty-tag diff-beginner">${esc(r.difficulty)}</span>
+              <h3 style="font-size:1.2rem; margin:10px 0 6px;">${esc(r.name)}</h3>
+              <p style="font-size:0.84rem; color:var(--text-muted); margin-bottom:16px;">${esc(r.description)}</p>
             </div>
             <button type="button" class="btn btn-primary btn-sm start-routine-btn" data-id="${r.id}">Launch Routine</button>
           </div>
@@ -2207,7 +2264,7 @@
             : sessions.slice(-3).reverse().map(s => `
                 <div style="display:flex; justify-content:space-between; padding:10px 14px; background:var(--bg-surface-elevated); border-radius:var(--radius-sm);">
                   <b>${esc(s.routineName)}</b>
-                  <span style="color:var(--neon-green); font-family:var(--font-mono);">${s.reps} reps</span>
+                  <span style="color:var(--neon-green); font-family:var(--font-mono); font-weight:700;">${s.reps} reps</span>
                 </div>
               `).join("");
         }
@@ -2315,6 +2372,19 @@
         $("goals-edit-current-btn")?.addEventListener("click", () => $("custom-goal-modal").classList.add("open"));
         $("close-goal-modal-btn")?.addEventListener("click", () => $("custom-goal-modal").classList.remove("open"));
         $("goals-start-custom-workout-btn")?.addEventListener("click", () => this.launchCustomGoalWorkout());
+
+        // Close modal on backdrop click & Escape key
+        window.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") {
+            $("custom-goal-modal")?.classList.remove("open");
+            $("session-summary-modal")?.classList.remove("open");
+          }
+        });
+        document.querySelectorAll(".modal-backdrop").forEach(backdrop => {
+          backdrop.addEventListener("click", (e) => {
+            if (e.target === backdrop) backdrop.classList.remove("open");
+          });
+        });
 
         // Custom Goal Form Submit
         $("custom-goal-form")?.addEventListener("submit", (e) => {
